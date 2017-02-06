@@ -10,5 +10,23 @@ package com.ralloc.model;
  * @author mahesh
  */
 public class SubjectDependency {
+    int dependencyId=0;
+    String courseCode;
+
+    public int getDependencyId() {
+        return dependencyId;
+    }
+
+    public void setDependencyId(int dependencyId) {
+        this.dependencyId = dependencyId;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
     
 }
