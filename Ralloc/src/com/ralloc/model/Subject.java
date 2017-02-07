@@ -10,8 +10,16 @@ package com.ralloc.model;
  * @author mahesh
  */
 public class Subject {
-    String courseCode;
+    String courseCode, name;
     boolean isDeptElective, isClusterElective, isInstituteElective;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getCourseCode() {
         return courseCode;

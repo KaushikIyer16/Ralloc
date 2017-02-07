@@ -11,7 +11,8 @@ package com.ralloc.model;
  */
 public class Dependency {
     int dependencyId = 0;
-    String roomOffered, subjectRegistered;
+    int roomId = 0;
+    String courseCode;    
 
     public int getDependencyId() {
         return dependencyId;
@@ -21,20 +22,20 @@ public class Dependency {
         this.dependencyId = dependencyId;
     }
 
-    public String getRoomOffered() {
-        return roomOffered;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoomOffered(String roomOffered) {
-        this.roomOffered = roomOffered;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
-    public String getSubjectRegistered() {
-        return subjectRegistered;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setSubjectRegistered(String subjectRegistered) {
-        this.subjectRegistered = subjectRegistered;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
     
     

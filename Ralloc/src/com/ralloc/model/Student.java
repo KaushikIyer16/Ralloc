@@ -10,7 +10,7 @@ package com.ralloc.model;
  * @author mahesh
  */
 public class Student {
-    String usn, subject;
+    String usn;
     int departmentId = 0;
 
     public String getUsn() {
@@ -19,14 +19,6 @@ public class Student {
 
     public void setUsn(String usn) {
         this.usn = usn;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     public int getDepartmentId() {
