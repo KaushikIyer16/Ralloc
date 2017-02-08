@@ -85,7 +85,8 @@ INSERT INTO `DepartmentSubject` (`DepartmentID`, `CourseCode`) VALUES
 (4, '16ME5DCMAE'),
 (4, '16ME5DEICE'),
 (4, '16ME5DENTM'),
-(4, '16ME5DETOE');
+(4, '16ME5DETOE'),
+(4, '16ME5DE1FD');
 
 -- --------------------------------------------------------
 
