@@ -5,6 +5,12 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author mahesh
@@ -38,5 +44,26 @@ public class Department {
         this.name = name;
     }
    
+    public static int getIntakeByDepartmentId(int departmentId) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT Intake FROM Department WHERE DepartmentID = ?");
+        myPreStatement.setInt(1, departmentId);
+        ResultSet rs = myPreStatement.executeQuery();
+        int intake=0;
+        while (rs.next()) {
+             intake = rs.getInt(1);
+        }
+        return intake;
+    }
+    
+    public static ArrayList<Integer> getDepartments() throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department");
+        ResultSet rs = myPreStatement.executeQuery();
+        ArrayList<Integer> deptList = new ArrayList<>();
+        while(rs.next())
+            deptList.add(rs.getInt(1));
+        return deptList;
+    }
    
 }
