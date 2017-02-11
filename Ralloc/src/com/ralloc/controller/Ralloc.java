@@ -5,11 +5,14 @@
  */
 package com.ralloc.controller;
 
+import com.ralloc.beans.StudentCount;
+import com.ralloc.beans.SubjectDependency;
 import com.ralloc.model.Department;
 import com.ralloc.model.Room;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 /**
  *
  * @author kaushiknsiyer
@@ -18,11 +21,15 @@ public class Ralloc {
     
     
     int noRooms = 0;
-    HashMap<String,String[]> roomMap= new HashMap<>();
-    HashMap<String,Integer> departmentStudents;
+    /*
+     * roomMap : is a map between the room id and all the students in that room
+     */
+    HashMap<String,ArrayList<StudentCount>> roomMap= new HashMap<>();
+    HashMap<SubjectDependency,ArrayList<StudentCount>> departmentStudents;
     
     public Ralloc() {
-        
+        roomMap= new HashMap<>();
+        departmentStudents = new HashMap<>();
     }
     
     /**
@@ -39,18 +46,31 @@ public class Ralloc {
     private void initRoomMap() throws SQLException{
         ArrayList<Integer> roomCapacities = Room.getRoomCapacities();
         for (int i = 1; i <= this.noRooms; i++) {
-            roomMap.put(Integer.toString(i), new String[roomCapacities.get(i-1)]);
+            roomMap.put(Integer.toString(i), new ArrayList<>());
         }
         
-        System.out.println(roomMap.get("8").length);
+        
+    }
+    private void initDepartmentStudents() throws SQLException{
+//        ArrayList<Integer> departmentIdsList = Department.getDepartmentIds();
+//        departmentStudents.put(new SubjectDependency("",null), value)
     }
     
+    private void initRallocController() throws SQLException{
+        this.initRoomMap();
+        
+    }
     public void getRoomAllocation(){
         
         try {
             this.noRooms = Room.getTotalRooms();
-            this.initRoomMap();
-            
+            this.initRallocController();
+            Iterator roomIterator = roomMap.keySet().iterator();
+            while (roomIterator.hasNext()) {                
+                 // now i need to choose
+                 String str= (String)roomIterator.next();
+                 System.out.println(roomMap.get(str));
+            }
             for (int iterator = 0; iterator <= this.noRooms; iterator++) {
                 
             }

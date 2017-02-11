@@ -56,7 +56,7 @@ public class Department {
         return intake;
     }
     
-    public static ArrayList<Integer> getDepartments() throws SQLException{
+    public static ArrayList<Integer> getDepartmentIds() throws SQLException{
         Connection myConnection = DBConnection.getConnection();
         PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department");
         ResultSet rs = myPreStatement.executeQuery();
