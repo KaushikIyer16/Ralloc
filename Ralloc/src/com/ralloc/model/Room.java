@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -54,15 +55,14 @@ public class Room {
         return noRooms;
     }
     
-    public static ArrayList<Integer> getRoomCapacities() throws SQLException{
-        ArrayList<Integer> roomCapacities = new ArrayList<>();
+    public static HashMap getRoomCapacities() throws SQLException{
+        HashMap roomCapacities = new HashMap();
         Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT Capacity FROM Room");
+        PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room");
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {            
-            roomCapacities.add(rs.getInt(1));
+            roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
-        
         return roomCapacities;
     }
 }

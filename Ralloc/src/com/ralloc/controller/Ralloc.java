@@ -44,7 +44,8 @@ public class Ralloc {
     }
     
     private void initRoomMap() throws SQLException{
-        ArrayList<Integer> roomCapacities = Room.getRoomCapacities();
+        //Return type changed to hashmap in model as @knsi had asked
+        ArrayList<Integer> roomCapacities = Room.getRoomCapacities();//Please change it here
         for (int i = 1; i <= this.noRooms; i++) {
             roomMap.put(Integer.toString(i), new ArrayList<>());
         }
