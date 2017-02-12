@@ -11,8 +11,9 @@ package com.ralloc.beans;
  */
 public class StudentCount {
     private String departmentID;
+    private String clusterID;
     private int numberOfStudents;
-    private int year;
+//    private int year;
 
     public String getDepartmentID() {
         return departmentID;
@@ -30,19 +31,12 @@ public class StudentCount {
         this.numberOfStudents = numberOfStudents;
     }
 
-    public StudentCount(String departmentID, int numberOfStudents,int year) {
+    public StudentCount(String departmentID, int numberOfStudents) {
         this.departmentID = departmentID;
         this.numberOfStudents = numberOfStudents;
-        this.year = year;
+        
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
     
     
 }

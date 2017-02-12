@@ -55,8 +55,8 @@ public class Room {
         return noRooms;
     }
     
-    public static HashMap getRoomCapacities() throws SQLException{
-        HashMap roomCapacities = new HashMap();
+    public static HashMap<Integer,Integer> getRoomCapacities() throws SQLException{
+        HashMap<Integer,Integer> roomCapacities = new HashMap();
         Connection con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room");
         ResultSet rs = ps.executeQuery();
