@@ -29,7 +29,8 @@ public class Ralloc {
      */
     HashMap<RoomCapacity,ArrayList<StudentCount>> roomMap= new HashMap<>();
     HashMap<SubjectDependency,ArrayList<StudentCount>> departmentSubjects;
-    StudentCount subject1=null,subject2=null;
+    int subject1Index=0,subject2Index=0;
+    StudentCount subject1Students=null,subject2Students = null;
     SubjectDependency []subj = {new SubjectDependency("16IS5DCDCN",null),
                                     new SubjectDependency("16EC5DCCSM",null),
                                     new SubjectDependency("16ME5DCCMD",null)};
@@ -86,49 +87,72 @@ public class Ralloc {
         try {
             this.noRooms = Room.getTotalRooms();
             this.initRallocController();
+            
             Iterator roomIterator = roomMap.keySet().iterator();
             while (roomIterator.hasNext()) {                
                  // now i need to choose
                  RoomCapacity currRoom = (RoomCapacity)roomIterator.next();
+                 int currRoomCapacity = currRoom.getCapacity();
                  System.out.println(currRoom.getRoomId()+ "<----->"+currRoom.getCapacity());
                  while(currRoom.getCapacity()>0){
-                     if (subject1 == null) {
-                         subject1 = choseValidSubject(subject2);
+                     System.out.println("the current capacity is "+currRoom.getCapacity());
+                     if (subject1Students == null) {
+                         subject1Index = choseValidSubject(subject2Students,subject2Index);
+                         subject1Students = departmentSubjects.get(subj[subject1Index]).get(0);
+                         System.out.println("the subject chosen used is "+subject1Students.getDepartmentID());
                      }
-                     if (subject2 == null) {
-                         subject2 = choseValidSubject(subject1);
+                     if (subject2Students == null) {
+                         subject2Index = choseValidSubject(subject1Students,subject1Index);
+                         subject2Students = departmentSubjects.get(subj[subject2Index]).get(0);
+                         System.out.println("the subject chosen used is "+subject2Students.getDepartmentID());
                      }
+                     
+                     System.out.println(subj[subject1Index].getSubjectCode()+"<==------==>"+subj[subject2Index].getSubjectCode());
+                     
+                     if (currRoomCapacity/2 >= subject1Students.getNumberOfStudents() || currRoomCapacity/2+1 >= subject1Students.getNumberOfStudents()) {
+                         System.out.println("--> "+ subject1Students.getDepartmentID()+" = "+subject1Students.getNumberOfStudents());
+                        currRoom.setCapacity(currRoom.getCapacity()- subject1Students.getNumberOfStudents());
+                        subject1Students.setNumberOfStudents(0);
+//                        System.out.println("-->"+departmentSubjects.get(subj[subject1Index]).get(0).getNumberOfStudents());
+                        updateGraph(subj[subject1Index]);
+                        subject1Students = null;
+                        // now i have to ermove the capacity of the room by that much
+
+
+                    }else{
+                        // just fill half of the room with this dept students
+                        System.out.println("-->"+subject1Students.getDepartmentID()+" = "+currRoomCapacity/2);
+                        subject1Students.setNumberOfStudents(subject1Students.getNumberOfStudents()-currRoomCapacity/2);
+                         
+                        currRoom.setCapacity(currRoom.getCapacity() - currRoomCapacity/2);
+                        
+                    }
+                     
+                    if (currRoomCapacity/2 >= subject2Students.getNumberOfStudents() || currRoomCapacity/2+1 >= subject2Students.getNumberOfStudents()) {
+                         System.out.println("--> "+ subject2Students.getDepartmentID()+" = "+subject2Students.getNumberOfStudents());
+                        currRoom.setCapacity(currRoom.getCapacity()- subject2Students.getNumberOfStudents());
+                        subject2Students.setNumberOfStudents(0);
+//                        System.out.println("-->"+departmentSubjects.get(subj[subject2Index]).get(0).getNumberOfStudents());
+                        
+                        subject2Students = null;
+                        // now i have to ermove the capacity of the room by that much
+
+
+                    }else{
+                        // just fill half of the room with this dept students
+                        System.out.println("-->"+subject2Students.getDepartmentID()+" = "+currRoomCapacity/2);
+                        subject2Students.setNumberOfStudents(subject2Students.getNumberOfStudents()-currRoomCapacity/2);
+                         updateGraph(subj[subject2Index]);
+                        currRoom.setCapacity(currRoom.getCapacity() - currRoomCapacity/2);
+                        
+                    }
+                    
+                    
+                    
                  }
-//                 now choose two subjects in random and then two branches from them in random
-                TreeSet<Integer> tmpList = new TreeSet();
-                Random random = new Random();
-                while(tmpList.size() !=2){
-                    tmpList.add(random.nextInt(departmentSubjects.size()));
-                }
-                
-                System.out.println(tmpList.first()+""+tmpList.last());
-                subject1 = departmentSubjects.get(subj[tmpList.first()]).get(0);
-                subject2 = departmentSubjects.get(subj[tmpList.last()]).get(0);
-                
-                if (currRoom.getCapacity()/2 > subject1.getNumberOfStudents()) {
-                    currRoom.setCapacity(currRoom.getCapacity()- subject1.getNumberOfStudents());
-                    subject1.setNumberOfStudents(0);
-                    System.out.println("-->"+departmentSubjects.get(subj[tmpList.first()]).get(0).getNumberOfStudents());
-                    updateGraph(subj[tmpList.first()]);
-                    // now i have to ermove the capacity of the room by that much
-                    
-                    
-                }else if(currRoom.getCapacity()/2 > subject1.getNumberOfStudents()/2){
-                    currRoom.setCapacity(currRoom.getCapacity()- subject1.getNumberOfStudents()/2);
-                    subject1.setNumberOfStudents(subject1.getNumberOfStudents()-subject1.getNumberOfStudents()/2);
-                    System.out.println("-->"+departmentSubjects.get(subj[tmpList.first()]).get(0).getNumberOfStudents());
-                    updateGraph(subj[tmpList.first()]);
-                }
-                System.out.println("-------------------");
+                 System.out.println("--------------------------");
+                 
             }
-//            for (int iterator = 0; iterator <= this.noRooms; iterator++) {
-//                
-//            }
         } catch (Exception e) {
             System.out.println("exception in getRoomAllocation");
             e.printStackTrace();
@@ -137,9 +161,12 @@ public class Ralloc {
 
     private void updateGraph(SubjectDependency subjectDependency) {
         ArrayList<StudentCount> currBranch = departmentSubjects.get(subjectDependency);
-        for(StudentCount studentCount: currBranch){
+        Iterator currBranchIterator = currBranch.iterator();
+        while(currBranchIterator.hasNext()){
+            StudentCount studentCount = (StudentCount)currBranchIterator.next();
             if(studentCount.getNumberOfStudents() == 0){
-                currBranch.remove(studentCount);
+                System.out.println("a branch was removed because it got seated");
+                currBranchIterator.remove();
             }
         }
         if(currBranch.isEmpty()){
@@ -149,20 +176,23 @@ public class Ralloc {
         }
     }
 
-    private StudentCount choseValidSubject(StudentCount otherSubject) {
-        ArrayList<Integer> invalidSubjects = new ArrayList<>();
+    private int choseValidSubject(StudentCount otherSubjectStudents,int otherSubject) {
         Random r = new Random();
         int subjectIndex = r.nextInt(departmentSubjects.size());
-        if (otherSubject == null) {
-            return departmentSubjects.get(subj[subjectIndex]).get(0);
+        
+        if (otherSubjectStudents == null) {
+            // here get(0) is because they are in the same cluster
+            //return departmentSubjects.get(subj[subjectIndex]).get(0);
+            return subjectIndex;
         }else{
-//            while(true){
-//            
-//            if (!invalidSubjects.contains(subjectIndex) && departmentSubjects.get(subj[subjectIndex]).get(0).) {
-//                 
-//            }
-//        }
-            return null;
+            while(true){
+            // checking if the cluster ids match or not 
+                if (!departmentSubjects.get(subj[subjectIndex]).get(0).getClusterID().equalsIgnoreCase(otherSubjectStudents.getClusterID()) && !subj[subjectIndex].getSubjectCode().equalsIgnoreCase(subj[otherSubject].getSubjectCode())) {
+                     return subjectIndex;
+                }
+                subjectIndex = r.nextInt(departmentSubjects.size());
+            }
+            
         }
         
     }

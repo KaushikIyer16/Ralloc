@@ -5,6 +5,9 @@
  */
 package com.ralloc.beans;
 
+import com.ralloc.model.Department;
+import java.sql.SQLException;
+
 /**
  *
  * @author kaushiknsiyer
@@ -31,10 +34,19 @@ public class StudentCount {
         this.numberOfStudents = numberOfStudents;
     }
 
-    public StudentCount(String departmentID, int numberOfStudents) {
+    public StudentCount(String departmentID, int numberOfStudents) throws SQLException {
         this.departmentID = departmentID;
         this.numberOfStudents = numberOfStudents;
+        this.clusterID = Department.getClusterIdFromDepartmentId(Integer.parseInt(this.departmentID)).toString();
         
+    }
+
+    public String getClusterID() {
+        return clusterID;
+    }
+
+    public void setClusterID(String clusterID) {
+        this.clusterID = clusterID;
     }
 
     

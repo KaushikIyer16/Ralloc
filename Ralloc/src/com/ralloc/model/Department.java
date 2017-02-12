@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Department {
     
-   int departmentId = 0 , intake = 0;
+   int departmentId = 0,clusterId=0 , intake = 0;
    String name;
 
     public int getDepartmentId() {
@@ -65,5 +65,16 @@ public class Department {
             deptList.add(rs.getInt(1));
         return deptList;
     }
-   
+    
+    public static Integer getClusterIdFromDepartmentId(int departmentId)throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT ClusterID FROM Department WHERE DepartmentID = ?");
+        myPreStatement.setInt(1, departmentId);
+        int clusterId=0;
+        ResultSet rs = myPreStatement.executeQuery();
+        while(rs.next()){
+            clusterId = rs.getInt(1);
+        }
+        return clusterId;
+    }
 }
