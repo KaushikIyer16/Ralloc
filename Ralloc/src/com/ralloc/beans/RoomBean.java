@@ -9,11 +9,11 @@ package com.ralloc.beans;
  *
  * @author kaushiknsiyer
  */
-public class RoomCapacity {
+public class RoomBean {
     int roomId;
     int capacity;
 
-    public RoomCapacity(int roomId, int capacity) {
+    public RoomBean(int roomId, int capacity) {
         this.roomId = roomId;
         this.capacity = capacity;
     }
