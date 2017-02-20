@@ -115,7 +115,7 @@ public class Ralloc {
                     }
                     
                     System.out.println(subject1.getSubjectCode()+"<==------==>"+subject2.getSubjectCode());
-                    System.out.println(firstSubjCapacity+"<*-------*>"+secondSubjCapacity);
+                    System.out.println("        "+firstSubjCapacity+"<*--------*>"+secondSubjCapacity);
                     
                     if(firstSubjCapacity == 0){
                         System.out.println("waiting for the second half to get filled");
