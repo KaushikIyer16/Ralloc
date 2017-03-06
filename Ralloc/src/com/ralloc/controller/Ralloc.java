@@ -70,10 +70,12 @@ public class Ralloc {
         departmentSubjects.get(new SubjectDependency("16IS5DCDCN",null)).add(new StudentCount("1",90));
         
         departmentSubjects.put(new SubjectDependency("16EC5DCCSM",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).add(new StudentCount("2",90));
+        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).add(new StudentCount("2",45));
+        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).add(new StudentCount("3",45));
         
         departmentSubjects.put(new SubjectDependency("16TE5DCACM",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16TE5DCACM",null)).add(new StudentCount("3",90));
+        departmentSubjects.get(new SubjectDependency("16TE5DCACM",null)).add(new StudentCount("3",45));
+        departmentSubjects.get(new SubjectDependency("16TE5DCACM",null)).add(new StudentCount("2",45));
         
         departmentSubjects.put(new SubjectDependency("16ME5DCCMD",null), new ArrayList<>() );
         departmentSubjects.get(new SubjectDependency("16ME5DCCMD",null)).add(new StudentCount("4",200));
@@ -234,7 +236,8 @@ public class Ralloc {
         }else{
             int count = 0;
             while(count<200){
-                if (!departmentSubjects.get(subj.get(randomIndex)).get(0).getClusterID().equalsIgnoreCase(otherSubjectStudents.getClusterID()) && !subj.get(randomIndex).getSubjectCode().equalsIgnoreCase(otherSubject.getSubjectCode()))  {
+                int randomDep = r.nextInt(departmentSubjects.get(subj.get(randomIndex)).size());
+                if (!departmentSubjects.get(subj.get(randomIndex)).get(randomDep).getClusterID().equalsIgnoreCase(otherSubjectStudents.getClusterID()) && !subj.get(randomIndex).getSubjectCode().equalsIgnoreCase(otherSubject.getSubjectCode()))  {
                     return subj.get(randomIndex);
                 }
                 randomIndex= r.nextInt(subj.size());
