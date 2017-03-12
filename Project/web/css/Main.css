@@ -77,7 +77,7 @@ form {
     transition:all.5s ease;
     -webkit-appearance: none;
 }
-button:hover, button:focus {
+.button:hover, .button:focus {
     background:#0c58b9;
 }
 .button-block {
