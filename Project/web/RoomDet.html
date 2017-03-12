@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/Main.css" />
+        <title>
+                Room Capacity Allocation
+        </title>
+    </head>
+	<body>
+        <h1 class="college-header">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h1>
+        <h4 class="affiliation">(Autonomous Institute, Affiliated to VTU)</h4>
+        <h3 class="form-header">DETAILS OF ROOM</h3>
+         
+        <div class="container">
+            <form method="POST"	action="GetRoom.do">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="Room_Id" class="right">Room Id</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="Room_Id" id="r_id" required placeholder="" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="Room_name" class="right">Room name</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="Room_name" id="r_name" required placeholder="" />
+                    </div>
+                    <div class="col-xs-6">
+                        <label for="Room_name" class="right">Capacity</label>
+                    </div>
+                    <div class="col-xs-6">
+                            <input type="text" name="Capacity" id="capacity" required placeholder="" />
+                    </div>
+                </div>
+                        
+                        
+
+    			<button class="button button-block" type="submit">Submit</button>
+		    </form>
+        </div>
+	</body>
+</html>
