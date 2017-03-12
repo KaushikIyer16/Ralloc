@@ -32,7 +32,8 @@
                         <div class="col-xs-6">
                             <input type="text" name="SubCode" id="name" required/>
                         </div>
-                    </div><br>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-xs-6">
                             <label for="SubName" class="right">Subject Name</label>
@@ -41,6 +42,25 @@
                             <input type="text" name="SubName" id="name" required />
                         </div>
                     </div>
+                    <br><br>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label for="Depend" class="right">Dependency Exists</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="checkbox" name="Depend" value="Exist" id="name"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-6">
+                            <label for="DepCode" class="right">Dependency Code</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" name="DepCode" id="name"/>
+                        </div>
+                    </div>
+                    <br>
+                    
                     <br><br>
                     <h3>Upload CSV file:</h3><br>
                     <div class="upload">
@@ -55,7 +75,7 @@
                 </form>
             
                 <div class="sub" style="float:left;">
-                <a href="/View_Ralloc/index.html"><button class="button">Return to Home</button></a>
+                <a href="./index.html"><button class="button">Return to Home</button></a>
                 </div>
                 
         </div>

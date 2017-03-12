@@ -22,17 +22,21 @@ public class a extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
         
-        String rid=request.getParameter("Room_Id");
-        String rname=request.getParameter("Room_name");
-        String cap=request.getParameter("Capacity");
-        
-        request.setAttribute("Room_Id",rid);
-            request.setAttribute("Room_name",rname);
-            request.setAttribute("Capacity",cap);
+            String numStr = request.getParameter("no");
+        int i, n = Integer.parseInt(numStr);
+        for(i=1; i<=n; i++)
+        {
+            String rid=request.getParameter("Room_Id" + Integer.toString(i));
+            String rname=request.getParameter("Room_name" + Integer.toString(i));
+            String cap=request.getParameter("Capacity" + Integer.toString(i));
+            request.setAttribute("Room_Id" + Integer.toString(i),rid);
+            request.setAttribute("Room_name" + Integer.toString(i),rname);
+            request.setAttribute("Capacity" + Integer.toString(i),cap);
             
+        }
+            request.setAttribute("no",n);
             RequestDispatcher view = request.getRequestDispatcher("Room.jsp");
             view.forward(request, response);
-        
         }
     }
 

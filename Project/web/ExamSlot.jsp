@@ -30,7 +30,7 @@
                 out.print("<br>");
               %>
             <div class="container">
-                <a class = "button button-block" href="/View_Ralloc/index.html">Return to Home</a>    
+                <a class = "button button-block" href="./index.html">Return to Home</a>    
             </div>
     </body>
 </html>

@@ -42,8 +42,8 @@
             %>
         </div>
          <div class="container subj">
-             <a class = "button button-block" href="/View_Ralloc/upload.jsp">Add another subject</a>
-             <a class = "button button-block" href="/View_Ralloc/index.html">Return to Home</a>
+             <a class = "button button-block" href="./upload.jsp">Add another subject</a>
+             <a class = "button button-block" href="./index.html">Return to Home</a>
          </div>
         
         </div>
