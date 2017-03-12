@@ -6,41 +6,45 @@
         <title>
                 Room Capacity Allocation
         </title>
+        <script src="./js/jquery.js"></script>
+        <script src="./js/jquery.easing.min.js"></script>
     </head>
 	<body>
         <h1 class="college-header">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h1>
         <h4 class="affiliation">(Autonomous Institute, Affiliated to VTU)</h4>
         <h3 class="form-header">DETAILS OF ROOM</h3>
-         
+
         <div class="container">
             <form method="POST"	action="GetRoom.do">
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label for="Room_Id" class="right">Room Id</label>
-                    </div>
-                    <div class="col-xs-6">
-                        <input type="text" name="Room_Id" id="r_id" required placeholder="" />
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        <label for="Room_name" class="right">Room name</label>
-                    </div>
-                    <div class="col-xs-6">
-                        <input type="text" name="Room_name" id="r_name" required placeholder="" />
-                    </div>
-                    <div class="col-xs-6">
-                        <label for="Room_name" class="right">Capacity</label>
-                    </div>
-                    <div class="col-xs-6">
-                            <input type="text" name="Capacity" id="capacity" required placeholder="" />
-                    </div>
-                </div>
-                        
-                        
 
-    			<button class="button button-block" type="submit">Submit</button>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-2 col-xs-4">
+                        <p class="table-header">Room Id</p>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <p class="table-header">Room Name</p>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <p class="table-header">Capacity</p>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+                <div class="rooms">
+                    <input value="0" name="no" type="hidden" />
+                </div>
+
+                <div class="row" id="buttons">
+                    <div class="button-container">
+                        <button type="button" class="add">Add Row</button>
+                        <button type="button" class="delete" disabled="true">Delete Row</button>
+                    </div>
+                </div>
+
+                <button class="button button-block" type="submit">Submit</button>
 		    </form>
         </div>
 	</body>
+    <script src="./js/RoomDet.js"></script>
 </html>
