@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/Main.css" />
+        <title>
+                Correction in Grade Cards
+        </title>
+    </head>
+	<body>
+        <h1 class="college-header">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h1>
+        <h4 class="affiliation">Autonomous Institute, Affiliated to VTU</h4>
+
+        <div class="container">
+            <form method="POST"	action="DoCorrect.do">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="name" class="right">Name</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="name" id="name" required placeholder="Your name here" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="usn" class="right">USN</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="USN" id="usn" required placeholder="USN" />
+                    </div>
+                </div>
+
+                <h3 class="form-header">CORRECTION IN GRADE CARDS</h3>
+                <p class="table-header">Correction to be incorporated</p>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="nameOld" class="right">Name of Candidate(as printed)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="name" id="nameOld" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="nameNew" class="right">Name of Candidate(to be corrected to be read as)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="nameNew" id="nameNew" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="parent" class="right">Name of father/mother(as printed)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="parent" id="parent" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="parentNew" class="right">Name of father/mother(to be corrected to be read as)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="parentNew" id="parentNew" />
+                    </div>
+                </div><div class="row">
+                    <div class="col-xs-6">
+                        <label for="other" class="right">Other(as printed)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="other" id="other" />
+                    </div>
+                </div><div class="row">
+                    <div class="col-xs-6">
+                        <label for="othNew" class="right">Other(to be corrected to be read as)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="othNew" id="othNew" />
+                    </div>
+                </div>
+                <p class="table-header">Documents to be submitted</p>
+                <p style="text-align: center">Xerox copy of SSLC Marks Card</p>
+                <p style="text-align: center">Original Marks Card(s)</p>
+
+    			<button class="button button-block" type="submit">Submit</button>
+		    </form>
+        </div>
+	</body>
+</html>

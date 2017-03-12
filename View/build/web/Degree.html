@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/Main.css" />
+        <title>
+                Provisional Degree Certificate
+        </title>
+    </head>
+    <body>
+	    <h1 class="college-header">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h1>
+        <h4 class="affiliation">Autonomous Institute, Affiliated to VTU</h4>
+        <h3 class="form-header">PROVISIONAL DEGREE CERTIFICATE FOR ENGINEERS</h3>
+        <div class="container">
+            <form method="POST" action="Degree.do">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="name" class="right">Name</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="name" id="name" required placeholder="Your name here" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="usn" class="right">USN</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="USN" id="usn" required placeholder="USN" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="DeptName" class="right">Discipline</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="DeptName" id="DeptName" required placeholder="Department" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="ph" class="right">Phone Number</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="PH" id="ph" required placeholder="xxx-xxx-xxxx" pattern="^\d{3}-\d{3}-\d{4}$" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="eID" class="right">Email ID</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="email" name="eID" id="eID" required placeholder="Email">
+                    </div>
+                </div>
+
+                <h4 class="form-subheader">Academic  Progress</h4>
+
+                <div class="row year-row">
+                    <div class="center-align">
+                        <label for="year1from">Year 20</label>
+                        <input type="number" name="year1from" required min="0" max="99">
+                        <label for="year1to"> - 20</label>
+                        <input type="number" name="year1to" required min="0" max="99">
+                    </div>
+                </div>
+                <div class="row table-header">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Semester</div>
+                    <div class="col-xs-3 col-md-2">1</div>
+                    <div class="col-xs-3 col-md-2">2</div>
+                    <div class="col-xs-3 col-md-2">Supplementary</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Credits Earned</div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred1" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred2" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Credsup1" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">SGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA1" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA2" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPAsup1" step="0.01" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">CGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA1" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA2" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPAsup1" step="0.01"></div>
+                </div>
+
+                <div class="row year-row">
+                    <div class="center-align">
+                        <label for="year2from">Year 20</label>
+                        <input type="number" name="year1from" required min="0" max="99">
+                        <label for="year2to"> - 20</label>
+                        <input type="number" name="year1to" required min="0" max="99">
+                    </div>
+                </div>
+                <div class="row table-header">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Semester</div>
+                    <div class="col-xs-3 col-md-2">3</div>
+                    <div class="col-xs-3 col-md-2">4</div>
+                    <div class="col-xs-3 col-md-2">Supplementary</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Credits Earned</div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred3" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred4" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Credsup2" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">SGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA3" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA4" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPAsup2" step="0.01" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">CGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA3" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA4" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPAsup2" step="0.01"></div>
+                </div>
+
+                <div class="row year-row">
+                    <div class="center-align">
+                        <label for="year3from">Year 20</label>
+                        <input type="number" name="year1from" required min="0" max="99">
+                        <label for="year3to"> - 20</label>
+                        <input type="number" name="year1to" required min="0" max="99">
+                    </div>
+                </div>
+                <div class="row table-header">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Semester</div>
+                    <div class="col-xs-3 col-md-2">5</div>
+                    <div class="col-xs-3 col-md-2">6</div>
+                    <div class="col-xs-3 col-md-2">Supplementary</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Credits Earned</div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred5" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred6" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Credsup3" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">SGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA5" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA6" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPAsup3" step="0.01" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">CGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA5" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA6" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPAsup3" step="0.01"></div>
+                </div>
+
+                <div class="row year-row">
+                    <div class="center-align">
+                        <label for="year4from">Year 20</label>
+                        <input type="number" name="year1from" required min="0" max="99">
+                        <label for="year4to"> - 20</label>
+                        <input type="number" name="year1to" required min="0" max="99">
+                    </div>
+                </div>
+                <div class="row table-header">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Semester</div>
+                    <div class="col-xs-3 col-md-2">7</div>
+                    <div class="col-xs-3 col-md-2">8</div>
+                    <div class="col-xs-3 col-md-2">Supplementary</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-3 col-md-2">Credits Earned</div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred7" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Cred8" required /></div>
+                    <div class="col-xs-3 col-md-2"><input type="number" name="Credsup4" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">SGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA7" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPA8" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="SGPAsup4" step="0.01" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-xs-2 col-md-2">CGPA</div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA7" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPA8" required step="0.01"></div>
+                    <div class="col-xs-2 col-md-2"><input type="number" name="CGPAsup4" step="0.01"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6" style="margin-top: 10px">
+                        <label for="CurrAdr" class="right">Address for Communication</label>
+                    </div>
+                    <div class="col-xs-6" style="margin-top: 10px">
+                        <textarea name="CurrAdr" id="CurrAdr" maxlength="200"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="phone" class="right">Mobile Number</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="phone" id="phone" required placeholder="xxx-xxx-xxxx" pattern="^\d{3}-\d{3}-\d{4}$">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="PermAddr" class="right">Permanant Address</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <textarea name="PermAddr" id="PermAddr" maxlength="200"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <label for="phoneres" class="right">Contact Number (Residence)</label>
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="text" name="phoneres" id="phoneres" required placeholder="xxx-xxx-xxxx" pattern="^\d{3}-\d{3}-\d{4}$">
+                    </div>
+                </div>
+                
+                <button class="button button-block" type="submit">Submit</button>
+
+            </form>
+        </div>
+	</body>
+</html>
