@@ -4,6 +4,8 @@
     Author     : deepikakv
 --%>
 <%@page import="java.util.*"%>
+<%@page import="com.ralloc.bean.*"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,20 +23,23 @@
          
       <%
                 int n = (int)(request.getAttribute("no"));
-                int i;
-                for(i=1; i<=n; i++)
+                List C = (List)(request.getAttribute("ClassList"));
+                Iterator it = C.iterator();
+                ClassRoom clas;
+                int i = 1;
+                while(it.hasNext())
                 {
-                    String rid = (String)(request.getAttribute("Room_Id" + Integer.toString(i)));
-                    String rname = (String)(request.getAttribute("Room_name" + Integer.toString(i)));
-                    String cap = (String)(request.getAttribute("Capacity" + Integer.toString(i)));
+                    clas = (ClassRoom)it.next();
                     out.print("<b> " + i + "</b>");
                     out.print("<br>");
-                    out.print("Room id : " + rid);
+                    out.print("Room id : " +clas.getID());
                     out.print("<br>");
-                    out.print("Room name : " + rname);
+                    out.print("Room name : " + clas.getName());
                     out.print("<br>");
-                    out.print("Capacity : " + cap);
+                    out.print("Capacity : " + clas.getCap());
                     out.print("<br>"+"<br>");
+                    i++;
+                    
                 }
               %>
         </div>

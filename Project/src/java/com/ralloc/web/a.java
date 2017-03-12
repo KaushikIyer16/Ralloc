@@ -5,6 +5,9 @@
  */
 package com.ralloc.web;
 
+import com.ralloc.bean.*;
+
+import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -22,19 +25,23 @@ public class a extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
         
+            List<ClassRoom> C = new ArrayList<ClassRoom>();
             String numStr = request.getParameter("no");
-        int i, n = Integer.parseInt(numStr);
-        for(i=1; i<=n; i++)
-        {
-            String rid=request.getParameter("Room_Id" + Integer.toString(i));
-            String rname=request.getParameter("Room_name" + Integer.toString(i));
-            String cap=request.getParameter("Capacity" + Integer.toString(i));
-            request.setAttribute("Room_Id" + Integer.toString(i),rid);
-            request.setAttribute("Room_name" + Integer.toString(i),rname);
-            request.setAttribute("Capacity" + Integer.toString(i),cap);
-            
+            int i, n = Integer.parseInt(numStr);
+            for(i=1; i<=n; i++)
+            {
+                String rid=request.getParameter("Room_Id" + Integer.toString(i));
+                String rname=request.getParameter("Room_name" + Integer.toString(i));
+                String cap=request.getParameter("Capacity" + Integer.toString(i));
+                C.add(new ClassRoom(Integer.parseInt(rid),Integer.parseInt(cap), rname));
         }
             request.setAttribute("no",n);
+            
+            /*
+                    C is the list of ClassRoom Objects
+            
+            */
+            request.setAttribute("ClassList",C);
             RequestDispatcher view = request.getRequestDispatcher("Room.jsp");
             view.forward(request, response);
         }
