@@ -13,8 +13,8 @@
         <servlet-class>com.ralloc.web.SubCode</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>a</servlet-name>
-        <servlet-class>com.ralloc.web.a</servlet-class>
+        <servlet-name>RoomUpload</servlet-name>
+        <servlet-class>com.ralloc.web.RoomUpload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Date</servlet-name>
@@ -29,7 +29,7 @@
         <url-pattern>/SubCode</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>a</servlet-name>
+        <servlet-name>RoomUpload</servlet-name>
         <url-pattern>/GetRoom.do</url-pattern>
     </servlet-mapping>
     <session-config>

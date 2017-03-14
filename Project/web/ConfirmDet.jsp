@@ -28,6 +28,8 @@
              
             <%
                 Subject sub = (Subject)(request.getAttribute("Subject"));
+                Dependency dep = (Dependency)(request.getAttribute("Dependency"));
+                
                 out.print("<div class='head'>" + "<br>" + "<b>" + "Subject Code : " + "</b>" + sub.getCode());
                 out.print("<br>" + "<b>" + "Subject Name : " + "</b>" + sub.getName() + "<br>" + "<br>" + "</div>");
                 out.print("<b style='font-size:20px;'>" + "List of Students appearing for exam:" + "</b>"  + "<br>" + "<div style='margin:0% 8%'>");

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name="a",urlPatterns = {"/aa"})
-public class a extends HttpServlet {
+public class RoomUpload extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,7 +53,7 @@ public class a extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if RoomUpload servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
@@ -67,7 +67,7 @@ public class a extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if RoomUpload servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
@@ -77,9 +77,9 @@ public class a extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Returns RoomUpload short description of the servlet.
      *
-     * @return a String containing servlet description
+     * @return RoomUpload String containing servlet description
      */
     @Override
     public String getServletInfo() {

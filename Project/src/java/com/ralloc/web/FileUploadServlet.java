@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
  
@@ -88,6 +89,9 @@ public class FileUploadServlet extends HttpServlet {
             if (formItems != null && formItems.size() > 0) {
             
                 Subject Sub = new Subject();
+                Dependency Dep = new Dependency();
+                HashMap H = new HashMap();
+                
                 // iterates over form's fields
                 for (FileItem item : formItems) {
                      if (item.isFormField()) {
@@ -100,6 +104,13 @@ public class FileUploadServlet extends HttpServlet {
                             if(fieldName.equals("SubName"))
                                 Sub.setName(fieldValue);
                             Sub.setID(TestID);
+                            if(fieldName.equals("Depend"))
+                                Dep.setExist(fieldValue);
+                            if(fieldName.equals("DepCode"))
+                                if(Dep.getExist() == true)
+                                    Dep.setCode(fieldValue);
+                                else
+                                    Dep.setCode("");
                             /*
                                     Sub object is the object for each sub
                             */
@@ -129,6 +140,9 @@ public class FileUploadServlet extends HttpServlet {
                             array.add(new Student((String)it.next(), TestID));
                         }
                         request.setAttribute("list",array);
+                        H.put(Sub, array);
+                        //HashMap <Subject,ArrayList<Student>>subjStudent = new HashMap<>();
+                        
                         /*
                         Array : list of Student objects
                         */      
@@ -137,6 +151,9 @@ public class FileUploadServlet extends HttpServlet {
                 }
                 TestID++;
                 request.setAttribute("Subject",Sub);             //("txt", fieldValue)
+                H.put(Sub,Dep);
+                //request.setAttribute("Dependency",Dep);
+                
             }
         } catch (Exception ex) {
             request.setAttribute("message",
