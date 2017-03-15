@@ -1,0 +1,55 @@
+.college-header {
+    text-align: center;
+}
+.affiliation {
+    text-align: center;
+}
+.form-header {
+    margin-top: 20px;
+    text-align: center;
+}
+form {
+    padding-top: 20px;
+}
+.right {
+    float: right;
+}
+.form-subheader {
+    margin: 20px;
+    text-align: center;
+}
+.center-align {
+    width: 235px;
+    display: block;
+    margin: 0 auto;
+}
+.table-header {
+    text-align: center;
+    font-weight: 800;
+    margin-top: 5px;
+}
+.year-row {
+    margin-top: 5px;
+}
+.button {
+    border:0;
+    outline:none;
+    border-radius:0;
+    padding:15px 0;
+    font-size:2rem;
+    font-weight:200;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    background:#73adde;
+    color:#fff;
+    transition:all.5s ease;
+    -webkit-appearance: none;
+}
+.button:hover, .button:focus {
+    background:#0c58b9;
+}
+.button-block {
+    margin: 20px auto;
+    display: block;
+    width: 25%;
+}
