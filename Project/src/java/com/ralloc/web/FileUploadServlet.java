@@ -9,9 +9,13 @@ package com.ralloc.web;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import com.ralloc.bean.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
  
 import javax.servlet.ServletException;
@@ -23,12 +27,17 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
  
+
+       
+
 /**
  * A Java servlet that handles file upload from client.
  *
  * @author www.codejava.net
  */
 public class FileUploadServlet extends HttpServlet {
+    //TestID is unique for each subject
+    static int TestID = 1;
     private static final long serialVersionUID = 1L;
      
     // location to store file uploaded
@@ -38,11 +47,7 @@ public class FileUploadServlet extends HttpServlet {
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
- 
-    /**
-     * Upon receiving file upload submission, parses the request to read
-     * upload data and saves the file on disk.
-     */
+
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // checks if the request actually contains upload file
@@ -59,12 +64,10 @@ public class FileUploadServlet extends HttpServlet {
         factory.setSizeThreshold(MEMORY_THRESHOLD);
         // sets temporary location to store files
         factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
- 
         ServletFileUpload upload = new ServletFileUpload(factory);
          
         // sets maximum size of upload file
         upload.setFileSizeMax(MAX_FILE_SIZE);
-         
         // sets maximum size of request (include file + form data)
         upload.setSizeMax(MAX_REQUEST_SIZE);
  
@@ -83,17 +86,37 @@ public class FileUploadServlet extends HttpServlet {
             // parses the request's content to extract file data
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
- 
             if (formItems != null && formItems.size() > 0) {
+            
+                Subject Sub = new Subject();
+                Dependency Dep = new Dependency();
+                HashMap H = new HashMap();
+                
                 // iterates over form's fields
                 for (FileItem item : formItems) {
                      if (item.isFormField()) {
                 // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
                             String fieldName = item.getFieldName();
                             String fieldValue = item.getString();
-                            request.setAttribute(fieldName,fieldValue);   //("txt", fieldValue)
+                            //request.setAttribute(fieldName,fieldValue);   //("txt", fieldValue)
+                            if(fieldName.equals("SubCode"))
+                                Sub.setCode(fieldValue);
+                            if(fieldName.equals("SubName"))
+                                Sub.setName(fieldValue);
+                            Sub.setID(TestID);
+                            if(fieldName.equals("Depend"))
+                                Dep.setExist(fieldValue);
+                            if(fieldName.equals("DepCode"))
+                                if(Dep.getExist() == true)
+                                    Dep.setCode(fieldValue);
+                                else
+                                    Dep.setCode("");
+                            /*
+                                    Sub object is the object for each sub
+                            */
                      }
                     // processes only fields that are not form fields
+                // Process file data    
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
                         String filePath = uploadPath + File.separator + fileName;
@@ -104,23 +127,33 @@ public class FileUploadServlet extends HttpServlet {
                         
             
 //////////////////////////////////////////////////////////////////////////////////////////////////
+                       //Parses the list and creates lists of student objects
+
                         parse p = new parse();
                         List result;
                         result = p.getUSN(filePath);
-                        String t = request.getParameter("txt");
-                       // String t = request.getParameter("txt");
+                        
+                        List<Student> array = new ArrayList<Student>();
+                        Iterator it = result.iterator();
+                        while(it.hasNext())
+                        {
+                            array.add(new Student((String)it.next(), TestID));
+                        }
+                        request.setAttribute("list",array);
+                        H.put(Sub, array);
+                        //HashMap <Subject,ArrayList<Student>>subjStudent = new HashMap<>();
+                        
                         /*
-                        Put into DB
-                        */
-                        
-                        System.out.println();
-                        
-                        request.setAttribute("list",result);
-                       // request.setAttribute("txt",t);
-                        //request.setAttribute("path",filePath);
+                        Array : list of Student objects
+                        */      
 /////////////////////////////////////////////////////////////////////////////////////////////////                        
                     }
                 }
+                TestID++;
+                request.setAttribute("Subject",Sub);             //("txt", fieldValue)
+                H.put(Sub,Dep);
+                //request.setAttribute("Dependency",Dep);
+                
             }
         } catch (Exception ex) {
             request.setAttribute("message",

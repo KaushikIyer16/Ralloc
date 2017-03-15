@@ -7,7 +7,6 @@
 <%@page import="java.util.*"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,7 +29,7 @@
                 out.print("<br>");
               %>
             <div class="container">
-                <a class = "button button-block" href="/View_Ralloc/index.html">Return to Home</a>    
+                <a class = "button button-block" href="./index.html">Return to Home</a>    
             </div>
     </body>
 </html>

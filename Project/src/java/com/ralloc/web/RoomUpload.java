@@ -5,6 +5,9 @@
  */
 package com.ralloc.web;
 
+import com.ralloc.bean.*;
+
+import java.util.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -15,24 +18,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name="a",urlPatterns = {"/aa"})
-public class a extends HttpServlet {
+public class RoomUpload extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
         
-        String rid=request.getParameter("Room_Id");
-        String rname=request.getParameter("Room_name");
-        String cap=request.getParameter("Capacity");
-        
-        request.setAttribute("Room_Id",rid);
-            request.setAttribute("Room_name",rname);
-            request.setAttribute("Capacity",cap);
+            List<ClassRoom> C = new ArrayList<ClassRoom>();
+            String numStr = request.getParameter("no");
+            int i, n = Integer.parseInt(numStr);
+            for(i=1; i<=n; i++)
+            {
+                String rid=request.getParameter("Room_Id" + Integer.toString(i));
+                String rname=request.getParameter("Room_name" + Integer.toString(i));
+                String cap=request.getParameter("Capacity" + Integer.toString(i));
+                C.add(new ClassRoom(Integer.parseInt(rid),Integer.parseInt(cap), rname));
+        }
+            request.setAttribute("no",n);
             
+            /*
+                    C is the list of ClassRoom Objects
+            
+            */
+            request.setAttribute("ClassList",C);
             RequestDispatcher view = request.getRequestDispatcher("Room.jsp");
             view.forward(request, response);
-        
         }
     }
 
@@ -42,7 +53,7 @@ public class a extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if RoomUpload servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
@@ -56,7 +67,7 @@ public class a extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if RoomUpload servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     @Override
@@ -66,9 +77,9 @@ public class a extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Returns RoomUpload short description of the servlet.
      *
-     * @return a String containing servlet description
+     * @return RoomUpload String containing servlet description
      */
     @Override
     public String getServletInfo() {
