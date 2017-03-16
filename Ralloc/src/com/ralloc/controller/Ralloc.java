@@ -10,6 +10,9 @@ import com.ralloc.beans.StudentCount;
 import com.ralloc.beans.SubjectDependency;
 import com.ralloc.model.Department;
 import com.ralloc.model.Room;
+import com.ralloc.model.Subject;
+import com.ralloc.model.Dependency;
+import com.ralloc.model.StudentSubject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,10 +69,30 @@ public class Ralloc {
     private void initDepartmentSubjects() throws SQLException{
 //        ArrayList<Integer> departmentIdsList = Department.getDepartmentIds();
 
-
         /*
          * keep the dependency id as -1 if there exists no dependency for that particular subject
         */
+        /*
+        * @author Saurabh
+        *
+        */
+        ArrayList<Subject> allSubjects = new ArrayList<>();
+        allSubjects.add(Subject.getAllDetails());
+
+        for (Subject sub : allSubjects) {
+            String courseCode = sub.getCourseCode();
+            int dependency = Dependency.getDependencyIDFromCourseCode(courseCode);
+            SubjectDependency subjectDependency = new SubjectDependency(courseCode, dependency);
+
+            departmentSubjects.put(subjectDependency, new ArrayList<>());
+            HashMap<int, int> studentMap = StudentSubject.getMapFromCourseCode(courseCode);
+            for (int dept : studentMap.keySet()) {
+                int noOfStudents = studentMap.get(dept);
+                departmentSubjects.get(subjectDependency).add(new StudentCount(dept, noOfStudents));
+            }
+        }
+
+        /* Old Deprecated code below. Might want to remove
         departmentSubjects.put(new SubjectDependency("16IS5DCDCN",-1), new ArrayList<>() );
         departmentSubjects.get(new SubjectDependency("16IS5DCDCN",-1)).add(new StudentCount("1",90));
 
@@ -88,7 +111,7 @@ public class Ralloc {
         subj.add(new SubjectDependency("16EC5DCCSM",-1));
         subj.add(new SubjectDependency("16TE5DCACM",-1));
         subj.add(new SubjectDependency("16ME5DCCMD",-1));
-
+        */
 //        System.out.println(departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).toString());
     }
 
