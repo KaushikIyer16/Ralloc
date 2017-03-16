@@ -65,25 +65,29 @@ public class Ralloc {
     }
     private void initDepartmentSubjects() throws SQLException{
 //        ArrayList<Integer> departmentIdsList = Department.getDepartmentIds();
+
+
+        /*
+         * keep the dependency id as -1 if there exists no dependency for that particular subject
+        */
+        departmentSubjects.put(new SubjectDependency("16IS5DCDCN",-1), new ArrayList<>() );
+        departmentSubjects.get(new SubjectDependency("16IS5DCDCN",-1)).add(new StudentCount("1",90));
         
-        departmentSubjects.put(new SubjectDependency("16IS5DCDCN",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16IS5DCDCN",null)).add(new StudentCount("1",90));
+        departmentSubjects.put(new SubjectDependency("16EC5DCCSM",-1), new ArrayList<>() );
+        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",-1)).add(new StudentCount("2",45));
+        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",-1)).add(new StudentCount("3",45));
         
-        departmentSubjects.put(new SubjectDependency("16EC5DCCSM",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).add(new StudentCount("2",45));
-        departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).add(new StudentCount("3",45));
+        departmentSubjects.put(new SubjectDependency("16TE5DCACM",-1), new ArrayList<>() );
+        departmentSubjects.get(new SubjectDependency("16TE5DCACM",-1)).add(new StudentCount("3",45));
+        departmentSubjects.get(new SubjectDependency("16TE5DCACM",-1)).add(new StudentCount("2",45));
         
-        departmentSubjects.put(new SubjectDependency("16TE5DCACM",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16TE5DCACM",null)).add(new StudentCount("3",45));
-        departmentSubjects.get(new SubjectDependency("16TE5DCACM",null)).add(new StudentCount("2",45));
+        departmentSubjects.put(new SubjectDependency("16ME5DCCMD",-1), new ArrayList<>() );
+        departmentSubjects.get(new SubjectDependency("16ME5DCCMD",-1)).add(new StudentCount("4",200));
         
-        departmentSubjects.put(new SubjectDependency("16ME5DCCMD",null), new ArrayList<>() );
-        departmentSubjects.get(new SubjectDependency("16ME5DCCMD",null)).add(new StudentCount("4",200));
-        
-        subj.add(new SubjectDependency("16IS5DCDCN",null));
-        subj.add(new SubjectDependency("16EC5DCCSM",null));
-        subj.add(new SubjectDependency("16TE5DCACM",null));
-        subj.add(new SubjectDependency("16ME5DCCMD",null));
+        subj.add(new SubjectDependency("16IS5DCDCN",-1));
+        subj.add(new SubjectDependency("16EC5DCCSM",-1));
+        subj.add(new SubjectDependency("16TE5DCACM",-1));
+        subj.add(new SubjectDependency("16ME5DCCMD",-1));
                
 //        System.out.println(departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).toString());
     }
