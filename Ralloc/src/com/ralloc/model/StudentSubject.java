@@ -37,7 +37,7 @@ public class StudentSubject {
     }
     
     
-    public static HashMap getMapFromCourseCode(String courseCde) throws SQLException{
+    public static HashMap<Integer,Integer> getStudentCountFromCourseCode(String courseCde) throws SQLException{
         
         
         ArrayList<Student> studentList = new ArrayList<>();
@@ -45,7 +45,7 @@ public class StudentSubject {
         PreparedStatement myPreparedStatement = myConnection.prepareStatement("SELECT DepartmentID, COUNT(USN) FROM student WHERE USN IN (SELECT USN FROM studentsubject WHERE CourseCode = ?) GROUP BY DepartmentID");
         myPreparedStatement.setString(1, courseCde);
         ResultSet studentResult = myPreparedStatement.executeQuery();
-        HashMap studentMap = new HashMap();
+        HashMap<Integer,Integer> studentMap = new HashMap();
         for(int i = 0; studentResult.next();i++){
             studentMap.put(studentResult.getInt(1),studentResult.getInt(2));
         }  
