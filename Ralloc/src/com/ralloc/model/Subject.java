@@ -5,6 +5,12 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author mahesh
@@ -53,5 +59,22 @@ public class Subject {
         this.isInstituteElective = isInstituteElective;
     }
     
+    public static ArrayList<Subject> getAllDetails() throws SQLException {
+        
+        ArrayList<Subject> subjectDetails = new ArrayList<>();
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement dependencyStatement = myConnection.prepareStatement("SELECT * FROM Subject");
+        ResultSet subResult = dependencyStatement.executeQuery();
+        for(int i=0; subResult.next(); i++){
+            Subject subjectObject = new Subject();
+            subjectObject.courseCode = subResult.getString(1);
+            subjectObject.isInstituteElective = subResult.getBoolean(2);
+            subjectObject.isDeptElective = subResult.getBoolean(3);
+            subjectObject.isClusterElective = subResult.getBoolean(4);
+            subjectObject.name = subResult.getString(5);
+            subjectDetails.add(subjectObject);
+        }
+        return subjectDetails;
+    }
     
 }

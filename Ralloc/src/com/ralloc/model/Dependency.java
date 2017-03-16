@@ -5,6 +5,11 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author mahesh
@@ -36,6 +41,26 @@ public class Dependency {
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
+    }
+
+    
+    
+    
+    public static int getDependencyIDFromCourseCode(String courseC) throws SQLException{
+            
+            int  dependencyId = 0;
+            int i;
+            Connection myConnection = DBConnection.getConnection();
+            PreparedStatement dependencyStatement = myConnection.prepareStatement("SELECT DependencyID FROM dependency WHERE CourseCode = ?");
+            dependencyStatement.setString(1, courseC);
+            ResultSet depResult = dependencyStatement.executeQuery();
+            for(i = 0; depResult.next();i++){
+                  dependencyId = depResult.getInt(1);
+            }
+            if(i ==0)
+                return -1;
+            else
+                return dependencyId;
     }
     
     
