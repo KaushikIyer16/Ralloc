@@ -5,6 +5,14 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
 /**
  *
  * @author mahesh
@@ -29,4 +37,18 @@ public class StudentSubject {
     }
     
     
+    public static HashMap<Integer,Integer> getMapFromCourseCode(String courseCde) throws SQLException{
+        
+        
+        ArrayList<Student> studentList = new ArrayList<>();
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreparedStatement = myConnection.prepareStatement("SELECT DepartmentID, COUNT(USN) FROM student WHERE USN IN (SELECT USN FROM studentsubject WHERE CourseCode = ?) GROUP BY DepartmentID");
+        myPreparedStatement.setString(1, courseCde);
+        ResultSet studentResult = myPreparedStatement.executeQuery();
+        HashMap studentMap = new HashMap();
+        for(int i = 0; studentResult.next();i++){
+            studentMap.put(studentResult.getInt(1),studentResult.getInt(2));
+        }  
+        return studentMap;
+    } 
 }
