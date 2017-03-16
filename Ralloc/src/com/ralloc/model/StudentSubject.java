@@ -37,7 +37,7 @@ public class StudentSubject {
     }
     
     
-    public static HashMap<Integer,Integer> getMapFromCourseCode(String courseCde) throws SQLException{
+    public static HashMap getMapFromCourseCode(String courseCde) throws SQLException{
         
         
         ArrayList<Student> studentList = new ArrayList<>();
@@ -50,5 +50,6 @@ public class StudentSubject {
             studentMap.put(studentResult.getInt(1),studentResult.getInt(2));
         }  
         return studentMap;
-    } 
+    }
+   
 }
