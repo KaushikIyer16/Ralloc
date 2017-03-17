@@ -51,5 +51,19 @@ public class StudentSubject {
         }  
         return studentMap;
     }
+    public static ArrayList<StudentSubject> getStudentsByCourseCode(String courseCode) throws SQLException{
+        ArrayList<StudentSubject> studentList = new ArrayList<>();
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreparedStatement = myConnection.prepareStatement("SELECT * FROM StudentSubject WHERE CourseCode = ?");
+        myPreparedStatement.setString(1, courseCode);
+        ResultSet studentResult = myPreparedStatement.executeQuery();
+        for(int i = 0; studentResult.next();i++){
+            StudentSubject temp = new StudentSubject();
+            temp.setUsn(studentResult.getString(1));
+            temp.setCourseCode(studentResult.getString(2));
+            studentList.add(temp);
+        }  
+        return studentList;
+    }
    
 }
