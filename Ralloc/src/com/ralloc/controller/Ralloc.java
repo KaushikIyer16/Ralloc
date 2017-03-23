@@ -85,14 +85,17 @@ public class Ralloc {
             SubjectDependency subjectDependency = new SubjectDependency(courseCode, dependency);
 
             departmentSubjects.put(subjectDependency, new ArrayList<>());
-            HashMap<int, int> studentMap = StudentSubject.getMapFromCourseCode(courseCode);
-            for (int dept : studentMap.keySet()) {
-                int noOfStudents = studentMap.get(dept);
+            HashMap<Integer, Integer> studentMap = StudentSubject.getMapFromCourseCode(courseCode);
+            for (Integer dept : studentMap.keySet()) {
+                Integer noOfStudents = studentMap.get(dept);
                 departmentSubjects.get(subjectDependency).add(new StudentCount(dept, noOfStudents));
             }
         }
 
+        // @debug
+
         /* Old Deprecated code below. Might want to remove
+
         departmentSubjects.put(new SubjectDependency("16IS5DCDCN",-1), new ArrayList<>() );
         departmentSubjects.get(new SubjectDependency("16IS5DCDCN",-1)).add(new StudentCount("1",90));
 
