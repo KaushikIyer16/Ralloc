@@ -76,25 +76,25 @@ public class Ralloc {
         * @author Saurabh
         *
         */
-        ArrayList<Subject> allSubjects = new ArrayList<>();
-        allSubjects.add(Subject.getAllDetails());
-
-        for (Subject sub : allSubjects) {
-            String courseCode = sub.getCourseCode();
-            int dependency = Dependency.getDependencyIDFromCourseCode(courseCode);
-            SubjectDependency subjectDependency = new SubjectDependency(courseCode, dependency);
-
-            departmentSubjects.put(subjectDependency, new ArrayList<>());
-            HashMap<Integer, Integer> studentMap = StudentSubject.getMapFromCourseCode(courseCode);
-            for (Integer dept : studentMap.keySet()) {
-                Integer noOfStudents = studentMap.get(dept);
-                departmentSubjects.get(subjectDependency).add(new StudentCount(dept, noOfStudents));
-            }
-        }
+//        ArrayList<Subject> allSubjects = new ArrayList<>();
+//        allSubjects = Subject.getAllDetails();
+//
+//        for (Subject sub : allSubjects) {
+//            String courseCode = sub.getCourseCode();
+//            int dependency = Dependency.getDependencyIDFromCourseCode(courseCode);
+//            SubjectDependency subjectDependency = new SubjectDependency(courseCode, dependency);
+//
+//            departmentSubjects.put(subjectDependency, new ArrayList<>());
+//            HashMap<Integer, Integer> studentMap = StudentSubject.getStudentCountFromCourseCode(courseCode);
+//            for (Integer dept : studentMap.keySet()) {
+//                Integer noOfStudents = studentMap.get(dept);
+//                departmentSubjects.get(subjectDependency).add(new StudentCount(dept.toString(), noOfStudents));
+//            }
+//        }
 
         // @debug
 
-        /* Old Deprecated code below. Might want to remove
+        /* Old Deprecated code below. Might want to remove*/
 
         departmentSubjects.put(new SubjectDependency("16IS5DCDCN",-1), new ArrayList<>() );
         departmentSubjects.get(new SubjectDependency("16IS5DCDCN",-1)).add(new StudentCount("1",90));
@@ -114,7 +114,7 @@ public class Ralloc {
         subj.add(new SubjectDependency("16EC5DCCSM",-1));
         subj.add(new SubjectDependency("16TE5DCACM",-1));
         subj.add(new SubjectDependency("16ME5DCCMD",-1));
-        */
+        
 //        System.out.println(departmentSubjects.get(new SubjectDependency("16EC5DCCSM",null)).toString());
     }
 

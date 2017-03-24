@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 public class SubjectDependency {
     private String subjectCode;
-    private Dependency dependency;
+    private int dependency;
 
     public String getSubjectCode() {
         return subjectCode;
@@ -27,15 +27,15 @@ public class SubjectDependency {
 
     
 
-    public Dependency getDependency() {
+    public int getDependency() {
         return dependency;
     }
 
-    public void setDependency(Dependency dependency) {
+    public void setDependency(int dependency) {
         this.dependency = dependency;
     }
 
-    public SubjectDependency(String subject, Dependency dependency) {
+    public SubjectDependency(String subject, int dependency) {
         this.subjectCode = subject;
         this.dependency = dependency;
     }
@@ -68,6 +68,5 @@ public class SubjectDependency {
         }
         return true;
     }
-    
     
 }
