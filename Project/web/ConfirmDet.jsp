@@ -13,16 +13,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/Main.css" />
+        <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/Main.css" />
         <title>Confirm Uploaded Data</title>
     </head>
     <body>
+        <nav>
+            <div class="nav-wrapper custom-nav">
+                <a href="#" class="brand-logo"><img src="./images/BMSCE_Logo.svg" style="height: 80px; margin-top: 10px;"></a>
+                
+                <ul id="nav-mobile" class="left" style="margin-left: 100px;">
+                    <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                </ul>
+                <ul class="right" style="margin-right: 30px;">
+                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Help</a></li>
+                    <li><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i> About</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
-        <h1 class="college-header">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h1>
-        <h4 class="affiliation">(Autonomous Institute, Affiliated to VTU)</h4>
-        <h3 class="form-header">UPLOADED STUDENT LIST</h3>
-        <hr width="100%" style="border-top:1px solid #989896">
         <div class="upfile">
             
              
@@ -48,10 +59,15 @@
             %>
         </div>
          <div class="container subj">
-             <a class = "button button-block" href="./upload.jsp">Add another subject</a>
-             <a class = "button button-block" href="./index.html">Return to Home</a>
-         </div>
-        
+             <div class="row">
+                 <div class="col l4 m4 s12">
+                     <a class = "button btn custom-btn" href="./upload.jsp">Add another subject</a>
+                 </div>
+                 <div class="col l4 m4 s12 offset-l4">
+                     <a class = "button btn custom-btn" href="./index.html">Return to Home</a>
+                 </div>
+             </div>
+         </div>     
         </div>
     </body>
 </html>

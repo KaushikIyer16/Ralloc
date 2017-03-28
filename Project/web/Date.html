@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<!--<html>
     <head>
         <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/Main.css" />
@@ -45,4 +45,66 @@
 		    </form>
         </div>
 	</body>
+</html>-->
+<html>
+    <head>
+        <title>Slot Date and Time | Seating Arrangement</title>
+        <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/Main.css" />
+        <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper custom-nav">
+                <a href="#" class="brand-logo"><img src="./images/BMSCE_Logo.svg" style="height: 80px; margin-top: 10px;"></a>
+                
+                <ul id="nav-mobile" class="left" style="margin-left: 100px;">
+                    <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                </ul>
+                <ul class="right" style="margin-right: 30px;">
+                    <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i> Help</a></li>
+                    <li><a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i> About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <form method="POST"	action="DateTime.do">
+                <div class="row">
+                    <div class="center">
+                        <h4>
+                            Please enter the date of the exam slot
+                        </h4>
+                        <br>
+                    </div>
+                    <div class="col l4 m4 s12 offset-l3 offset-m4">
+                        <input type="text" name="date" id="name" required placeholder="dd-mm-yyyy" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="center">
+                        <h4>
+                            Please enter the time of the exam slot
+                        </h4>
+                        <br>
+                    </div>
+                    <div class="col l4 m4 s12 offset-l3 offset-m4">
+                        <input type="text" name="time" id="usn" required placeholder="hh:mm" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l4 m4 s12 offset-l3 offset-m4">
+                        <button class="btn waves-effect waves-light custom-btn" type="submit">Submit</button>
+                    </div>
+                </div> 		
+	    </form>
+        </div>
+        <footer style="bottom: 0; background-color: #444; bottom: 0px; position: fixed; width: 100%;">
+            <div class="footer-copyright">
+                <div class="container" style="color: white;">
+            © 2017 BMSCE
+            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            </div>
+          </div>
+        </footer>
+    </body>  
 </html>

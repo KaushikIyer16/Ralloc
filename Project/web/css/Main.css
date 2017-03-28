@@ -63,7 +63,7 @@ form {
 
 
 }
-.button {
+/*.button {
     border:0;
     outline:none;
     border-radius:0;
@@ -76,7 +76,7 @@ form {
     color:#fff;
     transition:all.5s ease;
     -webkit-appearance: none;
-}
+}*/
 .button:hover, .button:focus {
     background:#0c58b9;
 }
@@ -124,4 +124,15 @@ input {
 .upfile{
     padding-left:15%;
     padding-right:15%;
+}
+nav{
+    height: 100px !important;
+}
+.custom-nav{
+    height: 100px !important;
+    background-color: #444;
+    line-height: 86px !important;
+}
+.custom-btn{
+    background-color: #444;
 }
