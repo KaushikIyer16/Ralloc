@@ -1,0 +1,37 @@
+<%-- 
+    Document   : addSubject
+    Created on : Mar 31, 2017, 9:05:41 PM
+    Author     : Mahesh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Add Subject | Database of Subjects</title>
+         <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/common.css" />
+        <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+    </head>
+    <body>
+        <nav>
+            <div class="nav-wrapper custom-nav">
+                <a href="#" class="brand-logo"><img src="./images/BMSCE_Logo.svg" class="clg-logo"></a>
+                
+                <ul id="nav-mobile" class="left clg-name">
+                    <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container"></div>
+        <footer class="custom-footer">
+            <div class="footer-copyright">
+                <div class="container" style="color: white; margin-top: 15px;">
+            © 2017 BMSCE
+            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            </div>
+          </div>
+        </footer>
+    </body>
+</html>
