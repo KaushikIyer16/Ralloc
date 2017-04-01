@@ -150,3 +150,9 @@ nav{
     min-height: 50px;
     z-index: 995;
 }
+.dependency-matrix{
+    visibility: hidden;
+}
+.dep-visible{
+    visibility: visible;
+}

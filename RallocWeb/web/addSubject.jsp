@@ -12,18 +12,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Subject | Database of Subjects</title>
-         <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/common.css" />
         <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+        <script src="./js/jquery.js"></script>
         <script type="text/javascript">
-            <%
-                String tempArray[] = {"ISE-4001", "ISE-4002", "ISE-4003"};
-                ArrayList roomsList = new ArrayList();
-                //Get the available rooms from the database here and put it to this arraylist
-                for(String s: tempArray)
-                    roomsList.add(s);
-                
-            %>
+            function toggleDependency(){
+                $('.dependency-matrix').toggleClass("dep-visible");
+            }
         </script>
     </head>
     <body>
@@ -143,15 +139,15 @@
                         </h5>
                         <br>
                     </div>
-                    <div class="col l3 m3 s6">
+                    <div class="col l3 m3 s6 has-dependency">
                         <p>
-                            <input name="depGrp" type="radio" id="depYes" />
+                            <input name="depGrp" type="radio" id="depYes" onclick="toggleDependency()"/>
                             <label for="depYes">Yes</label>
                         </p>
                     </div>
                     <div class="col l3 m3 s6">
                         <p>
-                            <input name="depGrp" type="radio" id="depNo" checked/>
+                            <input name="depGrp" type="radio" id="depNo" onclick="toggleDependency()" checked/>
                             <label for="depNo">No</label>
                         </p>
                     </div>
@@ -159,14 +155,26 @@
                 
                         <div class="dependency-matrix container">
                             <h5>Please select the rooms on which it is dependent</h5>
-                            <p>
-                                <input type="checkbox" id="test5"/>
-                                <label for="test5">Room1</label>
-                            </p>
-                            <p>
-                                <input type="checkbox" id="test6"/>
-                                <label for="test6">Yellow</label>
-                            </p>
+                            <div class="row">
+                                 <%
+                                    String roomArray[] = {"ISE-4001", "ISE-4002", "ISE-4003", "ISE-4001", "ISE-4002", "ISE-4003"};
+                                    HashMap roomList = new HashMap();
+                                    //Get the available rooms from the database here and put it to this array
+                                    
+                                    for(int i=0; i<roomArray.length; i++){
+                                        roomList.put(i, roomArray[i]);
+                                    }
+                                    for(int i=0; i<roomList.keySet().toArray().length; i++){
+                                        out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" id=\"room" + i + "\"/><label for=\"room" + i + "\">"+ "Mahesh" +"</label></p></div>");
+                                        if((i+1) % 4 == 0)
+                                        {
+                                            out.println("</div><div class=\"row\">");
+                                        }
+                                    }
+                                    //+ i +"'/><label for='room'+ i +">"+ "" +"</label></p>"
+
+                                %>
+                            </div>
                         </div>
                 
                 <br>
@@ -186,6 +194,8 @@
                 <button class="btn waves-effect waves-light custom-btn">Continue</button>
             </div>
         </div> 	
+        <br>
+        <br>
         <footer class="custom-footer">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
