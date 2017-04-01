@@ -36,7 +36,7 @@
                         <br>
                     </div>
                     <div class="col l6 m6 s12">
-                        <input type="text" name="date" id="name" required placeholder="dd-mm-yyyy" />
+                        <input type="text" name="date" id="examDate" required placeholder="dd-mm-yyyy" />
                     </div>
                 </div>
                 <br>
@@ -49,14 +49,14 @@
                         <br>
                     </div>
                     <div class="col l6 m6 s12">
-                        <input type="text" name="time" id="usn" required placeholder="hh:mm" />
+                        <input type="text" name="time" id="examTime" required placeholder="hh:mm" />
                     </div>
                 </div>
                 <br>
                 <br>
                 <div class="row">
                     <div class="col l6 m6 s12">
-                        <h5>Please upload the CSV file of students:</h5>
+                        <h5>Please upload the Excel file of students:</h5>
                     </div>
                     <div class="col l5 m5 s12">
                        <div class="file-field input-field">
@@ -65,7 +65,7 @@
                           <input type="file">
                         </div>
                         <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text">
+                          <input class="file-path validate" type="text" id="datasheet">
                         </div>
                       </div>
                     </div>

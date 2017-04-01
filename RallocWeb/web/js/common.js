@@ -13,12 +13,10 @@ $('.add').click(function() {
     no = addCount - delCount;
     
     var start = '<br><div class="row row' + String(no) + '"><h6>Details of new room ' + String(no) + ' </h6><div class="col-md-2"></div>';
-    var room_id = '<div class="col-md-2 col-xs-4"><input name="Room_Id' + String(no) + '" required placeholder="Room ID" /></div>';
     var room_name = '<div class="col-md-2 col-xs-4"><input name="Room_name' + String(no) + '" required placeholder="Room Name" /></div>';
     var capacity = '<div class="col-md-2 col-xs-4"><input name="Capacity' + String(no) + '" required placeholder="Capacity" /></div>';
-    var dependency = '<div class="col-md-2 col-xs-4"><input name="Dependency' + String(no) + '" required placeholder="Dependency" /></div>';
     var end = '<div class="col-md-2"></div></div>';
-    var html = start + room_id + room_name + capacity + dependency + end;
+    var html = start + room_name + capacity + end;
     $('.rooms').append(html);
     $('input[name="no"]').val(no);
 

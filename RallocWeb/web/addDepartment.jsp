@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Room | Database of Infrastructure</title>
+        <title>Add Department | Database of Departments</title>
          <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/common.css" />
         <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
@@ -29,17 +29,43 @@
         <br>
         <div class="container">
             <h5>Add a new department</h5>
-            <form method="POST"	action="GetRoom.do">
-                <h6>Please click on add row to add details of a new room</h6>
-                <div class="rooms">
-                    <input value="0" name="no" type="hidden" />
-                </div>
-                <div class="row" id="buttons">
-                    <div class="col s6 m4 l4">
-                        <button type="button" class="add custom-btn">Add Row</button>
+            <form method="POST"	action="#">
+                <h6>Please enter the following details of the new department</h6>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Please enter the department name
+                        </h5>
+                        <br>
                     </div>
-                    <div class="col s6 m4 l4">
-                        <button type="button" class="delete custom-btn" disabled="true">Delete Row</button>
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="date" id="name" required placeholder="TTT" />
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Please enter the cluster name
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="time" id="cluster" required placeholder="TTT" />
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Please enter the maximum intake
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="time" id="intake" required placeholder="n" />
                     </div>
                 </div>
                 <br>
