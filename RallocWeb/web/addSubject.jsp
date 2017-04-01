@@ -164,7 +164,7 @@
                         }
                         for(int i=0; i<roomList.keySet().toArray().length; i++)
                         {
-                            out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" id=\"room" + i + "\"/><label for=\"room" + i + "\">"+ "Mahesh" +"</label></p></div>");
+                            out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" id=\"room" + i + "\"/><label for=\"room" + i + "\">"+ "Room" +"</label></p></div>");
                             if((i+1) % 4 == 0)
                             {
                                 out.println("</div><div class=\"row\">");
