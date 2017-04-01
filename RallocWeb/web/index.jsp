@@ -1,17 +1,24 @@
+<%-- 
+    Document   : index
+    Created on : Apr 1, 2017, 7:22:00 PM
+    Author     : KNSI
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>HOME | Generate Arrangement</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="./css/common.css" />
-        <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
     </head>
     <body>
         <nav>
             <div class="nav-wrapper custom-nav">
-                <a href="#" class="brand-logo"><img src="./images/BMSCE_Logo.svg" class="clg-logo"></a>
+                <a href="#" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
                 
                 <ul id="nav-mobile" class="left clg-name">
                     <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
@@ -28,7 +35,7 @@
             <hr width="100%" style="border-top:1px solid #989896">
             <div class="row">
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="addSubject.jsp">
+                    <a href="${pageContext.request.contextPath}/Subject">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content" style=" padding-top: 35px;">
                             <span class="flow-text" style="color: white;">ADD SUBJECT DATA</span>
@@ -37,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="addRoom.jsp">
+                    <a href="${pageContext.request.contextPath}/Infrastructure">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content" style=" padding-top: 35px;">
                             <span class="flow-text" style="color: white;">ADD INFRASTRUCTURE DATA</span>
@@ -46,7 +53,7 @@
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="addDepartment.jsp">
+                    <a href="${pageContext.request.contextPath}/Department">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content" style=" padding-top: 35px;">
                             <span class="flow-text" style="color: white;">ADD DEPARTMENT DATA</span>
@@ -88,7 +95,7 @@
         <footer class="custom-footer">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
-            © 2017 BMSCE
+            Â© 2017 BMSCE
             <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
             </div>
           </div>
