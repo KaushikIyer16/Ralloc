@@ -4,6 +4,8 @@
     Author     : Mahesh
 --%>
 
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,6 +15,16 @@
          <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/common.css" />
         <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+        <script type="text/javascript">
+            <%
+                String tempArray[] = {"ISE-4001", "ISE-4002", "ISE-4003"};
+                ArrayList roomsList = new ArrayList();
+                //Get the available rooms from the database here and put it to this arraylist
+                for(String s: tempArray)
+                    roomsList.add(s);
+                
+            %>
+        </script>
     </head>
     <body>
         <nav>
@@ -24,7 +36,156 @@
                 </ul>
             </div>
         </nav>
-        <div class="container"></div>
+        <div class="container">
+            <h4>Enter the details of the subject to be added</h4>
+            <form method="POST"	action="#">
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Please enter the course code of the subject
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="coueseCode" id="name" required placeholder="Format: nnTTnTTTTT" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Institutional Elective 
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="instElectGrp" type="radio" id="instYes" />
+                            <label for="instYes">Yes</label>
+                        </p>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="instElectGrp" type="radio" id="instNo" checked/>
+                            <label for="instNo">No</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Cluster Elective 
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="clustElectGrp" type="radio" id="clustYes" />
+                            <label for="clustYes">Yes</label>
+                        </p>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="clustElectGrp" type="radio" id="clustNo" checked/>
+                            <label for="clustNo">No</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Department Elective 
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="deptElectGrp" type="radio" id="deptYes" />
+                            <label for="deptYes">Yes</label>
+                        </p>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="deptElectGrp" type="radio" id="deptNo" checked/>
+                            <label for="deptNo">No</label>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Department
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l4 m4 s12">
+                        <select class="browser-default">
+                          <option value="" disabled selected>Choose department</option>
+                          <%
+                            String deptArray[] = {"ISE", "CSE", "TCE"};
+                            HashMap deptList = new HashMap();
+                            //Get the available rooms from the database here and put it to this arraylist
+                            //The data will be in a hashmap with department name as value 
+                            //The key of the hashmap will be given as value to the value field of option and value will be string of the option
+                            for(int i=0; i<deptArray.length; i++){
+                                deptList.put(i, deptArray[i]);
+                            }
+                            for(int i=0; i<deptList.keySet().toArray().length; i++){
+                                out.println("<option value="+ deptList.keySet().toArray()[i] +">"+ deptList.get(i) +"</option>");
+                            }
+                          %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <h5>
+                            Has Dependency ? 
+                        </h5>
+                        <br>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="depGrp" type="radio" id="depYes" />
+                            <label for="depYes">Yes</label>
+                        </p>
+                    </div>
+                    <div class="col l3 m3 s6">
+                        <p>
+                            <input name="depGrp" type="radio" id="depNo" checked/>
+                            <label for="depNo">No</label>
+                        </p>
+                    </div>
+                </div>
+                
+                        <div class="dependency-matrix container">
+                            <h5>Please select the rooms on which it is dependent</h5>
+                            <p>
+                                <input type="checkbox" id="test5"/>
+                                <label for="test5">Room1</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" id="test6"/>
+                                <label for="test6">Yellow</label>
+                            </p>
+                        </div>
+                
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col l2 m2 s4 right">
+                        <button class="btn waves-effect waves-light custom-btn" type="submit">Add Subject</button>
+                    </div>
+                </div> 	
+                <br>
+	    </form>
+        </div>
+        <br>
+        <br>                
+        <div class="row">
+            <div class="col l2 m2 s4 right">
+                <button class="btn waves-effect waves-light custom-btn">Continue</button>
+            </div>
+        </div> 	
         <footer class="custom-footer">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
