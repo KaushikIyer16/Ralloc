@@ -29,17 +29,23 @@
         <br>
         <div class="container">
             <h5>Add rooms with their capacity and dependency</h5>
-            <form method="POST"	action="GetRoom.do">
-                <h6>Please click on add row to add details of a new room</h6>
-                <div class="rooms">
-                    <input value="0" name="no" type="hidden" />
+            <form method="POST"	action="${pageContext.request.contextPath}/Infrastructure/add">
+                
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="roomName" id="coursecode" required placeholder="Room Name" />
+                    </div>
                 </div>
+                
+                <div class="row">
+                    <div class="col l6 m6 s12">
+                        <input type="text" name="roomCapacity" id="coursecode" required placeholder="Room Capacity" />
+                    </div>
+                </div>
+                
                 <div class="row" id="buttons">
                     <div class="col s6 m4 l4">
-                        <button type="button" class="add custom-btn">Add Row</button>
-                    </div>
-                    <div class="col s6 m4 l4">
-                        <button type="button" class="delete custom-btn" disabled="true">Delete Row</button>
+                        <button type="submit" class="add custom-btn">Add Row</button>
                     </div>
                 </div>
                 <br>
@@ -47,6 +53,7 @@
                 <button class="btn  right" type="submit" style="background-color: #444;">Submit</button>
             </form>
         </div>
+        <br/><br/><br/><br/><br/>
         <footer class="custom-footer">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
@@ -56,5 +63,5 @@
           </div>
         </footer>
     </body>
-    <script src="./js/common.js"></script>
+<!--    <script src="./js/common.js"></script>-->
 </html>

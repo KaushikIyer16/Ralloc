@@ -23,6 +23,23 @@ public class Subject {
         return name;
     }
 
+    public Subject(String courseCode, String name, boolean isDeptElective, boolean isClusterElective, boolean isInstituteElective) {
+        this.courseCode = courseCode;
+        this.name = name;
+        this.isDeptElective = isDeptElective;
+        this.isClusterElective = isClusterElective;
+        this.isInstituteElective = isInstituteElective;
+    }
+    
+    public Subject(){
+        
+    }
+    
+    public Subject(String courseCode, String name){
+        this.courseCode = courseCode;
+        this.name = name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

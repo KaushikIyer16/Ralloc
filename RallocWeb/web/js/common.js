@@ -13,7 +13,7 @@ $('.add').click(function() {
     no = addCount - delCount;
     
     var start = '<br><div class="row row' + String(no) + '"><h6>Details of new room ' + String(no) + ' </h6><div class="col-md-2"></div>';
-    var room_name = '<div class="col-md-2 col-xs-4"><input name="Room_name' + String(no) + '" required placeholder="Room Name" /></div>';
+    var room_name = '<div class="col-md-2 col-xs-4"><input name="RoomName' + String(no) + '" required placeholder="Room Name" /></div>';
     var capacity = '<div class="col-md-2 col-xs-4"><input name="Capacity' + String(no) + '" required placeholder="Capacity" /></div>';
     var end = '<div class="col-md-2"></div></div>';
     var html = start + room_name + capacity + end;
