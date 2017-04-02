@@ -54,7 +54,7 @@
             </form>
         </div>
         <br/><br/><br/><br/><br/>
-        <footer class="custom-footer">
+        <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE

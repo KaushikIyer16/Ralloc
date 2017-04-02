@@ -37,7 +37,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="${pageContext.request.contextPath}/Subject">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 35px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">ADD SUBJECT DATA</span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="${pageContext.request.contextPath}/Infrastructure">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 35px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">ADD INFRASTRUCTURE DATA</span>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="${pageContext.request.contextPath}/Department">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 35px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">ADD DEPARTMENT DATA</span>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="${pageContext.request.contextPath}/Allocate">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 35px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">NEW SEATING ARRANGEMENT</span>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="#">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 15px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">SEATING ARRANGEMENT FROM EXISTING DATA</span>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <a href="deleteData.jsp">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content" style=" padding-top: 35px;">
+                            <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">DELETE DATA</span>
                         </div>
                     </div>
@@ -92,10 +92,10 @@
                 </div>
             </div>
         </div>
-        <footer class="custom-footer">
+        <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
-            Â© 2017 BMSCE
+            © 2017 BMSCE
             <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
             </div>
           </div>

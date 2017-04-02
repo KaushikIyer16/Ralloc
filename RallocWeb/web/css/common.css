@@ -69,10 +69,7 @@ nav{
     margin-left: 10px;
 }
 .custom-footer{
-    bottom: 0; 
-    background-color: #444; 
-    bottom: 0px; 
-    position: fixed; 
+    background-color: #444;  
     width: 100%; 
     min-height: 50px;
     z-index: 995;

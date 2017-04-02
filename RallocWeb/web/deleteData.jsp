@@ -45,26 +45,102 @@
             </div>
             <div class="container">
                 <div id="delStudent">
-                    
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col l6 m6 s12" style=" min-height: 150px;">
+                            <h5>Clear all student data ?</h5>
+                            <br>
+                            <br>
+                            <form method="POST" action="#">
+                                <br>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Students</button>
+                            </form>
+                        </div>
+                        <div class="col l6 m6 s12" style="border-left: 1px solid black;">
+                            <h5>Please enter the USN of student to be deleted</h5>
+                            <form method="POST" action="#">
+                                <input type="text" name="usn" id="usn" required placeholder="USN"/>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Student</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container">
                 <div id="delSubject">
-                    
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col l6 m6 s12" style=" min-height: 150px;">
+                            <h5>Clear all subject data ?</h5>
+                            <br>
+                            <br>
+                            <form method="POST" action="#">
+                                <br>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Subjects</button>
+                            </form>
+                        </div>
+                        <div class="col l6 m6 s12" style="border-left: 1px solid black;">
+                            <h5>Please enter the course code of subject to be deleted</h5>
+                            <form method="POST" action="#">
+                                <input type="text" name="subject" id="subject" required placeholder="nnTTnTTTTT"/>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Subject</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container">
                 <div id="delRoom">
-                    
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col l6 m6 s12" style=" min-height: 150px;">
+                            <h5>Clear all infrastructure data ?</h5>
+                            <br>
+                            <br>
+                            <form method="POST" action="#">
+                                <br>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Rooms</button>
+                            </form>
+                        </div>
+                        <div class="col l6 m6 s12" style="border-left: 1px solid black;">
+                            <h5>Please enter the room name to be deleted</h5>
+                            <form method="POST" action="#">
+                                <input type="text" name="usn" id="deleteRoom" required placeholder="Room Name"/>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Room</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="container">
                 <div id="delDep">
-                    
+                    <div class="row" style="margin-top: 5%;">
+                        <div class="col l6 m6 s12" style=" min-height: 150px;">
+                            <h5>Clear all department data ?</h5>
+                            <br>
+                            <br>
+                            <form method="POST" action="#">
+                                <br>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Departments</button>
+                            </form>
+                        </div>
+                        <div class="col l6 m6 s12" style="border-left: 1px solid black;">
+                            <h5>Please enter the department name to be deleted</h5>
+                            <form method="POST" action="#">
+                                <input type="text" name="deleteDept" id="deleteDept" required placeholder="TTT"/>
+                                <br>
+                                <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Department</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <footer class="custom-footer">
+        <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE
