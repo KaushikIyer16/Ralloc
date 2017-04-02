@@ -27,7 +27,7 @@
         <br>
         <br>
         <div class="container">
-            <form method="POST"	action="#">
+            <form method="POST"	action="${pageContext.request.contextPath}/Allocate/add" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col l6 m6 s12">
                         <h5>
@@ -36,7 +36,7 @@
                         <br>
                     </div>
                     <div class="col l6 m6 s12">
-                        <input type="text" name="date" id="examDate" required placeholder="dd-mm-yyyy" />
+                        <input type="text" name="Date" id="examDate" required placeholder="dd-mm-yyyy" />
                     </div>
                 </div>
                 <br>
@@ -49,7 +49,7 @@
                         <br>
                     </div>
                     <div class="col l6 m6 s12">
-                        <input type="text" name="time" id="examTime" required placeholder="hh:mm" />
+                        <input type="text" name="Time" id="examTime" required placeholder="hh:mm" />
                     </div>
                 </div>
                 <br>
@@ -62,10 +62,10 @@
                        <div class="file-field input-field">
                            <div class="btn" style="background-color: #444;">
                           <span>File</span>
-                          <input type="file">
+                          <input type="file" name="DataFormFile">
                         </div>
                         <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" id="datasheet">
+                          <input class="file-path validate" type="text" id="datasheet" >
                         </div>
                       </div>
                     </div>

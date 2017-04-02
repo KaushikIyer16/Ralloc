@@ -64,7 +64,7 @@
             </div>
             <div class="row">
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="newArrangement.jsp">
+                    <a href="${pageContext.request.contextPath}/Allocate">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content" style=" padding-top: 35px;">
                             <span class="flow-text" style="color: white;">NEW SEATING ARRANGEMENT</span>
