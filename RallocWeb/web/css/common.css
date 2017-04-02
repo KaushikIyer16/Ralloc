@@ -7,79 +7,6 @@ and open the template in the editor.
     Created on : Mar 31, 2017, 8:08:31 PM
     Author     : Mahesh
 */
-.college-header {
-    text-align: center;
-}
-.affiliation {
-    text-align: center;
-}
-.form-header {
-    margin-top: 20px;
-    text-align: center;
-}
-form {
-    padding-top: 20px;
-}
-.right {
-    float: right;
-}
-.form-subheader {
-    margin: 20px;
-    text-align: center;
-}
-.center-align {
-    width: 235px;
-    display: block;
-    margin: 0 auto;
-}
-.table-header {
-    text-align: center;
-    font-weight: 800;
-    margin-top: 5px;
-}
-.year-row {
-    margin-top: 5px;
-}
-.sub{
-
-    padding-right:30px;
-    padding-left:30px;
-    color:white;
-
-
-}
-.sub a:link{
-    color:white;
-    text-decoration:none;
-}
-.sub .button{
-    width:300px;
-}
-.subj .button{
-    width:400px;
-    text-align:center;
-}
-.subj a:link{
-    color:white;
-    text-decoration:none;
-}
-.head{
-    padding-left:10%;
-    padding-right:10%;
-    font-size:20px;
-    border:1px solid black;
-    margin:8%;
-
-
-}
-.button:hover, .button:focus {
-    background:#0c58b9;
-}
-.button-block {
-    margin: 20px auto;
-    display: block;
-    width: 25%;
-}
 .add, .delete {
     border:0;
     outline:none;
@@ -155,4 +82,14 @@ nav{
 }
 .dep-visible{
     visibility: visible;
+}
+.delete-tabs{
+    margin-top: 6%;
+}
+.indicator{
+    background-color: black !important;
+    height: 5px !important;
+}
+.delete-tabs li a{
+    color: black !important;
 }

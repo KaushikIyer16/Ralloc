@@ -6,11 +6,13 @@
 package com.ralloc.view;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,6 +29,14 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -84,19 +94,37 @@ public class UploadFileServlet extends HttpServlet {
                       
                       if (currFormItem.isFormField()) {
                           out.println("<h2>"+currFormItem.getFieldName()+"<---->"+currFormItem.getString()+"</h2>");
-                      } else {
+                      } 
+                      else {
                           // this means that it is a form item
                           // take the uploadedFileStream as a parameter in the constructor to the excelWriter class
                           InputStream uploadedFileStream = currFormItem.getInputStream();
+                          Workbook detailsBook = WorkbookFactory.create(uploadedFileStream);
+                          ArrayList<String> studentList;
+                          HashMap<String, ArrayList<String>> subjectStudents = new HashMap<>();
+                          for(int i=0; i<detailsBook.getNumberOfSheets(); i++)
+                          {
+                              studentList = new ArrayList();
+                              Sheet currentSheet = detailsBook.getSheetAt(i);
+                              Iterator<Row> rowIterator = currentSheet.iterator();
+                              while(rowIterator.hasNext())
+                              {
+                                  Row currentRow = rowIterator.next();
+                                  Iterator<Cell> cellIterator = currentRow.iterator();
+                                  while(cellIterator.hasNext())
+                                      studentList.add(cellIterator.next().getStringCellValue());
+                              }
+                              subjectStudents.put(currentSheet.getSheetName(), studentList);
+                          }
                           // below is just a simple way to print the contents of the stream
-                          StringWriter writer = new StringWriter();
-                          IOUtils.copy(uploadedFileStream,writer, "UTF-8");
-                          out.println("<h2>"+writer.toString()+"</h2>");
+                          for(String s : subjectStudents.keySet())
+                            out.println("<h2>"+ s +"</h2>");
                       }
                       
                   }
                   
-              } catch (FileUploadException ex) {
+              } catch (Exception ex) {
+                  System.out.print("<h1>"+ex.getMessage()+"</h1>");
                   Logger.getLogger(UploadFileServlet.class.getName()).log(Level.SEVERE, null, ex);
               }
             }

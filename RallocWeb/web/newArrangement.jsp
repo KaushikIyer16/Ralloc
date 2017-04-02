@@ -58,16 +58,17 @@
                     <div class="col l6 m6 s12">
                         <h5>Please upload the Excel file of students:</h5>
                     </div>
-                    <div class="col l5 m5 s12">
-                       <div class="file-field input-field">
+                    <div class="col l6 m6 s12">
+<!--                       <div class="file-field input-field">
                            <div class="btn" style="background-color: #444;">
                           <span>File</span>
                           <input type="file" name="DataFormFile">
                         </div>
                         <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" id="datasheet" >
+                          <input class="file-path validate" type="text" placeholder="Please upload the datasheet">
                         </div>
-                      </div>
+                      </div>-->
+                        <input type="file" name="DataFormFile">
                     </div>
                 </div>
                     <br/>

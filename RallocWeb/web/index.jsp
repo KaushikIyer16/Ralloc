@@ -82,10 +82,10 @@
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="clearData.jsp">
+                    <a href="deleteData.jsp">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content" style=" padding-top: 35px;">
-                            <span class="flow-text" style="color: white;">CLEAR DATA</span>
+                            <span class="flow-text" style="color: white;">DELETE DATA</span>
                         </div>
                     </div>
                     </a>
