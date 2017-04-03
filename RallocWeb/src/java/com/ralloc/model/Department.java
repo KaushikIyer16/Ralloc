@@ -77,4 +77,41 @@ public class Department {
         }
         return clusterId;
     }
+    public static Integer getClusterIdFromDepartmentName(String departmentName)throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT ClusterID FROM Department WHERE Name LIKE ?");
+        myPreStatement.setString(1, departmentName);
+        int clusterId=0;
+        ResultSet rs = myPreStatement.executeQuery();
+        while(rs.next()){
+            clusterId = rs.getInt(1);
+        }
+        return clusterId;
+    }
+    public static void addDepartment(String departmentName, String clusterName, String intake)throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("INSERT INTO Department VALUES (NULL, ?, ?, ?)");
+        //myPreStatement.setInt(1, departmentId);
+        myPreStatement.setString(1, departmentName);
+        myPreStatement.setInt(2, Integer.parseInt(intake));
+        int clusterId = getClusterIdFromDepartmentName(clusterName);
+        if(clusterId == 0)
+        {
+            myPreStatement.setInt(3, 99);
+            myPreStatement.execute();
+            myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
+            myPreStatement.setString(1, departmentName);
+            ResultSet rs = myPreStatement.executeQuery();
+            while(rs.next()){
+                clusterId = rs.getInt(1);
+            }
+            myPreStatement = myConnection.prepareStatement("UPDATE Department SET ClusterID = ? WHERE ClusterID = 99");
+            myPreStatement.setInt(1, clusterId);
+        }
+        else
+        {
+            myPreStatement.setInt(3, clusterId);
+            myPreStatement.execute();
+        }
+    }
 }

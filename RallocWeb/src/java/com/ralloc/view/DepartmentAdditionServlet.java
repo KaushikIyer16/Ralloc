@@ -12,7 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.ralloc.model.Department;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author kaushiknsiyer
@@ -45,6 +48,11 @@ public class DepartmentAdditionServlet extends HttpServlet {
             out.println("<h1>"+request.getParameter("MaximumIntake")+"</h1>");
             out.println("</body>");
             out.println("</html>");
+            try {
+                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("MaximumIntake"), request.getParameter("ClusterName"));
+            } catch (SQLException ex) {
+                Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
