@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +33,11 @@ public class AllStudentDeletionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // execute query to delete all students
-        
+        try {
+            Student.deleteAllStudents();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         response.sendRedirect(request.getHeader("referer"));
     }
 

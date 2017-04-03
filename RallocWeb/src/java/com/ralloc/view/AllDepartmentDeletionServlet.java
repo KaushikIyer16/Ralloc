@@ -5,8 +5,12 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Department;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +36,13 @@ public class AllDepartmentDeletionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // write query to delete all departments
-        response.sendRedirect(request.getHeader("referer"));
+        try {
+            // write query to delete all departments
+            Department.deleteAllDepartments();
+            response.sendRedirect(request.getHeader("referer"));
+        } catch (SQLException ex) {
+            Logger.getLogger(AllDepartmentDeletionServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
