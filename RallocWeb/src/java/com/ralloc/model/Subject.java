@@ -93,5 +93,27 @@ public class Subject {
         }
         return subjectDetails;
     }
-    
+    public static void addSubject(String courseCode, boolean isInstElect, boolean isDeptElect, boolean isClustElect, String name) throws SQLException {
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT CourseCode FROM Subject WHERE CourseCode LIKE ?");
+        myStatement.setString(1, courseCode);
+        ResultSet subResult = myStatement.executeQuery();
+        if(subResult.next())
+        {
+            throw new SQLException();
+        }
+        myStatement = myConnection.prepareStatement("INSERT INTO Subject VALUES(?, ?, ?, ?, ?)");
+        myStatement.setString(1, courseCode);
+        myStatement.setBoolean(2,isInstElect);
+        myStatement.setBoolean(3, isDeptElect);
+        myStatement.setBoolean(4, isClustElect);
+        myStatement.setString(5, name);
+        myStatement.execute();
+    }
+    public static void addSubjectList(ArrayList<Subject> subjectList) throws SQLException {
+        for(Subject s: subjectList)
+        {
+            addSubject(s.courseCode, s.isInstituteElective, s.isDeptElective, s.isClusterElective, s.name);
+        }
+    }
 }

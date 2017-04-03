@@ -5,6 +5,14 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
 /**
  *
  * @author mahesh
@@ -28,6 +36,52 @@ public class Student {
     public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
+
+    public Student(String usn, int deptId) {
+        this.usn = usn;
+        departmentId = deptId;
+    }
     
-    
+//    public static int getDepartmentFormUsn(String usn) throws SQLException{
+//        Connection myConnection = DBConnection.getConnection();
+//        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
+//        myPreStatement.setString(1, usn.substring(5, 6));
+//        int deptId=0;
+//        ResultSet rs = myPreStatement.executeQuery();
+//            while(rs.next()){
+//                deptId = rs.getInt(1);
+//            }
+//        return deptId;
+//    }
+    public static void addStudents(HashMap<String, ArrayList<Student>> subjectStudents) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        try{
+           
+            myConnection.setAutoCommit(false);
+            PreparedStatement myPreStatement;
+            Set<String> courseSet = subjectStudents.keySet();
+            for(String courseCode : courseSet)
+            {
+                ArrayList<Student> studentList = subjectStudents.get(courseCode);
+                for(Student student: studentList)
+                {
+                    myPreStatement = myConnection.prepareStatement("INSERT INTO Student VALUES(?, ?)");
+                    myPreStatement.setString(1, student.usn);
+                    myPreStatement.setInt(2, student.departmentId);
+                    myPreStatement.execute();
+                    myPreStatement = myConnection.prepareStatement("INSERT INTO StudentSubject VALUES(?, ?)");
+                    myPreStatement.setString(2, courseCode);
+                    myPreStatement.setString(1, student.usn);
+                    myPreStatement.execute();
+                }
+            }
+            myConnection.commit();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+            myConnection.rollback();
+        }
+        
+    }
 }

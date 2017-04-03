@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -113,5 +114,15 @@ public class Department {
             myPreStatement.setInt(3, clusterId);
             myPreStatement.execute();
         }
+    }
+    
+    public static HashMap<Integer, String> getDepartments() throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT * FROM Department");
+        ResultSet rs = myPreStatement.executeQuery();
+        HashMap<Integer, String> deptList = new HashMap();
+        while(rs.next())
+            deptList.put(rs.getInt(1), rs.getString(2));
+        return deptList;
     }
 }

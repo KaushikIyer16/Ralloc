@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author mahesh
  */
 public class Room {
-    int roomId = 0, capacity = 0;
+    int roomId = 0, capacity = 0, dependency = -1;
     String name;
 
     public int getRoomId() {
@@ -43,6 +43,14 @@ public class Room {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getDependency() {
+        return dependency;
+    }
+
+    public void setDependency(int dependency) {
+        this.dependency = dependency;
+    }
     
     public static int getTotalRooms() throws SQLException{
         Connection myConnection = DBConnection.getConnection();
@@ -64,5 +72,26 @@ public class Room {
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
         return roomCapacities;
+    }
+    
+    public static void addRoom(String roomName, String capacity, int dependency) throws SQLException{
+        Connection con = DBConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT RoomID FROM Room WHERE Name LIKE ?");
+        ps.setString(1, roomName);
+        ResultSet rs = ps.executeQuery();
+        int idExists = -1;
+        while (rs.next()) {            
+            idExists = rs.getInt(1);
+        }
+        if(idExists != -1)
+            throw new SQLException();
+        else
+        {
+            ps = con.prepareStatement("INSERT INTO Room VALUES(null, ?, ?, ?)");
+            ps.setInt(2, Integer.parseInt(capacity));
+            ps.setString(1, roomName);
+            ps.setInt(3, dependency);
+            ps.execute();
+        }
     }
 }

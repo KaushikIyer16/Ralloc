@@ -3,6 +3,7 @@
     Created on : Mar 31, 2017, 9:05:41 PM
     Author     : Mahesh
 --%>
+<%@page import="com.ralloc.model.Department"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="com.ralloc.model.Subject"%>
 <%@page import="java.util.HashMap"%>
@@ -19,9 +20,9 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
         <script src="./js/jquery.js"></script>
         <script type="text/javascript">
-            function toggleDependency(){
-                $('.dependency-matrix').toggleClass("dep-visible");
-            }
+//            function toggleDependency(){
+//                $('.dependency-matrix').toggleClass("dep-visible");
+//            }
         </script>
     </head>
     <body>
@@ -131,18 +132,14 @@
                             <br>
                         </div>
                         <div class="col l4 m4 s12">
-                            <select class="browser-default">
+                            <select class="browser-default" name="department">
                               <option value="" disabled selected>Choose department</option>
                               <%
-                                String deptArray[] = {"ISE", "CSE", "TCE"};
-                                HashMap deptList = new HashMap();
+                                HashMap deptList = Department.getDepartments();
                                 //Get the available rooms from the database here and put it to this arraylist
                                 //The data will be in a hashmap with department name as value 
                                 //The key of the hashmap will be given as value to the value field of option and value will be string of the option
-                                for(int i=0; i<deptArray.length; i++){
-                                    deptList.put(i, deptArray[i]);
-                                }
-                                for(int i=0; i<deptList.keySet().toArray().length; i++){
+                                for(int i=1; i<deptList.keySet().toArray().length; i++){
                                     out.println("<option value="+ deptList.keySet().toArray()[i] +">"+ deptList.get(i) +"</option>");
                                 }
                               %>
@@ -173,22 +170,22 @@
                         <h5>Please select the rooms on which it is dependent</h5>
                         <div class="row">
                         <%
-                            String roomArray[] = {"ISE-4001", "ISE-4002", "ISE-4003", "ISE-4001", "ISE-4002", "ISE-4003"};
-                            HashMap roomList = new HashMap();
-                            //Get the available rooms from the database here and put it to this array              
-                            for(int i=0; i<roomArray.length; i++){
-                                roomList.put(i, roomArray[i]);
-                            }
-                            for(int i=0; i<roomList.keySet().toArray().length; i++)
-                            {
-                                out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" id=\"room" + i + "\"/><label for=\"room" + i + "\">"+ "Room" +"</label></p></div>");
-                                if((i+1) % 4 == 0)
-                                {
-                                    out.println("</div><div class=\"row\">");
-                                }
-                            }
-                                    %>
-                                </div>
+//                            String roomArray[] = {"ISE-4001", "ISE-4002", "ISE-4003", "ISE-4001", "ISE-4002", "ISE-4003"};
+//                            HashMap roomList = new HashMap();
+//                            //Get the available rooms from the database here and put it to this array              
+//                            for(int i=0; i<roomArray.length; i++){
+//                                roomList.put(i, roomArray[i]);
+//                            }
+//                            for(int i=0; i<roomList.keySet().toArray().length; i++)
+//                            {
+//                                out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" name=\"" + roomArray[i] + "\"/><label for=\"room" + i + "\">"+ "Room" +"</label></p></div>");
+//                                if((i+1) % 4 == 0)
+//                                {
+//                                    out.println("</div><div class=\"row\">");
+//                                }
+//                            }
+//                          %>
+                        </div>
                     </div>
                     <br>
                     <br>

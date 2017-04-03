@@ -31,7 +31,7 @@
         <br>
         <br>
         <div class="container">
-            <h5>Please verify the provided details</h5>
+            <h5>Following details were added</h5>
             <%
                 for(int j=0; j<2; j++)
                 {

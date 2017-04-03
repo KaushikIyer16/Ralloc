@@ -33,25 +33,39 @@
                 
                 <div class="row">
                     <div class="col l6 m6 s12">
-                        <input type="text" name="roomName" id="coursecode" required placeholder="Room Name" />
+                        <input type="text" name="roomName" required placeholder="Room Name" />
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col l6 m6 s12">
-                        <input type="text" name="roomCapacity" id="coursecode" required placeholder="Room Capacity" />
+                        <input type="text" name="roomCapacity" required placeholder="Room Capacity" />
                     </div>
                 </div>
-                
+                <div class="row">
+                    <h6>Does the room have a dependency ?</h6>
+                        <div class="col l3 m3 s6 has-dependency">
+                            <p>
+                                <input name="hasDep" type="radio" id="depYes"/>
+                                <label for="depYes">Yes</label>
+                            </p>
+                        </div>
+                        <div class="col l3 m3 s6">
+                            <p>
+                                <input name="hasDep" type="radio" id="depNo" checked/>
+                                <label for="depNo">No</label>
+                            </p>
+                        </div>
+                </div>        
                 <div class="row" id="buttons">
                     <div class="col s6 m4 l4">
-                        <button type="submit" class="add custom-btn">Add Row</button>
+                        <button type="submit" class="add custom-btn">Add Room</button>
                     </div>
                 </div>
+             </form>
                 <br>
                 <br>
-                <button class="btn  right" type="submit" style="background-color: #444;">Submit</button>
-            </form>
+            <a href = "${pageContext.request.contextPath}/home" class="btn  right" style="background-color: #444;">Continue</a>
         </div>
         <br/><br/><br/><br/><br/>
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">

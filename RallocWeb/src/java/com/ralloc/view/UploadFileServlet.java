@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Student;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -100,8 +101,8 @@ public class UploadFileServlet extends HttpServlet {
                           // take the uploadedFileStream as a parameter in the constructor to the excelWriter class
                           InputStream uploadedFileStream = currFormItem.getInputStream();
                           Workbook detailsBook = WorkbookFactory.create(uploadedFileStream);
-                          ArrayList<String> studentList;
-                          HashMap<String, ArrayList<String>> subjectStudents = new HashMap<>();
+                          ArrayList<Student> studentList;
+                          HashMap<String, ArrayList<Student>> subjectStudents = new HashMap<>();
                           for(int i=0; i<detailsBook.getNumberOfSheets(); i++)
                           {
                               studentList = new ArrayList();
@@ -110,9 +111,10 @@ public class UploadFileServlet extends HttpServlet {
                               while(rowIterator.hasNext())
                               {
                                   Row currentRow = rowIterator.next();
-                                  Iterator<Cell> cellIterator = currentRow.iterator();
-                                  while(cellIterator.hasNext())
-                                      studentList.add(cellIterator.next().getStringCellValue());
+//                                  Iterator<Cell> cellIterator = currentRow.iterator();
+//                                  while(cellIterator.hasNext())
+//                                      studentList.add(cellIterator.next().getStringCellValue());
+                                  studentList.add(new Student(currentRow.getCell(0).getStringCellValue(), (int)currentRow.getCell(1).getNumericCellValue()));
                               }
                               subjectStudents.put(currentSheet.getSheetName(), studentList);
                           }

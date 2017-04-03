@@ -12,6 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.ralloc.model.Room;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -45,6 +49,11 @@ public class InfrastructureAdditionServlet extends HttpServlet {
             out.println("<h2>"+request.getParameter("roomCapacity")+"</h2>");
             out.println("</body>");
             out.println("</html>");
+            try {
+                Room.addRoom(request.getParameter("roomName"), request.getParameter("roomCapacity"), request.getParameter("hasDep").equals("on") ? 1: -1);
+            } catch (SQLException ex) {
+                Logger.getLogger(InfrastructureAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

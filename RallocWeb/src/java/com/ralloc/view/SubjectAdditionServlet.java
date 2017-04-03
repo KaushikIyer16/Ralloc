@@ -48,8 +48,12 @@ public class SubjectAdditionServlet extends HttpServlet {
 //            }
             subjectList.add(new com.ralloc.model.Subject(
                 request.getParameter("courseCode"),
-                request.getParameter("name")
+                request.getParameter("name"), 
+                request.getParameter("deptElectGrp").equals("on"),
+                request.getParameter("clustElectGrp").equals("on"),
+                request.getParameter("instElectGrp").equals("on")
             ));
+            System.out.println(request.getParameter("instElectGrp"));
 //            request.setAttribute("subjectList", subjectList);
 //            out.println(subjectList.size());
             response.sendRedirect(request.getHeader("referer"));

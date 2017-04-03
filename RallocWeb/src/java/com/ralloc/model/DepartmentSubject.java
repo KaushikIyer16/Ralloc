@@ -5,6 +5,11 @@
  */
 package com.ralloc.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author mahesh
@@ -28,6 +33,19 @@ public class DepartmentSubject {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
-    
-    
+    public static void addSubject(String deptName, String courseCode) throws SQLException {
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
+        myStatement.setString(1, deptName);
+        ResultSet subResult = myStatement.executeQuery();
+        int deptId = 0;
+        while(subResult.next())
+        {
+            deptId = subResult.getInt(1);
+        }
+        myStatement = myConnection.prepareStatement("INSERT INTO DepartmentSubject VALUES(?, ?)");
+        myStatement.setInt(1, deptId);
+        myStatement.setString(2, courseCode);
+        myStatement.execute();
+    }
 }
