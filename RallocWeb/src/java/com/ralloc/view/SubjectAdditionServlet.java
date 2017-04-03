@@ -49,9 +49,9 @@ public class SubjectAdditionServlet extends HttpServlet {
             subjectList.add(new com.ralloc.model.Subject(
                 request.getParameter("courseCode"),
                 request.getParameter("name"), 
-                request.getParameter("deptElectGrp").equals("on"),
-                request.getParameter("clustElectGrp").equals("on"),
-                request.getParameter("instElectGrp").equals("on")
+                request.getParameter("deptElectGrp").equals("yes"),
+                request.getParameter("clustElectGrp").equals("yes"),
+                request.getParameter("instElectGrp").equals("yes")
             ));
             System.out.println(request.getParameter("instElectGrp"));
 //            request.setAttribute("subjectList", subjectList);

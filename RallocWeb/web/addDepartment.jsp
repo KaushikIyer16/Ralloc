@@ -71,9 +71,12 @@
                 <br>
                 <br>
                 <button class="btn  right" type="submit" style="background-color: #444;">Submit</button>
+                <br>
+                <br>
+                <br>
             </form>
         </div>
-        <footer class="custom-footer" style="bottom: 0px; position: fixed;">
+        <footer class="custom-footer">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE

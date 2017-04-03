@@ -49,7 +49,7 @@ public class DepartmentAdditionServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             try {
-                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("MaximumIntake"), request.getParameter("ClusterName"));
+                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"), request.getParameter("MaximumIntake"));
             } catch (SQLException ex) {
                 Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

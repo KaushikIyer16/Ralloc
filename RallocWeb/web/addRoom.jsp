@@ -46,13 +46,13 @@
                     <h6>Does the room have a dependency ?</h6>
                         <div class="col l3 m3 s6 has-dependency">
                             <p>
-                                <input name="hasDep" type="radio" id="depYes"/>
+                                <input value="yes" name="hasDep" type="radio" id="depYes"/>
                                 <label for="depYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="hasDep" type="radio" id="depNo" checked/>
+                                <input name="hasDep" value="no" type="radio" id="depNo" checked />
                                 <label for="depNo">No</label>
                             </p>
                         </div>

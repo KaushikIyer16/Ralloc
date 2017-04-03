@@ -46,11 +46,11 @@ public class InfrastructureAdditionServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Infrastructure Information</h1>");
             out.println("<h2>"+request.getParameter("roomName")+"</h2>");
-            out.println("<h2>"+request.getParameter("roomCapacity")+"</h2>");
+            out.println("<h2>"+request.getParameter("hasDep")+"</h2>");
             out.println("</body>");
             out.println("</html>");
             try {
-                Room.addRoom(request.getParameter("roomName"), request.getParameter("roomCapacity"), request.getParameter("hasDep").equals("on") ? 1: -1);
+                Room.addRoom(request.getParameter("roomName"), request.getParameter("roomCapacity"), request.getParameter("hasDep").equals("yes") ? 1: -1);
             } catch (SQLException ex) {
                 Logger.getLogger(InfrastructureAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

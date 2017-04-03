@@ -73,13 +73,13 @@
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="instElectGrp" type="radio" id="instYes" />
+                                <input name="instElectGrp" type="radio" id="instYes" value="yes"/>
                                 <label for="instYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="instElectGrp" type="radio" id="instNo" checked/>
+                                <input name="instElectGrp" type="radio" id="instNo" checked value="no"/>
                                 <label for="instNo">No</label>
                             </p>
                         </div>
@@ -93,13 +93,13 @@
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="clustElectGrp" type="radio" id="clustYes" />
+                                <input name="clustElectGrp" type="radio" id="clustYes" value="yes"/>
                                 <label for="clustYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="clustElectGrp" type="radio" id="clustNo" checked/>
+                                <input name="clustElectGrp" type="radio" id="clustNo" checked value="no"/>
                                 <label for="clustNo">No</label>
                             </p>
                         </div>
@@ -113,13 +113,13 @@
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="deptElectGrp" type="radio" id="deptYes" />
+                                <input name="deptElectGrp" type="radio" id="deptYes" value="yes"/>
                                 <label for="deptYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="deptElectGrp" type="radio" id="deptNo" checked/>
+                                <input name="deptElectGrp" type="radio" id="deptNo" checked value="no"/>
                                 <label for="deptNo">No</label>
                             </p>
                         </div>
@@ -155,13 +155,13 @@
                         </div>
                         <div class="col l3 m3 s6 has-dependency">
                             <p>
-                                <input name="depGrp" type="radio" id="depYes" onclick="toggleDependency()"/>
+                                <input name="depGrp" type="radio" id="depYes" onclick="toggleDependency()" value="yes"/>
                                 <label for="depYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="depGrp" type="radio" id="depNo" onclick="toggleDependency()" checked/>
+                                <input name="depGrp" type="radio" id="depNo" onclick="toggleDependency()" checked value="no"/>
                                 <label for="depNo">No</label>
                             </p>
                         </div>

@@ -100,14 +100,14 @@ public class Department {
         {
             myPreStatement.setInt(3, 99);
             myPreStatement.execute();
-            myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
-            myPreStatement.setString(1, departmentName);
+            myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE ClusterID = 99");
             ResultSet rs = myPreStatement.executeQuery();
             while(rs.next()){
                 clusterId = rs.getInt(1);
             }
             myPreStatement = myConnection.prepareStatement("UPDATE Department SET ClusterID = ? WHERE ClusterID = 99");
             myPreStatement.setInt(1, clusterId);
+            myPreStatement.execute();
         }
         else
         {
