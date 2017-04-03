@@ -54,7 +54,7 @@ public class SubjectConfirmationServlet extends HttpServlet {
 //            out.println("</table>");
 //            out.println("</body>");
 //            out.println("</html>");
-                Subject.addSubjectList(SubjectAdditionServlet.subjectList);
+              Subject.addSubjectList(SubjectAdditionServlet.subjectList);
             } catch (SQLException ex) {
                 Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

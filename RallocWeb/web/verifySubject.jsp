@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.ralloc.model.Subject"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -36,22 +37,15 @@
                 for(int j=0; j<2; j++)
                 {
                     //Repeat the below code according to the number of entries in the bean i.e. make j equal to the number of subjects
-                    Subject subjectObject = new Subject();
-                    subjectObject.setCourseCode("16IS6DCCNS");
-                    subjectObject.setName("Computer Networks and Security");
-                    subjectObject.setIsInstituteElective(false);
-                    subjectObject.setIsDeptElective(false);
-                    subjectObject.setIsClusterElective(false);
-                    int numberOfSubjects = 1;
-                    
+                    ArrayList<Subject> subjectObject = (ArrayList<Subject>) session.getAttribute("subjectList");
                     out.println("<div class=\"container\">");
-                    for(int i=0; i<numberOfSubjects; i++)
+                    for(Subject s : subjectObject)
                         {
-                            out.println("<br><h5>Subject: " + subjectObject.getCourseCode() + "</h5><br>");
-                            out.println("<p>Name: " + subjectObject.getName() + "</p>");
-                            out.println("<p>Institutional Elective: " + subjectObject.isIsInstituteElective() + "</p>");
-                            out.println("<p>Department Elective: " + subjectObject.isIsDeptElective() + "</p>");
-                            out.println("<p>Cluster Elective: " + subjectObject.isIsClusterElective() + "</p>");
+                            out.println("<br><h5>Subject: " + s.getCourseCode() + "</h5><br>");
+                            out.println("<p>Name: " + s.getName() + "</p>");
+                            out.println("<p>Institutional Elective: " + s.isIsInstituteElective() + "</p>");
+                            out.println("<p>Department Elective: " + s.isIsDeptElective() + "</p>");
+                            out.println("<p>Cluster Elective: " + s.isIsClusterElective() + "</p>");
                         }
                     out.println("</div>");
                 }
