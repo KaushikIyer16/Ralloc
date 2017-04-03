@@ -46,6 +46,7 @@
                             out.println("<p>Institutional Elective: " + s.isIsInstituteElective() + "</p>");
                             out.println("<p>Department Elective: " + s.isIsDeptElective() + "</p>");
                             out.println("<p>Cluster Elective: " + s.isIsClusterElective() + "</p>");
+                            out.println("<p>Has Dependency (1 - Yes, -1 - No): " + s.getHasDependency() + "</p>");
                         }
                     out.println("</div>");
                 }

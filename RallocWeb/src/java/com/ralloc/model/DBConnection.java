@@ -30,7 +30,6 @@ public class DBConnection {
             
             System.out.println("Error in connection class " + e);
             return null;
-            
         }
     }
 }

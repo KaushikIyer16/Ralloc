@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.DepartmentSubject;
 import com.ralloc.model.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +26,7 @@ public class SubjectAdditionServlet extends HttpServlet {
     
     
     public static ArrayList<Subject> subjectList = new ArrayList<>();
+    public static ArrayList<DepartmentSubject> departmentSubjectList = new ArrayList<>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,31 +39,39 @@ public class SubjectAdditionServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+            response.setContentType("text/html;charset=UTF-8");
+        
+//            response.sendRedirect(request.getHeader("referer"));
+//        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 //            out.println("<h1>mother fff servlets</h1>");
-//            if (request.getAttribute("subjectList") == null) {
-//                subjectList = new ArrayList<>();
-//            } else {
-//                subjectList = (ArrayList<Subject>)request.getAttribute("subjectList");
-//            }
+            if (request.getAttribute("subjectList") == null) {
+                subjectList = new ArrayList<>();
+            } else {
+                subjectList = (ArrayList<Subject>)request.getAttribute("subjectList");
+            }
+            if (request.getAttribute("departmentSubjectList") == null) {
+                departmentSubjectList = new ArrayList<>();
+            } else {
+                departmentSubjectList = (ArrayList<DepartmentSubject>)request.getAttribute("departmentSubjectList");
+            }
             subjectList.add(new com.ralloc.model.Subject(
                 request.getParameter("courseCode"),
                 request.getParameter("name"), 
                 request.getParameter("deptElectGrp").equals("yes"),
                 request.getParameter("clustElectGrp").equals("yes"),
-                request.getParameter("instElectGrp").equals("yes")
+                request.getParameter("instElectGrp").equals("yes"),
+                request.getParameter("hasDependency").equals("yes") ? 1:0
             ));
+            departmentSubjectList.add(new com.ralloc.model.DepartmentSubject(Integer.parseInt(request.getParameter("department")), request.getParameter("courseCode")));
             System.out.println(request.getParameter("instElectGrp"));
-//            request.setAttribute("subjectList", subjectList);
+            request.setAttribute("subjectList", subjectList);
+            request.setAttribute("departmentSubjectList", departmentSubjectList);
 //            out.println(subjectList.size());
-            response.sendRedirect(request.getHeader("referer"));
 //            RequestDispatcher rd = request.getRequestDispatcher("/Subject");
-//            
 //            rd.forward(request, response);
-            
-        }
+            response.sendRedirect(request.getHeader("referer"));
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -26,7 +26,6 @@
         </script>
     </head>
     <body>
-        <h1>${requestScope.subjectList}</h1>
         <nav>
             <div class="nav-wrapper custom-nav">
                 <a href="#" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
@@ -37,7 +36,6 @@
             </div>
         </nav>
         <div class="container">
-            
                 <h4>Enter the details of the subject to be added</h4>
                 <form method="POST" action="${pageContext.request.contextPath}/Subject/add">
 
@@ -155,13 +153,13 @@
                         </div>
                         <div class="col l3 m3 s6 has-dependency">
                             <p>
-                                <input name="depGrp" type="radio" id="depYes" onclick="toggleDependency()" value="yes"/>
+                                <input name="hasDependency" type="radio" id="depYes" onclick="toggleDependency()" value="yes"/>
                                 <label for="depYes">Yes</label>
                             </p>
                         </div>
                         <div class="col l3 m3 s6">
                             <p>
-                                <input name="depGrp" type="radio" id="depNo" onclick="toggleDependency()" checked value="no"/>
+                                <input name="hasDependency" type="radio" id="depNo" onclick="toggleDependency()" checked value="no"/>
                                 <label for="depNo">No</label>
                             </p>
                         </div>

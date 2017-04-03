@@ -18,17 +18,27 @@ import java.util.ArrayList;
 public class Subject {
     String courseCode, name;
     boolean isDeptElective, isClusterElective, isInstituteElective;
+    int hasDependency;
 
     public String getName() {
         return name;
     }
 
-    public Subject(String courseCode, String name, boolean isDeptElective, boolean isClusterElective, boolean isInstituteElective) {
+    public int getHasDependency() {
+        return hasDependency;
+    }
+
+    public void setHasDependency(int hasDependency) {
+        this.hasDependency = hasDependency;
+    }
+    
+    public Subject(String courseCode, String name, boolean isDeptElective, boolean isClusterElective, boolean isInstituteElective, int hasDependency) {
         this.courseCode = courseCode;
         this.name = name;
         this.isDeptElective = isDeptElective;
         this.isClusterElective = isClusterElective;
         this.isInstituteElective = isInstituteElective;
+        this.hasDependency = hasDependency;
     }
     
     public Subject(){
@@ -89,31 +99,35 @@ public class Subject {
             subjectObject.isDeptElective = subResult.getBoolean(3);
             subjectObject.isClusterElective = subResult.getBoolean(4);
             subjectObject.name = subResult.getString(5);
+            subjectObject.hasDependency = subResult.getInt(6);
             subjectDetails.add(subjectObject);
         }
         return subjectDetails;
     }
-    public static void addSubject(String courseCode, boolean isInstElect, boolean isDeptElect, boolean isClustElect, String name) throws SQLException {
+    public static void addSubject(String courseCode, boolean isInstElect, boolean isDeptElect, boolean isClustElect, String name, int hasDependency) throws SQLException {
         Connection myConnection = DBConnection.getConnection();
         PreparedStatement myStatement = myConnection.prepareStatement("SELECT CourseCode FROM Subject WHERE CourseCode LIKE ?");
         myStatement.setString(1, courseCode);
         ResultSet subResult = myStatement.executeQuery();
-        if(subResult.next())
+        while(subResult.next())
         {
+            System.out.println(subResult.getString(1));
             throw new SQLException();
         }
-        myStatement = myConnection.prepareStatement("INSERT INTO Subject VALUES(?, ?, ?, ?, ?)");
+        myStatement = myConnection.prepareStatement("INSERT INTO Subject VALUES(?, ?, ?, ?, ?, ?)");
         myStatement.setString(1, courseCode);
         myStatement.setBoolean(2,isInstElect);
         myStatement.setBoolean(3, isDeptElect);
         myStatement.setBoolean(4, isClustElect);
         myStatement.setString(5, name);
+        myStatement.setInt(6, hasDependency);
         myStatement.execute();
     }
     public static void addSubjectList(ArrayList<Subject> subjectList) throws SQLException {
         for(Subject s: subjectList)
         {
-            addSubject(s.courseCode, s.isInstituteElective, s.isDeptElective, s.isClusterElective, s.name);
+            //System.out.println(s.courseCode);
+            addSubject(s.courseCode, s.isInstituteElective, s.isDeptElective, s.isClusterElective, s.name, s.hasDependency);
         }
     }
     public static void deleteAllSubjects() throws SQLException{

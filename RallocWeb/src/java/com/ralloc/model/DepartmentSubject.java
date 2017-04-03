@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author mahesh
  */
 public class DepartmentSubject {
+
     int departmentId = 0;
     String courseCode;
 
@@ -34,6 +35,12 @@ public class DepartmentSubject {
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
+
+    public DepartmentSubject(int departmentId, String courseCode) {
+        this.courseCode = courseCode;
+        this.departmentId = departmentId;
+    }
+    
     public static void addSubject(String deptName, String courseCode) throws SQLException {
         Connection myConnection = DBConnection.getConnection();
         PreparedStatement myStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
@@ -48,5 +55,16 @@ public class DepartmentSubject {
         myStatement.setInt(1, deptId);
         myStatement.setString(2, courseCode);
         myStatement.execute();
+    }
+    public static void addSubject(int deptId, String courseCode) throws SQLException {
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("INSERT INTO DepartmentSubject VALUES(?, ?)");
+        myStatement.setInt(1, deptId);
+        myStatement.setString(2, courseCode);
+        myStatement.execute();
+    }
+    public static void addSubject(ArrayList<DepartmentSubject> departmentSubjectList) throws SQLException {
+        for(DepartmentSubject ds : departmentSubjectList)
+            addSubject(ds.departmentId, ds.courseCode);
     }
 }
