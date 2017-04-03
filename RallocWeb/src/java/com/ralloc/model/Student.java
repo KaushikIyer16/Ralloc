@@ -100,4 +100,16 @@ public class Student {
         myPreStatement.setString(1, usn);
         myPreStatement.execute();
     }
+    public static ArrayList<String> getStudentsByDepartmentId(int departmentId) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT USN FROM Student WHERE DepartmentID = ?");
+        myStatement.setInt(1, departmentId);
+        ResultSet subResult = myStatement.executeQuery();
+        ArrayList<String> studentList = new ArrayList<>();
+        while(subResult.next())
+        {
+            studentList.add(subResult.getString(1));
+        }
+        return studentList;
+    }
 }
