@@ -84,4 +84,20 @@ public class Student {
         }
         
     }
+    public static void deleteAllStudents() throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE 1");
+        myPreStatement.execute();
+        myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE 1");
+        myPreStatement.execute();
+    }
+    public static void deleteStudentByUsn(String usn) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE USN LIKE ?");
+        myPreStatement.setString(1, usn);
+        myPreStatement.execute();
+        myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE USN LIKE ?");
+        myPreStatement.setString(1, usn);
+        myPreStatement.execute();
+    }
 }

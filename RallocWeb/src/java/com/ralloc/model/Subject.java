@@ -116,4 +116,19 @@ public class Subject {
             addSubject(s.courseCode, s.isInstituteElective, s.isDeptElective, s.isClusterElective, s.name);
         }
     }
+    public static void deleteAllSubjects() throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE 1");
+        myStatement.execute();
+        myStatement = myConnection.prepareStatement("DELETE FROM Subject WHERE 1");
+        myStatement.execute();
+    }
+    public static void deleteSubjectByCourseCode(String courseCode) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE CourseCode LIKE ?");
+        myStatement.setString(1, courseCode);
+        myStatement = myConnection.prepareStatement("DELETE FROM Subject WHERE CourseCode LIKE ?");
+        myStatement.setString(1, courseCode);
+        myStatement.execute();
+    }
 }

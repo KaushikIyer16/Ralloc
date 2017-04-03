@@ -94,4 +94,15 @@ public class Room {
             ps.execute();
         }
     }
+    public static void deleteAllRooms() throws SQLException{
+        Connection con = DBConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE 1");
+        ps.execute();
+    }
+    public static void deleteRoomByName(String name) throws SQLException{
+        Connection con = DBConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE Name LIKE ?");
+        ps.setString(1, name);
+        ps.execute();
+    }
 }
