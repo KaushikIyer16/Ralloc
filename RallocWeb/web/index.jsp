@@ -82,7 +82,7 @@
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="deleteData.jsp">
+                    <a href="${pageContext.request.contextPath}/Delete">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
                             <span class="flow-text" style="color: white;">DELETE DATA</span>

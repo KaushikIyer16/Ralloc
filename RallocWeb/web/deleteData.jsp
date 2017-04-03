@@ -50,7 +50,7 @@
                             <h5>Clear all student data ?</h5>
                             <br>
                             <br>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/student/all">
                                 <br>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Students</button>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the USN of student to be deleted</h5>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/student">
                                 <input type="text" name="usn" id="usn" required placeholder="USN"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Student</button>
@@ -74,7 +74,7 @@
                             <h5>Clear all subject data ?</h5>
                             <br>
                             <br>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/subject/all">
                                 <br>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Subjects</button>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the course code of subject to be deleted</h5>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/subject">
                                 <input type="text" name="subject" id="subject" required placeholder="nnTTnTTTTT"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Subject</button>
@@ -98,7 +98,7 @@
                             <h5>Clear all infrastructure data ?</h5>
                             <br>
                             <br>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/room/all">
                                 <br>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Rooms</button>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the room name to be deleted</h5>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/room">
                                 <input type="text" name="usn" id="deleteRoom" required placeholder="Room Name"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Room</button>
@@ -122,7 +122,7 @@
                             <h5>Clear all department data ?</h5>
                             <br>
                             <br>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/department/all">
                                 <br>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Departments</button>
@@ -130,7 +130,7 @@
                         </div>
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the department name to be deleted</h5>
-                            <form method="POST" action="#">
+                            <form method="POST" action="${pageContext.request.contextPath}/Delete/department">
                                 <input type="text" name="deleteDept" id="deleteDept" required placeholder="TTT"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Department</button>
