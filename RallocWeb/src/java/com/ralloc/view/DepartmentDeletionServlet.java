@@ -5,8 +5,10 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Department;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +35,11 @@ public class DepartmentDeletionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // write queries to delete a department
+        try {
+            Department.deleteDepartmentByName(request.getParameter("deleteDept"));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
         response.sendRedirect(request.getHeader("referer"));
     }
 

@@ -37,22 +37,24 @@ public class DepartmentAdditionServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DepartmentAdditionServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>"+request.getParameter("DepartmentName")+"</h1>");
-            out.println("<h1>"+request.getParameter("ClusterName")+"</h1>");
-            out.println("<h1>"+request.getParameter("MaximumIntake")+"</h1>");
-            out.println("</body>");
-            out.println("</html>");
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet DepartmentAdditionServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>"+request.getParameter("DepartmentName")+"</h1>");
+//            out.println("<h1>"+request.getParameter("ClusterName")+"</h1>");
+//            out.println("<h1>"+request.getParameter("MaximumIntake")+"</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
             try {
                 Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"), request.getParameter("MaximumIntake"));
+                response.sendRedirect(request.getContextPath()+"/home");
             } catch (SQLException ex) {
                 Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }
     }
 

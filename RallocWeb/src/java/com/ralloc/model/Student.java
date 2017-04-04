@@ -5,6 +5,7 @@
  */
 package com.ralloc.model;
 
+import com.ralloc.bean.Students;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -109,6 +110,17 @@ public class Student {
         while(subResult.next())
         {
             studentList.add(subResult.getString(1));
+        }
+        return studentList;
+    }
+    public static ArrayList<Students> getAllStudents() throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT StudentSubject.CourseCode, Student.USN, Student.DepartmentID FROM Student INNER JOIN StudentSubject ON StudentSubject.USN=Student.USN");
+        ResultSet subResult = myStatement.executeQuery();
+        ArrayList<Students> studentList = new ArrayList<>();
+        while(subResult.next())
+        {
+            studentList.add(new Students(subResult.getString(2), subResult.getString(1), subResult.getInt(3)));
         }
         return studentList;
     }

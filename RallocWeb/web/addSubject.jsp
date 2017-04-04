@@ -137,8 +137,8 @@
                                 //Get the available rooms from the database here and put it to this arraylist
                                 //The data will be in a hashmap with department name as value 
                                 //The key of the hashmap will be given as value to the value field of option and value will be string of the option
-                                for(int i=1; i<deptList.keySet().toArray().length; i++){
-                                    out.println("<option value="+ deptList.keySet().toArray()[i] +">"+ deptList.get(i) +"</option>");
+                                for(Object o: deptList.keySet()){
+                                    out.println("<option value="+ (Integer)o +">"+ deptList.get(o) +"</option>");
                                 }
                               %>
                             </select>

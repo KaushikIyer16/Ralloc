@@ -24,7 +24,7 @@
                     <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
                 </ul>
                 <ul id="nav-mobile" class="right">
-                    <li><a href="#">VIEW EXISTING DATABASE DATA </a></li>
+                    <li><a href="viewDepartment.jsp">VIEW EXISTING DEPARTMENT DATA </a></li>
                     <li><a href="#">HELP </a></li>
                     <li><a href="#"> </a></li>
                 </ul>

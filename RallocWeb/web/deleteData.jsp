@@ -83,7 +83,7 @@
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the course code of subject to be deleted</h5>
                             <form method="POST" action="${pageContext.request.contextPath}/Delete/subject">
-                                <input type="text" name="subject" id="subject" required placeholder="nnTTnTTTTT"/>
+                                <input type="text" name="courseCode" id="subject" required placeholder="nnTTnTTTTT"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Subject</button>
                             </form>
@@ -107,7 +107,7 @@
                         <div class="col l6 m6 s12" style="border-left: 1px solid black;">
                             <h5>Please enter the room name to be deleted</h5>
                             <form method="POST" action="${pageContext.request.contextPath}/Delete/room">
-                                <input type="text" name="usn" id="deleteRoom" required placeholder="Room Name"/>
+                                <input type="text" name="roomName" id="deleteRoom" required placeholder="Room Name"/>
                                 <br>
                                 <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Room</button>
                             </form>

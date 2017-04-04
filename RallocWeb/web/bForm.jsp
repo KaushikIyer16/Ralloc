@@ -9,7 +9,7 @@
         <!-- The following div.b-form must be rendered inside loop for every B Form -->
         <div class="b-form">
             <div class="row">
-                <div class="form-field semester"><!-- Semester --></div>
+                <div class="form-field semester">3</div>
                 <div class="form-field month"><!-- Month and Year --></div>
             </div>
             <div class="row">

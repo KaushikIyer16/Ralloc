@@ -119,8 +119,8 @@ public class UploadFileServlet extends HttpServlet {
                               subjectStudents.put(currentSheet.getSheetName(), studentList);
                           }
                           // below is just a simple way to print the contents of the stream
-                          for(String s : subjectStudents.keySet())
-                            out.println("<h2>"+ s +"</h2>");
+                          Student.addStudents(subjectStudents);
+                            
                       }
                       
                   }

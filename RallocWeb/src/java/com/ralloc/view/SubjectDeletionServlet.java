@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -33,6 +34,11 @@ public class SubjectDeletionServlet extends HttpServlet {
             throws ServletException, IOException {
         
         // write query to delete a subject by course code
+        try {
+            Subject.deleteSubjectByCourseCode(request.getParameter("courseCode"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         response.sendRedirect(request.getHeader("referer"));
     }
 

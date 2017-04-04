@@ -5,8 +5,8 @@
  */
 package com.ralloc.controller;
 
-import com.ralloc.beans.RoomBean;
-import com.ralloc.beans.StudentCount;
+import com.ralloc.bean.RoomBean;
+import com.ralloc.bean.StudentCount;
 import com.ralloc.beans.SubjectDependency;
 import com.ralloc.model.Department;
 import com.ralloc.model.Room;

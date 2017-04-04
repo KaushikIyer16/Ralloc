@@ -45,15 +45,18 @@ public class SubjectAdditionServlet extends HttpServlet {
 //        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
 //            out.println("<h1>mother fff servlets</h1>");
-            if (request.getAttribute("subjectList") == null) {
+//            if (request.getAttribute("subjectList") == null) {
+//                subjectList = new ArrayList<>();
+//            } else {
+//                subjectList = (ArrayList<Subject>)request.getAttribute("subjectList");
+//            }
+//            if (request.getAttribute("departmentSubjectList") == null) {
+//                departmentSubjectList = new ArrayList<>();
+//            } else {
+//                departmentSubjectList = (ArrayList<DepartmentSubject>)request.getAttribute("departmentSubjectList");
+//            }
+            if(subjectList == null){
                 subjectList = new ArrayList<>();
-            } else {
-                subjectList = (ArrayList<Subject>)request.getAttribute("subjectList");
-            }
-            if (request.getAttribute("departmentSubjectList") == null) {
-                departmentSubjectList = new ArrayList<>();
-            } else {
-                departmentSubjectList = (ArrayList<DepartmentSubject>)request.getAttribute("departmentSubjectList");
             }
             subjectList.add(new com.ralloc.model.Subject(
                 request.getParameter("courseCode"),
@@ -61,7 +64,7 @@ public class SubjectAdditionServlet extends HttpServlet {
                 request.getParameter("deptElectGrp").equals("yes"),
                 request.getParameter("clustElectGrp").equals("yes"),
                 request.getParameter("instElectGrp").equals("yes"),
-                request.getParameter("hasDependency").equals("yes") ? 1:0
+                request.getParameter("hasDependency").equals("yes") ? 1:-1
             ));
             departmentSubjectList.add(new com.ralloc.model.DepartmentSubject(Integer.parseInt(request.getParameter("department")), request.getParameter("courseCode")));
             System.out.println(request.getParameter("instElectGrp"));

@@ -74,6 +74,17 @@ public class Room {
         return roomCapacities;
     }
     
+    public static HashMap<Integer,Integer> getDependencyRoomCapacities() throws SQLException{
+        HashMap<Integer,Integer> roomCapacities = new HashMap();
+        Connection con = DBConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room WHERE Dependency = 1");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {            
+            roomCapacities.put(rs.getInt(1), rs.getInt(2));
+        }
+        return roomCapacities;
+    }
+    
     public static void addRoom(String roomName, String capacity, int dependency) throws SQLException{
         Connection con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement("SELECT RoomID FROM Room WHERE Name LIKE ?");

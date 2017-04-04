@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.Room;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +33,11 @@ public class RoomDeletionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // write query to delete a student
+        // write query to delete a room
+        try {
+            Room.deleteRoomByName(request.getParameter("roomName"));
+        } catch (Exception e) {
+        }
         response.sendRedirect(request.getHeader("referer"));
     }
 

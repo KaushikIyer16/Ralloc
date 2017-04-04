@@ -37,7 +37,7 @@ public class SubjectConfirmationServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
-        //try (PrintWriter out = response.getWriter()) {
+//        try (PrintWriter out = response.getWriter()) {
             try {
                 /* TODO output your page here. You may use following sample code. */
 //            out.println("<!DOCTYPE html>");
@@ -57,14 +57,18 @@ public class SubjectConfirmationServlet extends HttpServlet {
 //            out.println("</html>");
               Subject.addSubjectList(SubjectAdditionServlet.subjectList);
               DepartmentSubject.addSubject(SubjectAdditionServlet.departmentSubjectList);
+                for (Subject sub: SubjectAdditionServlet.subjectList) {
+                    System.out.println(sub.getCourseCode());
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
-            //SubjectAdditionServlet.subjectList = null;
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher(request.getContextPath()+"/verifySubject.jsp");
+            SubjectAdditionServlet.subjectList = null;
+            System.out.println("the value of contet path is "+request.getContextPath() );
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
             requestDispatcher.forward(request, response);
-        //}
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

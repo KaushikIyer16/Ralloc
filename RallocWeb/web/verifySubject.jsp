@@ -14,9 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Verify Subjects | Database of Subjects</title>
-         <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="./css/common.css" />
-        <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
         <script src="./js/jquery.js"></script>
         
     </head>
@@ -34,10 +34,8 @@
         <div class="container">
             <h5>Following details were added</h5>
             <%
-                for(int j=0; j<2; j++)
-                {
                     //Repeat the below code according to the number of entries in the bean i.e. make j equal to the number of subjects
-                    ArrayList<Subject> subjectObject = (ArrayList<Subject>) session.getAttribute("subjectList");
+                    ArrayList<Subject> subjectObject = (ArrayList<Subject>) request.getAttribute("subjectList");
                     out.println("<div class=\"container\">");
                     for(Subject s : subjectObject)
                         {
@@ -49,10 +47,9 @@
                             out.println("<p>Has Dependency (1 - Yes, -1 - No): " + s.getHasDependency() + "</p>");
                         }
                     out.println("</div>");
-                }
                 
             %>
-            <button class="btn waves-effect waves-light right" style="background-color: #444;">Continue </button>
+            <a class="btn waves-effect waves-light right" style="background-color: #444;" href="${pageContext.request.contextPath}/home">Continue </a>
         </div>
         <footer class="custom-footer">
             <div class="footer-copyright">
