@@ -71,6 +71,7 @@ public class Room {
         while (rs.next()) {            
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
+        con.close();
         return roomCapacities;
     }
     

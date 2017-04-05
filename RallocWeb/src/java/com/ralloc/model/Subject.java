@@ -145,4 +145,17 @@ public class Subject {
         myStatement.setString(1, courseCode);
         myStatement.execute();
     }
+    public static int getDependecyByCourseCode(String courseCode) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT Dependency FROM Subject WHERE CourseCode LIKE ?");
+        myStatement.setString(1, courseCode);
+        ResultSet subResult = myStatement.executeQuery();
+        int dependency = -1;
+        while(subResult.next())
+        {
+            dependency = subResult.getInt(1);
+        }
+        myConnection.close();
+        return dependency;
+    }
 }
