@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 31, 2017, 8:08:31 PM
+    Author     : Mahesh
+*/
+.add, .delete {
+    border:0;
+    outline:none;
+    border-radius: 5px;
+    padding:15px;
+    font-size:15px;
+    font-weight:200;
+    background:#73adde;
+    color:#fff;
+    transition:all .5s ease;
+    -webkit-appearance: none;
+}
+button:disabled {
+    background: #999;
+}
+#buttons {
+    text-align: center;
+}
+.button-container {
+    display: inline-block;
+    margin: 10px auto;
+}
+input {
+    width: 100%;
+    max-width: 200px;
+}
+.left {
+    float : left;
+}
+.right{
+    float : right;
+}
+
+.upload{
+    padding-left:40%;
+}
+.upfile{
+    padding-left:15%;
+    padding-right:15%;
+}
+nav{
+    height: 100px !important;
+}
+.custom-nav{
+    height: 100px !important;
+    background-color: #444;
+    line-height: 86px !important;
+}
+.custom-btn{
+    background-color: #444;
+    width: 100%;
+}
+.clg-name{
+    margin-left: 100px;
+    margin-top: 15px;
+}
+.clg-logo{
+    height: 80px; 
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.custom-footer{
+    background-color: #444;  
+    width: 100%; 
+    min-height: 50px;
+    z-index: 995;
+}
+.dependency-matrix{
+    visibility: hidden;
+}
+.dep-visible{
+    visibility: visible;
+}
+.delete-tabs{
+    margin-top: 6%;
+}
+.indicator{
+    background-color: black !important;
+    height: 5px !important;
+}
+.delete-tabs li a{
+    color: black !important;
+}
