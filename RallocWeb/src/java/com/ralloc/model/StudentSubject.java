@@ -41,14 +41,16 @@ public class StudentSubject {
         
         
         ArrayList<Student> studentList = new ArrayList<>();
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreparedStatement = myConnection.prepareStatement("SELECT DepartmentID, COUNT(USN) FROM student WHERE USN IN (SELECT USN FROM studentsubject WHERE CourseCode = ?) GROUP BY DepartmentID");
-        myPreparedStatement.setString(1, courseCde);
-        ResultSet studentResult = myPreparedStatement.executeQuery();
-        HashMap<Integer,Integer> studentMap = new HashMap();
-        for(int i = 0; studentResult.next();i++){
-            studentMap.put(studentResult.getInt(1),studentResult.getInt(2));
-        }  
+        HashMap<Integer,Integer> studentMap;
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myPreparedStatement = myConnection.prepareStatement("SELECT DepartmentID, COUNT(USN) FROM student WHERE USN IN (SELECT USN FROM studentsubject WHERE CourseCode = ?) GROUP BY DepartmentID");
+            myPreparedStatement.setString(1, courseCde);
+            ResultSet studentResult = myPreparedStatement.executeQuery();
+            studentMap = new HashMap();
+            for(int i = 0; studentResult.next();i++){
+                studentMap.put(studentResult.getInt(1),studentResult.getInt(2));
+            }
+        }
         return studentMap;
     }
     public static ArrayList<StudentSubject> getStudentsByCourseCode(String courseCode) throws SQLException{
@@ -63,6 +65,7 @@ public class StudentSubject {
             temp.setCourseCode(studentResult.getString(2));
             studentList.add(temp);
         }  
+        myConnection.close();
         return studentList;
     }
    

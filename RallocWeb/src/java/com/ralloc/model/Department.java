@@ -54,6 +54,7 @@ public class Department {
         while (rs.next()) {
              intake = rs.getInt(1);
         }
+        myConnection.close();
         return intake;
     }
     
@@ -64,6 +65,7 @@ public class Department {
         ArrayList<Integer> deptList = new ArrayList<>();
         while(rs.next())
             deptList.add(rs.getInt(1));
+        myConnection.close();
         return deptList;
     }
     
@@ -76,6 +78,7 @@ public class Department {
         while(rs.next()){
             clusterId = rs.getInt(1);
         }
+        myConnection.close();
         return clusterId;
     }
     public static Integer getClusterIdFromDepartmentName(String departmentName)throws SQLException{
@@ -87,6 +90,7 @@ public class Department {
         while(rs.next()){
             clusterId = rs.getInt(1);
         }
+        myConnection.close();
         return clusterId;
     }
     public static void addDepartment(String departmentName, String clusterName, String intake)throws SQLException{
@@ -108,11 +112,13 @@ public class Department {
             myPreStatement = myConnection.prepareStatement("UPDATE Department SET ClusterID = ? WHERE ClusterID = 99");
             myPreStatement.setInt(1, clusterId);
             myPreStatement.execute();
+            myConnection.close();
         }
         else
         {
             myPreStatement.setInt(3, clusterId);
             myPreStatement.execute();
+            myConnection.close();
         }
     }
     
@@ -123,29 +129,32 @@ public class Department {
         HashMap<Integer, String> deptList = new HashMap();
         while(rs.next())
             deptList.put(rs.getInt(1), rs.getString(2));
+        myConnection.close();
         return deptList;
     }
     public static void deleteAllDepartments() throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE 1");
-        myPreStatement.execute();
-        myPreStatement = myConnection.prepareStatement("DELETE FROM Department WHERE 1");
-        myPreStatement.execute();
+       try (Connection myConnection = DBConnection.getConnection()) {
+           PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE 1");
+           myPreStatement.execute();
+           myPreStatement = myConnection.prepareStatement("DELETE FROM Department WHERE 1");
+           myPreStatement.execute();
+       }
     }
     public static void deleteDepartmentByName(String name) throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
-        myPreStatement.setString(1, name);
-        int deptId=0;
-        ResultSet rs = myPreStatement.executeQuery();
-        while(rs.next()){
-            deptId = rs.getInt(1);
-        }
-        myPreStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE DepartmentID = ?");
-        myPreStatement.setInt(1, deptId);
-        myPreStatement.execute();
-        myPreStatement = myConnection.prepareStatement("DELETE FROM Department WHERE DepartmentID = ?");
-        myPreStatement.setInt(1, deptId);
-        myPreStatement.execute();
+       try (Connection myConnection = DBConnection.getConnection()) {
+           PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE Name LIKE ?");
+           myPreStatement.setString(1, name);
+           int deptId=0;
+           ResultSet rs = myPreStatement.executeQuery();
+           while(rs.next()){
+               deptId = rs.getInt(1);
+           }
+           myPreStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE DepartmentID = ?");
+           myPreStatement.setInt(1, deptId);
+           myPreStatement.execute();
+           myPreStatement = myConnection.prepareStatement("DELETE FROM Department WHERE DepartmentID = ?");
+           myPreStatement.setInt(1, deptId);
+           myPreStatement.execute();
+       }
     }
 }
