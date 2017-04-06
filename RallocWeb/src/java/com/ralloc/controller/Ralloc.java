@@ -472,4 +472,8 @@ public class Ralloc {
         }
     }
 
+    public HashMap<RoomBean, ArrayList<SubjectStudentCount>> getRoomMap() {
+        return roomMap;
+    }
+
 }
