@@ -43,9 +43,15 @@
                     %>
                         <div class="usn-list">
                           <%
-                                ArrayList<SubjectStudentUsn> usnList = detailedRoomMap.get(roomBean);
-                                for(SubjectStudentUsn usn : usnList)
-                                    out.print("<div class=\"usn\"> " + usn.getCourseCode() + " </div>");
+                                ArrayList<SubjectStudentUsn> subjectStudentUsnList = detailedRoomMap.get(roomBean);
+                                for(SubjectStudentUsn subjectStudentUsn : subjectStudentUsnList){
+                                   ArrayList<String> usnList = subjectStudentUsn.getUsnList();
+                                   for (String usn : usnList) {
+                                       %><div class="usn">
+                                           <%= usn%>
+                                        </div><%
+                                       }
+                                }
                           %>
                         </div>
                     <%
