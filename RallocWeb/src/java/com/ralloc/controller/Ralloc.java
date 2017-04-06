@@ -41,10 +41,12 @@ public class Ralloc {
     HashMap<SubjectDependency,ArrayList<StudentCount>> subjectStudentGraph;
     HashMap<SubjectDependency,ArrayList<StudentUsnBean>> detailedSubjectStudentGraph;
     
+    
     int subject1Index=-1,subject2Index=-1;
     SubjectDependency subject1 = null, subject2 = null;
     StudentCount subject1Students=null,subject2Students = null;
     ArrayList<SubjectDependency> subj = new ArrayList<>();
+    ArrayList<StudentBean> queriedList = new ArrayList<>();
 //    SubjectDependency []subjArr = {new SubjectDependency("16IS5DCDCN",null),
 //                                    new SubjectDependency("16EC5DCCSM",null),
 //                                    new SubjectDependency("16ME5DCCMD",null)};
@@ -78,7 +80,7 @@ public class Ralloc {
     }
     private void initSubjectStudentCount() throws SQLException{
         
-        ArrayList<StudentBean> queriedList = Student.getAllStudents();
+        queriedList = Student.getAllStudents();
         
         // now i populate the subj list with the list of subjects obtained
         
@@ -128,7 +130,7 @@ public class Ralloc {
         
     }
     private void initDetailedSubjectStudentCount() throws SQLException{
-        ArrayList<StudentBean> queriedList = Student.getAllStudents();
+//        queriedList = Student.getAllStudents();
         
         // now i populate the subj list with the list of subjects obtained
         
