@@ -4,7 +4,22 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.controller.Ralloc"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.ralloc.bean.RoomBean"%>
+<%@page import="com.ralloc.bean.SubjectStudentCount"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%!
+    Ralloc rallocController = new Ralloc();
+    static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
+    static HashMap<RoomBean,ArrayList<String>> detailedRoomMap;
+%>
+<%
+    rallocController.getRoomAllocation();
+    roomMap = rallocController.getRoomMap();
+    detailedRoomMap = rallocController.getDetailedRoomMap();
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,31 +45,25 @@
             <hr width="100%" style="border-top:1px solid #989896">
             <div class="row">
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="${pageContext.request.contextPath}/#" target="_blank">
-                        <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content">
+                    <form method="POST"	action="${pageContext.request.contextPath}/Allocate/showAllotment" enctype="multipart/form-data">
+                        <button type="submit" class="btn custom-btn" style="height: 150px;">
                             <span class="flow-text" style="color: white;">DOWNLOAD ALLOTMENT</span>
-                        </div>
-                    </div>
-                    </a>
+                        </button>
+                    </form>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="${pageContext.request.contextPath}/#" target="_blank">
-                        <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">DOWNLOAD B-FORM</span>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="${pageContext.request.contextPath}/#" target="_blank">
-                        <div class = "card-panel custom-btn center" style="height: 150px;">
-                            <div class="card-content admin-card-content">
+                    <form action="">
+                        <button type="submit" target="_blank" class="btn custom-btn" style="height: 150px;">
                             <span class="flow-text" style="color: white;">DOWNLOAD INDENT</span>
-                        </div>
-                    </div>
-                    </a>
+                        </button>
+                    </form>
+                </div>
+                <div class="col l4 m4 s12" style="margin-top: 30px;">
+                    <form action="">
+                        <button type="submit" target="_blank" class="btn custom-btn" style="height: 150px;">
+                            <span class="flow-text" style="color: white;">DOWNLOAD B-FORM</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

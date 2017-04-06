@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -120,7 +121,8 @@ public class UploadFileServlet extends HttpServlet {
                           }
                           // below is just a simple way to print the contents of the stream
                           Student.addStudents(subjectStudents);
-                            
+                          RequestDispatcher rq = request.getRequestDispatcher("/Allocate/show");
+                          rq.forward(request, response);
                       }
                       
                   }

@@ -1,8 +1,15 @@
+<%-- 
+    Document   : finalArrangement
+    Created on : Apr 6, 2017, 1:35:02 PM
+    Author     : Mahesh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/seatingArrangement.css" />
-        <title></title>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seatingArrangement.css" />
+        <title>Final Arrangement</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
