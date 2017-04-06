@@ -35,7 +35,8 @@ public class ShowBFormServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("roomMap", GenerateRouteServlet.roomMap);
         request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
-        request.setAttribute("Date", request.getAttribute("Date"));
+//        request.setAttribute("Date", request.getAttribute("Date"));
+//        request.setAttribute("Time", request.getAttribute("Time"));
         RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
         rq.forward(request, response);
     }

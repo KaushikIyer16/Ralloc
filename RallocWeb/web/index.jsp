@@ -25,7 +25,7 @@
                 </ul>
                 <ul id="nav-mobile" class="right">
                     <li><a href="viewDepartment.jsp">VIEW EXISTING DEPARTMENT DATA </a></li>
-                    <li><a href="#">HELP </a></li>
+<!--                    <li><a href="#">HELP </a></li>-->
                     <li><a href="#"> </a></li>
                 </ul>
             </div>

@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.model.Subject"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Room"%>
 <%@page import="com.ralloc.bean.SubjectStudentCount"%>
@@ -18,11 +19,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/seatingArrangement.css" />
         <title>Final Arrangement</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div class="container">
         <%
         
         detailedRoomMap = (HashMap<RoomBean,ArrayList<SubjectStudentUsn>>)request.getAttribute("detailRoomMap");
@@ -31,36 +34,30 @@
         {
         %>
             <div class="arrangement">
-                <h2>Room: <%out.print(Room.getRoomNameById(roomBean.getRoomId()));%></h2>
+                <br/>
+                <h4>Room: <%out.print(Room.getRoomNameById(roomBean.getRoomId()));%></h4>
                 <%
-                    ArrayList<SubjectStudentCount> studentList = roomMap.get(roomBean);
-                    for(SubjectStudentCount subjects : studentList)
+                    ArrayList<SubjectStudentUsn> studentList = detailedRoomMap.get(roomBean);
+                    for(SubjectStudentUsn subjects : studentList)
                     {
                         %>
-                            <h3><%out.print(subjects.getCourseCode());%>; </h3>
-                        <%
+                        <h6><b>Course Code: <%out.print(subjects.getCourseCode());%> </b><span class="right"><b>Subject: <%out.print(Subject.getNameByCourseCode(subjects.getCourseCode()));%></b></span></h6>
+                        <%            
+                            ArrayList<String> usnList = subjects.getUsnList();
+                        %><div class="usn-list"><%
+                            for(int i=0; i<usnList.size(); i++)
+                            {
+                                %><div class="usn"><% out.print(usnList.get(i).toString()); %></div><%
+                            }
+                            %></div><%
                     }
-                    %>
-                        <div class="usn-list">
-                          <%
-                                ArrayList<SubjectStudentUsn> subjectStudentUsnList = detailedRoomMap.get(roomBean);
-                                for(SubjectStudentUsn subjectStudentUsn : subjectStudentUsnList){
-                                   ArrayList<String> usnList = subjectStudentUsn.getUsnList();
-                                   for (String usn : usnList) {
-                                       %><div class="usn">
-                                           <%= usn%>
-                                        </div><%
-                                       }
-                                }
-                          %>
-                        </div>
-                    <%
                 %>
-                
+                <div class="divider"></div>
             </div>
         <%
         }
-        %>        
+        %>     
+        </div>
         <script> window.print(); </script>
     </body>
 </html>

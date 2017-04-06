@@ -13,7 +13,7 @@
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
 %>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/bform.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bform.css" />
         <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-field month">
                                 <%
-                                       out.print(request.getAttribute("Date").toString().substring(3, 9));
+                                       //out.print(request.getAttribute("Date").toString().substring(3, 9));
                                 %>
                             </div>
                         </div>
@@ -75,12 +75,12 @@
                         <div class="row">
                             <div class="form-field date">
                                 <%
-                                    out.print(request.getAttribute("Date"));
+                                    //out.print(request.getAttribute("Date"));
                                 %>
                             </div>
                             <div class="form-field from-time">
                                 <%
-                                    out.print(request.getAttribute("Time"));
+                                    //out.print(request.getAttribute("Time"));
                                 %>
                             </div>
                             <div class="form-field to-time"><!-- End time if required --></div>
