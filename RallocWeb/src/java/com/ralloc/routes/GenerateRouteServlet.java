@@ -3,27 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ralloc.view;
+package com.ralloc.routes;
 
-import com.ralloc.model.DepartmentSubject;
+import com.ralloc.bean.RoomBean;
+import com.ralloc.bean.SubjectStudentCount;
+import com.ralloc.bean.SubjectStudentUsn;
+import com.ralloc.controller.Ralloc;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.ralloc.model.Subject;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author kaushiknsiyer
  */
-@WebServlet(name = "SubjectConfirmationServlet", urlPatterns = {"/Subject/confirm"})
-public class SubjectConfirmationServlet extends HttpServlet {
+@WebServlet(name = "GenerateRouteServlet", urlPatterns = {"/Generate"})
+public class GenerateRouteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,41 +36,21 @@ public class SubjectConfirmationServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
+    public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-            try {
-                /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>the subjects are</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet SubjectConfirmationServlet at " + request.getContextPath() + "</h1>");
-//            
-//            out.println("<table>");
-//            for (int i = 0; i < SubjectAdditionServlet.subjectList.size(); i++) {
-//                out.println("<h2>"+SubjectAdditionServlet.subjectList.get(i).getCourseCode()+"</h2><br/>");
-//            }
-//            out.println("</table>");
-//            out.println("</body>");
-//            out.println("</html>");
-              Subject.addSubjectList(SubjectAdditionServlet.subjectList);
-              DepartmentSubject.addSubject(SubjectAdditionServlet.departmentSubjectList);
-                for (Subject sub: SubjectAdditionServlet.subjectList) {
-                    System.out.println(sub.getCourseCode());
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
-            SubjectAdditionServlet.subjectList.clear();
-            System.out.println("the value of contet path is "+request.getContextPath() );
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
-            requestDispatcher.forward(request, response);
-//        }
+        
+        
+        Ralloc rallocController = new Ralloc();
+        rallocController.getRoomAllocation();
+        roomMap = rallocController.getRoomMap();
+        detailedRoomMap = rallocController.getDetailedRoomMap();
+        request.setAttribute("Date", request.getAttribute("Date"));
+        request.setAttribute("Time", request.getAttribute("Time"));
+        RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
+        rq.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

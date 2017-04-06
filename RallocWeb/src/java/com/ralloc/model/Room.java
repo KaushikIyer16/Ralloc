@@ -65,6 +65,19 @@ public class Room {
         return noRooms;
     }
     
+    public static String getRoomNameById(int roomId) throws SQLException{
+        String roomName = "";
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT Name FROM Room WHERE RoomID = ?");
+            myPreStatement.setInt(1, roomId);
+            ResultSet rs = myPreStatement.executeQuery();
+            while (rs.next()) {
+                roomName = rs.getString(1);
+            }
+        }
+        return roomName;
+    }
+    
     public static HashMap<Integer,Integer> getRoomCapacities() throws SQLException{
         HashMap<Integer,Integer> roomCapacities = new HashMap();
         Connection con = DBConnection.getConnection();

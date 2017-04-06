@@ -5,7 +5,7 @@
  */
 package com.ralloc.view;
 
-import com.ralloc.model.DepartmentSubject;
+import com.ralloc.routes.GenerateRouteServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -14,16 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.ralloc.model.Subject;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author kaushiknsiyer
  */
-@WebServlet(name = "SubjectConfirmationServlet", urlPatterns = {"/Subject/confirm"})
-public class SubjectConfirmationServlet extends HttpServlet {
+@WebServlet(name = "ShowBFormServlet", urlPatterns = {"/Generate/show/bform"})
+public class ShowBFormServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,39 +33,11 @@ public class SubjectConfirmationServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-            try {
-                /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>the subjects are</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet SubjectConfirmationServlet at " + request.getContextPath() + "</h1>");
-//            
-//            out.println("<table>");
-//            for (int i = 0; i < SubjectAdditionServlet.subjectList.size(); i++) {
-//                out.println("<h2>"+SubjectAdditionServlet.subjectList.get(i).getCourseCode()+"</h2><br/>");
-//            }
-//            out.println("</table>");
-//            out.println("</body>");
-//            out.println("</html>");
-              Subject.addSubjectList(SubjectAdditionServlet.subjectList);
-              DepartmentSubject.addSubject(SubjectAdditionServlet.departmentSubjectList);
-                for (Subject sub: SubjectAdditionServlet.subjectList) {
-                    System.out.println(sub.getCourseCode());
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
-            SubjectAdditionServlet.subjectList.clear();
-            System.out.println("the value of contet path is "+request.getContextPath() );
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
-            requestDispatcher.forward(request, response);
-//        }
+        request.setAttribute("roomMap", GenerateRouteServlet.roomMap);
+        request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
+        request.setAttribute("Date", request.getAttribute("Date"));
+        RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
+        rq.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

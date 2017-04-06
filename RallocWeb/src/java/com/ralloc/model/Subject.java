@@ -162,4 +162,17 @@ public class Subject {
         myConnection.close();
         return dependency;
     }
+    public static String getNameByCourseCode(String courseCode) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myStatement = myConnection.prepareStatement("SELECT Name FROM Subject WHERE CourseCode LIKE ?");
+        myStatement.setString(1, courseCode);
+        ResultSet subResult = myStatement.executeQuery();
+        String subjectName = "";
+        while(subResult.next())
+        {
+            subjectName = subResult.getString(1);
+        }
+        myConnection.close();
+        return subjectName;
+    }
 }
