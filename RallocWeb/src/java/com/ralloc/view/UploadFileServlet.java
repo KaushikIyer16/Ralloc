@@ -6,18 +6,21 @@
 package com.ralloc.view;
 
 import com.ralloc.model.Student;
+import com.ralloc.routes.GenerateRouteServlet;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -30,6 +33,8 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -120,13 +125,16 @@ public class UploadFileServlet extends HttpServlet {
                           }
                           // below is just a simple way to print the contents of the stream
                           Student.addStudents(subjectStudents);
-                            
+                          
                       }
                       
                   }
-                  
-              } catch (Exception ex) {
-                  System.out.print("<h1>"+ex.getMessage()+"</h1>");
+                  GenerateRouteServlet.detailedRoomMap.clear();
+                  GenerateRouteServlet.roomMap.clear();
+                  RequestDispatcher rq = request.getRequestDispatcher(request.getContextPath()+"/home");
+                  rq.forward(request,response);
+              } catch (IOException | SQLException | ServletException | FileUploadException | EncryptedDocumentException | InvalidFormatException ex) {
+                  System.out.println(ex.getMessage());
                   Logger.getLogger(UploadFileServlet.class.getName()).log(Level.SEVERE, null, ex);
               }
             }

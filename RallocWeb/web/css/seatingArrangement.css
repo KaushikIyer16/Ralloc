@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+.arrangement {
+    display: block;
+    text-transform: uppercase;
+}
+.usn-list {
+    display: block;
+    width: 9.7in;
+    min-height: 7mm;
+}
+.subject {
+    text-transform: none;
+}
+.usn {
+    display: inline-block;
+    font-size: 4mm;
+    margin-left: 5mm;
+    margin-bottom: 1mm;
+}
+@page {
+    margin: 1in;
+    size: 11.7in 16.5in;
+}

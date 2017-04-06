@@ -64,7 +64,7 @@ public class SubjectConfirmationServlet extends HttpServlet {
                 Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
-            SubjectAdditionServlet.subjectList = null;
+            SubjectAdditionServlet.subjectList.clear();
             System.out.println("the value of contet path is "+request.getContextPath() );
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
             requestDispatcher.forward(request, response);

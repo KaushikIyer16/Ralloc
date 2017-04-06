@@ -67,16 +67,16 @@
                     <a href="${pageContext.request.contextPath}/Allocate">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">NEW SEATING ARRANGEMENT</span>
+                            <span class="flow-text" style="color: white;">UPLOAD STUDENT DATA</span>
                         </div>
                     </div>
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/Generate" target="_blank">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">SEATING ARRANGEMENT FROM EXISTING DATA</span>
+                            <span class="flow-text" style="color: white;">GENERATE ARRANGEMENT</span>
                         </div>
                     </div>
                     </a>

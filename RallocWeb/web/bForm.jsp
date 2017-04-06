@@ -1,15 +1,32 @@
+<%@page import="com.ralloc.bean.SubjectStudentCount"%>
+<%@page import="com.ralloc.bean.RoomBean"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%!
+    HashMap<RoomBean,ArrayList<String>> detailedRoomMap;
+    HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
+%>
     <head>
         <link rel="stylesheet" type="text/css" href="./css/bform.css" />
         <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <!-- The following div.b-form must be rendered inside loop for every B Form -->
-        <div class="b-form">
+        <%
+        detailedRoomMap = (HashMap<RoomBean,ArrayList<String>>)request.getAttribute("detailRoomMap");
+        roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
+        for(RoomBean roomBean: detailedRoomMap.keySet())
+        {
+            %>
+            <div class="b-form">
             <div class="row">
-                <div class="form-field semester">3</div>
+                <div class="form-field semester">
+                    <%
+                         
+                    %>
+                </div>
                 <div class="form-field month"><!-- Month and Year --></div>
             </div>
             <div class="row">
@@ -33,6 +50,9 @@
             <!-- Render the following line for every student -->
             <div class="row-usn"><div class="form-field usn"><!-- USN --></div></div>
         </div>
+            <%
+        }
+        %>
         <script> window.print();</script>
     </body>
 </html>

@@ -189,6 +189,10 @@ public class Ralloc {
         return detailedRoomMap;
     }
 
+    public HashMap<RoomBean, ArrayList<SubjectStudentCount>> getRoomMap() {
+        return roomMap;
+    }
+
     public HashMap<SubjectDependency, ArrayList<StudentUsnBean>> getDetailedSubjectStudentGraph() {
         return detailedSubjectStudentGraph;
     }
@@ -470,10 +474,6 @@ public class Ralloc {
             }
             
         }
-    }
-
-    public HashMap<RoomBean, ArrayList<SubjectStudentCount>> getRoomMap() {
-        return roomMap;
     }
 
 }

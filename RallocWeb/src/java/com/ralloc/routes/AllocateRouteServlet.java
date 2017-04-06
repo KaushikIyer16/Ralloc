@@ -32,7 +32,7 @@ public class AllocateRouteServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("newArrangement.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("addStudent.jsp");
         requestDispatcher.forward(request, response);
     }
 
