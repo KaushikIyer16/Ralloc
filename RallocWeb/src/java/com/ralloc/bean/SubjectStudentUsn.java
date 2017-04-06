@@ -36,5 +36,4 @@ public class SubjectStudentUsn {
         this.usnList = (ArrayList<String>) usnList.clone();
     }
     
-    
 }

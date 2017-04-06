@@ -57,6 +57,19 @@ public class DepartmentSubject {
             myStatement.execute();
         }
     }
+    public static int getDepartmentIdByCourseCode(String courseCode) throws SQLException {
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE CourseCode LIKE ?");
+            myStatement.setString(1, courseCode);
+            ResultSet subResult = myStatement.executeQuery();
+            int deptId = 0;
+            while(subResult.next())
+            {
+                deptId = subResult.getInt(1);
+            }
+            return deptId;
+        }
+    }
     public static void addSubject(int deptId, String courseCode) throws SQLException {
         try (Connection myConnection = DBConnection.getConnection()) {
             PreparedStatement myStatement = myConnection.prepareStatement("INSERT INTO DepartmentSubject VALUES(?, ?)");
