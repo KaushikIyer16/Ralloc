@@ -51,7 +51,7 @@
             %>
             <a class="btn waves-effect waves-light right" style="background-color: #444;" href="${pageContext.request.contextPath}/home">Continue </a>
         </div>
-        <footer class="custom-footer">
+        <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE

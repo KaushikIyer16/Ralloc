@@ -3,23 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ralloc.beans;
+package com.ralloc.bean;
 
 import com.ralloc.model.Dependency;
 import com.ralloc.model.Subject;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author kaushiknsiyer
  */
-public class SubjectDependency {
+public class SubjectDependency{
     private String subjectCode;
     private int dependency;
 
     public String getSubjectCode() {
         return subjectCode;
     }
+
+//    @Override
+//    public SubjectDependency clone() throws CloneNotSupportedException {
+//        super.clone();
+//        return new SubjectDependency(subjectCode, dependency); 
+//    }
 
     public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;

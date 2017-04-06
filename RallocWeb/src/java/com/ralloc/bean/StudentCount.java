@@ -6,13 +6,14 @@
 package com.ralloc.bean;
 
 import com.ralloc.model.Department;
+import java.io.Serializable;
 import java.sql.SQLException;
 
 /**
  *
  * @author kaushiknsiyer
  */
-public class StudentCount {
+public class StudentCount{
     private String departmentID;
     private String clusterID;
     private int numberOfStudents;

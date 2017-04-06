@@ -5,7 +5,7 @@
  */
 package com.ralloc.model;
 
-import com.ralloc.bean.Students;
+import com.ralloc.bean.StudentBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,50 +77,58 @@ public class Student {
                 }
             }
             myConnection.commit();
+            myConnection.close();
         }
         catch(Exception e)
         {
             System.out.println("Error: " + e.getMessage());
             myConnection.rollback();
+            myConnection.close();
         }
         
     }
     public static void deleteAllStudents() throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE 1");
-        myPreStatement.execute();
-        myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE 1");
-        myPreStatement.execute();
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE 1");
+            myPreStatement.execute();
+            myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE 1");
+            myPreStatement.execute();
+        }
     }
     public static void deleteStudentByUsn(String usn) throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE USN LIKE ?");
-        myPreStatement.setString(1, usn);
-        myPreStatement.execute();
-        myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE USN LIKE ?");
-        myPreStatement.setString(1, usn);
-        myPreStatement.execute();
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myPreStatement = myConnection.prepareStatement("DELETE FROM StudentSubject WHERE USN LIKE ?");
+            myPreStatement.setString(1, usn);
+            myPreStatement.execute();
+            myPreStatement = myConnection.prepareStatement("DELETE FROM Student WHERE USN LIKE ?");
+            myPreStatement.setString(1, usn);
+            myPreStatement.execute();
+        }
     }
     public static ArrayList<String> getStudentsByDepartmentId(int departmentId) throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myStatement = myConnection.prepareStatement("SELECT USN FROM Student WHERE DepartmentID = ?");
-        myStatement.setInt(1, departmentId);
-        ResultSet subResult = myStatement.executeQuery();
-        ArrayList<String> studentList = new ArrayList<>();
-        while(subResult.next())
-        {
-            studentList.add(subResult.getString(1));
+        ArrayList<String> studentList;
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT USN FROM Student WHERE DepartmentID = ?");
+            myStatement.setInt(1, departmentId);
+            ResultSet subResult = myStatement.executeQuery();
+            studentList = new ArrayList<>();
+            while(subResult.next())
+            {
+                studentList.add(subResult.getString(1));
+            }
         }
         return studentList;
     }
-    public static ArrayList<Students> getAllStudents() throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myStatement = myConnection.prepareStatement("SELECT StudentSubject.CourseCode, Student.USN, Student.DepartmentID FROM Student INNER JOIN StudentSubject ON StudentSubject.USN=Student.USN");
-        ResultSet subResult = myStatement.executeQuery();
-        ArrayList<Students> studentList = new ArrayList<>();
-        while(subResult.next())
-        {
-            studentList.add(new Students(subResult.getString(2), subResult.getString(1), subResult.getInt(3)));
+    public static ArrayList<StudentBean> getAllStudents() throws SQLException{
+        ArrayList<StudentBean> studentList;
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT StudentSubject.CourseCode, Student.USN, Student.DepartmentID FROM Student INNER JOIN StudentSubject ON StudentSubject.USN=Student.USN");
+            ResultSet subResult = myStatement.executeQuery();
+            studentList = new ArrayList<>();
+            while(subResult.next())
+            {
+                studentList.add(new StudentBean(subResult.getString(2), subResult.getString(1), subResult.getInt(3)));
+            }
         }
         return studentList;
     }

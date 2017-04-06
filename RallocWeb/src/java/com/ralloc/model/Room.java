@@ -53,12 +53,14 @@ public class Room {
     }
     
     public static int getTotalRooms() throws SQLException{
-        Connection myConnection = DBConnection.getConnection();
-        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT COUNT(RoomID) FROM Room");
-        ResultSet rs = myPreStatement.executeQuery();
-        int noRooms=0;
-        while (rs.next()) {
-             noRooms = rs.getInt(1);
+        int noRooms;
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT COUNT(RoomID) FROM Room");
+            ResultSet rs = myPreStatement.executeQuery();
+            noRooms = 0;
+            while (rs.next()) {
+                noRooms = rs.getInt(1);
+            }
         }
         return noRooms;
     }
@@ -71,49 +73,66 @@ public class Room {
         while (rs.next()) {            
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
+        con.close();
         return roomCapacities;
     }
     
     public static HashMap<Integer,Integer> getDependencyRoomCapacities() throws SQLException{
         HashMap<Integer,Integer> roomCapacities = new HashMap();
-        Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room WHERE Dependency = 1");
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {            
-            roomCapacities.put(rs.getInt(1), rs.getInt(2));
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room WHERE Dependency = 1");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                roomCapacities.put(rs.getInt(1), rs.getInt(2));
+            }
         }
         return roomCapacities;
     }
     
-    public static void addRoom(String roomName, String capacity, int dependency) throws SQLException{
-        Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT RoomID FROM Room WHERE Name LIKE ?");
-        ps.setString(1, roomName);
-        ResultSet rs = ps.executeQuery();
-        int idExists = -1;
-        while (rs.next()) {            
-            idExists = rs.getInt(1);
+    public static HashMap<Integer,Integer> getRoomIdAndDependency() throws SQLException{
+        HashMap<Integer,Integer> roomDependency = new HashMap<>();
+        try (Connection con = DBConnection.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT RoomID, Dependency FROM Room");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                roomDependency.put(rs.getInt(1), rs.getInt(2));
+            }
         }
-        if(idExists != -1)
-            throw new SQLException();
-        else
-        {
-            ps = con.prepareStatement("INSERT INTO Room VALUES(null, ?, ?, ?)");
-            ps.setInt(2, Integer.parseInt(capacity));
+        return roomDependency;
+    }
+    
+    public static void addRoom(String roomName, String capacity, int dependency) throws SQLException{
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT RoomID FROM Room WHERE Name LIKE ?");
             ps.setString(1, roomName);
-            ps.setInt(3, dependency);
-            ps.execute();
+            ResultSet rs = ps.executeQuery();
+            int idExists = -1;
+            while (rs.next()) {
+                idExists = rs.getInt(1);
+            }
+            if(idExists != -1)
+                throw new SQLException();
+            else
+            {
+                ps = con.prepareStatement("INSERT INTO Room VALUES(null, ?, ?, ?)");
+                ps.setInt(2, Integer.parseInt(capacity));
+                ps.setString(1, roomName);
+                ps.setInt(3, dependency);
+                ps.execute();
+            }
         }
     }
     public static void deleteAllRooms() throws SQLException{
-        Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE 1");
-        ps.execute();
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE 1");
+            ps.execute();
+        }
     }
     public static void deleteRoomByName(String name) throws SQLException{
-        Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE Name LIKE ?");
-        ps.setString(1, name);
-        ps.execute();
+        try (Connection con = DBConnection.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Room WHERE Name LIKE ?");
+            ps.setString(1, name);
+            ps.execute();
+        }
     }
 }
