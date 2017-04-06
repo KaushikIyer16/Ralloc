@@ -157,4 +157,15 @@ public class Department {
            myPreStatement.execute();
        }
     }
+    public static String getDepartmentNameById(int departmentId) throws SQLException{
+        Connection myConnection = DBConnection.getConnection();
+        PreparedStatement myPreStatement = myConnection.prepareStatement("SELECT Name FROM Department WHERE DepartmentID = ?");
+        myPreStatement.setInt(1, departmentId);
+        ResultSet rs = myPreStatement.executeQuery();
+        String departmentName = "";
+        while(rs.next())
+            departmentName = rs.getString(1);
+        myConnection.close();
+        return departmentName;
+    }
 }

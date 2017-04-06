@@ -131,6 +131,8 @@ public class UploadFileServlet extends HttpServlet {
                   }
                   GenerateRouteServlet.detailedRoomMap.clear();
                   GenerateRouteServlet.roomMap.clear();
+                  request.setAttribute("date", request.getAttribute("Date"));
+                  request.setAttribute("time", request.getAttribute("Time"));
                   RequestDispatcher rq = request.getRequestDispatcher(request.getContextPath()+"/home");
                   rq.forward(request,response);
               } catch (IOException | SQLException | ServletException | FileUploadException | EncryptedDocumentException | InvalidFormatException ex) {

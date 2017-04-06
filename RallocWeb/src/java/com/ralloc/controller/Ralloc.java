@@ -11,6 +11,7 @@ import com.ralloc.bean.StudentCount;
 import com.ralloc.bean.StudentUsnBean;
 import com.ralloc.bean.SubjectStudentCount;
 import com.ralloc.bean.SubjectDependency;
+import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.model.Department;
 import com.ralloc.model.Room;
 import com.ralloc.model.Subject;
@@ -37,7 +38,7 @@ public class Ralloc {
      * roomMap : is a map between the room id and all the students in that room
      */
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap= new HashMap<>();
-    HashMap<RoomBean,ArrayList<String>> detailedRoomMap;
+    HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     HashMap<SubjectDependency,ArrayList<StudentCount>> subjectStudentGraph;
     HashMap<SubjectDependency,ArrayList<StudentUsnBean>> detailedSubjectStudentGraph;
     
@@ -185,7 +186,7 @@ public class Ralloc {
 //        this.initDetailedSubjectStudentCount();
     }
 
-    public HashMap<RoomBean, ArrayList<String>> getDetailedRoomMap() {
+    public HashMap<RoomBean, ArrayList<SubjectStudentUsn>> getDetailedRoomMap() {
         return detailedRoomMap;
     }
 
@@ -218,6 +219,7 @@ public class Ralloc {
                         randomDep = 0;
                     }
                     if (subject2Students == null) {
+                        
                         subject2 = getValidSubject(subject1Students,subject1,roomDependencies.get(currRoom.getRoomId()));
                         subject2Students = subjectStudentGraph.get(subject2).get(randomDep);
                         randomDep = 0;
@@ -239,7 +241,8 @@ public class Ralloc {
                        firstSubjCapacity -= subject1Students.getNumberOfStudents();
                        subject1Students.setNumberOfStudents(0);
 //                        System.out.println("-->"+subjectStudentGraph.get(subj[subject1Index]).get(0).getNumberOfStudents());
-                       updateGraph(subject1);
+                       
+                        updateGraph(subject1);
                        subject1Students = null;
                        subject1 = null;
                        
@@ -272,6 +275,7 @@ public class Ralloc {
                         secondSubjCapacity -= subject2Students.getNumberOfStudents();
                         subject2Students.setNumberOfStudents(0);
 //                        System.out.println("-->"+subjectStudentGraph.get(subj[subject2Index]).get(0).getNumberOfStudents());
+                        System.out.println("subject2 value is "+subject2.getSubjectCode());
                         updateGraph(subject2);
                         subject2Students = null;
                         subject2 = null;
@@ -303,25 +307,29 @@ public class Ralloc {
         } catch (Exception e) {
             System.out.println("exception in getRoomAllocation");
             e.printStackTrace();
+        }finally{
+            
         }
     }
 
     private void updateGraph(SubjectDependency subjectDependency) {
-        ArrayList<StudentCount> currBranch = subjectStudentGraph.get(subjectDependency);
-        Iterator currBranchIterator = currBranch.iterator();
-        while(currBranchIterator.hasNext()){
-            StudentCount studentCount = (StudentCount)currBranchIterator.next();
-            if(studentCount.getNumberOfStudents() == 0){
-//                System.out.println("a branch was removed because it got seated");
-                currBranchIterator.remove();
+        if (subjectDependency != null && subjectStudentGraph.get(subjectDependency) != null) {
+            ArrayList<StudentCount> currBranch = subjectStudentGraph.get(subjectDependency);
+            Iterator currBranchIterator = currBranch.iterator();
+            while(currBranchIterator.hasNext()){
+                StudentCount studentCount = (StudentCount)currBranchIterator.next();
+                if(studentCount.getNumberOfStudents() == 0){
+    //                System.out.println("a branch was removed because it got seated");
+                    currBranchIterator.remove();
+                }
+            }
+            if(currBranch.isEmpty()){
+    //            this means that the graph is empty and hence you can remove this subject from subjectStudentGraph
+                subjectStudentGraph.remove(subjectDependency);
+                subj.remove(subjectDependency);
             }
         }
-        if(currBranch.isEmpty()){
-//            this means that the graph is empty and hence you can remove this subject from subjectStudentGraph
-//            System.out.println("the graph goes empty");
-            subjectStudentGraph.remove(subjectDependency);
-            subj.remove(subjectDependency);
-        }
+        
     }
     
     private SubjectDependency getValidSubject(StudentCount otherSubjectStudents, SubjectDependency otherSubject, int dependency){
@@ -448,10 +456,14 @@ public class Ralloc {
                 
 //                System.out.println("Department: "+currDepartment);
 //                System.out.println("USN Numbers: ");
+                ArrayList<String> tmpUsnList = new ArrayList<>();
                 for (int i = 0; i < subjectStudentCount.getNumberOfStudents(); i++) {
-                    detailedRoomMap.get(room).add(usnList.get(0));
+                    tmpUsnList.add(usnList.get(0));
                     usnList.remove(0);
                 }
+                System.out.println("usn list size is "+tmpUsnList.size());
+                detailedRoomMap.get(room).add(new SubjectStudentUsn(subjectStudentCount.getCourseCode(), tmpUsnList));
+                tmpUsnList.clear();
 //                System.out.println("");
             }
         }
@@ -459,18 +471,22 @@ public class Ralloc {
 
     private void printDetailedRoomAllocation() {
         for (RoomBean room : detailedRoomMap.keySet()) {
-            ArrayList<String> currRoomUsn = detailedRoomMap.get(room);
-            System.out.println("\n"+room.getRoomId()+"\n");
+            ArrayList<SubjectStudentUsn> currRoomUsn = detailedRoomMap.get(room);
+            System.out.println("\n+++"+room.getRoomId()+"\n");
             int i=0;
-            for (String string : currRoomUsn) {
-                if (i<8) {
-                    System.out.print(string+" ");
-                    i++;
-                }else{
-                    System.out.println(string+"");
-                    i=0;
-                }
+            for (SubjectStudentUsn subjectStudentUsn : currRoomUsn) {
+                System.out.println("\n\n -->  "+subjectStudentUsn.getCourseCode());
                 
+                ArrayList<String> usnList = subjectStudentUsn.getUsnList();
+                for (String string : usnList) {
+                    if (i<4) {
+                        System.out.print(string+" ");
+                        i++;
+                    } else {
+                        System.out.println(string+" ");
+                        i=0;
+                    }
+                }
             }
             
         }
