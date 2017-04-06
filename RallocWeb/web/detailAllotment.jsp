@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Room"%>
 <%@page import="com.ralloc.bean.SubjectStudentCount"%>
 <%@page import="com.ralloc.bean.RoomBean"%>
@@ -11,7 +12,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    HashMap<RoomBean,ArrayList<String>> detailedRoomMap;
+    HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
 %>
 <!DOCTYPE html>
@@ -24,7 +25,7 @@
     <body>
         <%
         
-        detailedRoomMap = (HashMap<RoomBean,ArrayList<String>>)request.getAttribute("detailRoomMap");
+        detailedRoomMap = (HashMap<RoomBean,ArrayList<SubjectStudentUsn>>)request.getAttribute("detailRoomMap");
         roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
@@ -42,9 +43,9 @@
                     %>
                         <div class="usn-list">
                           <%
-                                ArrayList<String> usnList = detailedRoomMap.get(roomBean);
-                                for(String usn : usnList)
-                                    out.print("<div class=\"usn\"> " + usn + " </div>");
+                                ArrayList<SubjectStudentUsn> usnList = detailedRoomMap.get(roomBean);
+                                for(SubjectStudentUsn usn : usnList)
+                                    out.print("<div class=\"usn\"> " + usn.getCourseCode() + " </div>");
                           %>
                         </div>
                     <%

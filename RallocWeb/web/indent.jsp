@@ -42,8 +42,9 @@
                                         for(SubjectStudentCount subjects : studentList)
                                         {
                                             %>
-                                                <tr><%out.print(subjects.getCourseCode());%></tr>
-                                                <tr><%out.print(subjects.getNumberOfStudents());%></tr>                                
+                                                <tr><%out.print(subjects.getCourseCode());%></tr>&emsp;
+                                                <tr><%out.print(subjects.getNumberOfStudents());%></tr>  
+                                                <br/>
                                             <%
                                         }
 

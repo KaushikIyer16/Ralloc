@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-field month">
                                 <%
-                                       out.print(request.getAttribute("Date").toString().charAt(3) + request.getAttribute("Date").toString().charAt(4) + request.getAttribute("Date").toString().substring(5, 8));
+                                       out.print(request.getAttribute("Date").toString().substring(3, 9));
                                 %>
                             </div>
                         </div>
