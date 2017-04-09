@@ -62,7 +62,7 @@ public class UploadFileServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-//    public static String dateString = "";
+    public static String errorMessage = "";
 //    public static String timeString = "";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -122,11 +122,17 @@ public class UploadFileServlet extends HttpServlet {
                               Iterator<Row> rowIterator = currentSheet.iterator();
                               while(rowIterator.hasNext())
                               {
-                                  Row currentRow = rowIterator.next();
+                                Row currentRow = rowIterator.next();
 //                                  Iterator<Cell> cellIterator = currentRow.iterator();
 //                                  while(cellIterator.hasNext())
 //                                      studentList.add(cellIterator.next().getStringCellValue());
-                                  studentList.add(new Student(currentRow.getCell(0).getStringCellValue(), (int)currentRow.getCell(1).getNumericCellValue()));
+                                String currentUsn = currentRow.getCell(0).getStringCellValue();
+                                int currentDeptId = (int)currentRow.getCell(1).getNumericCellValue();
+                                if(currentUsn == null || currentUsn.length() != 10 || currentDeptId == 0)
+                                {
+                                    throw new InvalidFormatException("Document format invalid at " + currentUsn);
+                                }
+                                studentList.add(new Student(currentUsn, currentDeptId));
                               }
                               subjectStudents.put(currentSheet.getSheetName(), studentList);
                           }
@@ -154,9 +160,10 @@ public class UploadFileServlet extends HttpServlet {
 //                  }
                   
                   response.sendRedirect(request.getContextPath()+"/home");
-              } catch (IOException | SQLException | FileUploadException | EncryptedDocumentException | InvalidFormatException ex) {
+              } catch (IOException | SQLException | FileUploadException | EncryptedDocumentException | InvalidFormatException | NullPointerException ex) {
                   System.out.println(ex.getMessage());
-                  out.print("error");
+                  errorMessage = ex.getMessage();
+                  response.sendRedirect(request.getContextPath()+"/viewError.jsp");
                   Logger.getLogger(UploadFileServlet.class.getName()).log(Level.SEVERE, null, ex);
               }
             }

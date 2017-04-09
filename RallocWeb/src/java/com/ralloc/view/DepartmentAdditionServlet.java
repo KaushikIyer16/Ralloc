@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "DepartmentAdditionServlet", urlPatterns = {"/Department/add"})
 public class DepartmentAdditionServlet extends HttpServlet {
-
+    public static String errorMessage = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,6 +52,8 @@ public class DepartmentAdditionServlet extends HttpServlet {
                 Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"), request.getParameter("MaximumIntake"));
                 response.sendRedirect(request.getContextPath()+"/home");
             } catch (SQLException ex) {
+                errorMessage = "An invalid or existing department data was entered";
+                response.sendRedirect(request.getContextPath()+"/viewError.jsp");
                 Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             

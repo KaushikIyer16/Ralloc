@@ -144,6 +144,7 @@ public class Subject {
         try (Connection myConnection = DBConnection.getConnection()) {
             PreparedStatement myStatement = myConnection.prepareStatement("DELETE FROM DepartmentSubject WHERE CourseCode LIKE ?");
             myStatement.setString(1, courseCode);
+            myStatement.execute();
             myStatement = myConnection.prepareStatement("DELETE FROM Subject WHERE CourseCode LIKE ?");
             myStatement.setString(1, courseCode);
             myStatement.execute();

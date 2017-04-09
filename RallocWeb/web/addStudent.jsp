@@ -29,30 +29,6 @@
         <br>
         <div class="container">
             <form method="POST"	action="${pageContext.request.contextPath}/Allocate/add" enctype="multipart/form-data">
-<!--                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <h5>
-                            Please enter the date of the exam slot
-                        </h5>
-                        <br>
-                    </div>
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="Date" id="examDate" required placeholder="dd-mm-yyyy" onblur="verifyDate()"/>
-                    </div>
-                </div>
-                <br>
-                <br>
-                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <h5>
-                            Please enter the time of the exam slot
-                        </h5>
-                        <br>
-                    </div>
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="Time" id="examTime" required placeholder="hh:mm" onblur="verifyTime()"/>
-                    </div>
-                </div>-->
                 <br>
                 <br>
                 <div class="row">
@@ -60,15 +36,6 @@
                         <h5>Please upload the Excel file of students:</h5>
                     </div>
                     <div class="col l6 m6 s12">
-<!--                       <div class="file-field input-field">
-                           <div class="btn" style="background-color: #444;">
-                          <span>File</span>
-                          <input type="file" name="DataFormFile">
-                        </div>
-                        <div class="file-path-wrapper">
-                          <input class="file-path validate" type="text" placeholder="Please upload the datasheet">
-                        </div>
-                      </div>-->
                         <input type="file" name="DataFormFile">
                     </div>
                 </div>
@@ -82,6 +49,7 @@
                 <br>
 	    </form>
             <br>
+            <span>${errorMessage}</span>
         </div>
         <footer class="custom-footer" style="bottom: 0; position: fixed;">
             <div class="footer-copyright">
