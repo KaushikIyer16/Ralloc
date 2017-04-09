@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HOME | Generate Arrangement</title>
+        <title>Delete | Delete Existing Details</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
@@ -139,7 +139,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <br>
+            <br>
+            <br>
+            <a class="btn custom-btn" href="${pageContext.request.contextPath}/home">Back to Home</a>
+        </div>        
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
