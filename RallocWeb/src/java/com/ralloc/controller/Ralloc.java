@@ -298,11 +298,11 @@ public class Ralloc {
                 }
             }
             
-            printRoomMap();
+//            printRoomMap();
             initDetailedSubjectStudentCount();
 //            printDetailedSubjectStudentGraph();
             getDetailedRoomAllocation();
-            printDetailedRoomAllocation();
+//            printDetailedRoomAllocation();
             
         } catch (Exception e) {
             System.out.println("exception in getRoomAllocation");

@@ -39,6 +39,7 @@ public class GenerateRouteServlet extends HttpServlet {
     
     public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
     public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -47,8 +48,6 @@ public class GenerateRouteServlet extends HttpServlet {
         rallocController.getRoomAllocation();
         roomMap = rallocController.getRoomMap();
         detailedRoomMap = rallocController.getDetailedRoomMap();
-        request.setAttribute("Date", request.getAttribute("Date"));
-        request.setAttribute("Time", request.getAttribute("Time"));
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
         rq.forward(request, response);
     }

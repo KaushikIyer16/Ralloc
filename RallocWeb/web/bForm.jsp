@@ -1,3 +1,4 @@
+<%@page import="com.ralloc.view.UploadFileServlet"%>
 <%@page import="com.ralloc.model.DepartmentSubject"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Subject"%>
@@ -36,7 +37,7 @@
                             </div>
                             <div class="form-field month">
                                 <%
-                                       //out.print(request.getAttribute("Date").toString().substring(3, 9));
+                                       out.print(request.getAttribute("Date").toString().substring(3, 10));
                                 %>
                             </div>
                         </div>
@@ -63,24 +64,24 @@
                             <div class="form-field centre"></div>
                             <div class="form-field from-usn">
                                 <%
-                                    out.print(subject.getUsnList().get(0));
+                                    //out.print(subject.getUsnList().get(0));
                                 %>
                             </div>
                             <div class="form-field to-usn">
                                 <%
-                                    out.print(subject.getUsnList().get(subject.getUsnList().size()-1));
+                                    //out.print(subject.getUsnList().get(subject.getUsnList().size()-1));
                                 %>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-field date">
                                 <%
-                                    //out.print(request.getAttribute("Date"));
+                                    out.print(request.getAttribute("Date"));
                                 %>
                             </div>
                             <div class="form-field from-time">
                                 <%
-                                    //out.print(request.getAttribute("Time"));
+                                    out.print(request.getAttribute("Time"));
                                 %>
                             </div>
                             <div class="form-field to-time"><!-- End time if required --></div>

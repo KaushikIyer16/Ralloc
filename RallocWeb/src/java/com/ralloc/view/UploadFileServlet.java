@@ -61,6 +61,10 @@ public class UploadFileServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+//    public static String dateString = "";
+//    public static String timeString = "";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -92,6 +96,8 @@ public class UploadFileServlet extends HttpServlet {
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
               try {
+//                  int t = 0;
+//                  String[] tempDateTimeValues = new String[2];
                   // Parse the request
                   List<FileItem> formItems = upload.parseRequest(request);
                   Iterator<FileItem> formIterator =  formItems.iterator();
@@ -99,7 +105,8 @@ public class UploadFileServlet extends HttpServlet {
                       FileItem currFormItem = formIterator.next();
                       
                       if (currFormItem.isFormField()) {
-                          out.println("<h2>"+currFormItem.getFieldName()+"<---->"+currFormItem.getString()+"</h2>");
+//                          System.out.println(""+currFormItem.getFieldName()+"<---->"+currFormItem.getString()+"");
+//                          tempDateTimeValues[t++] = new String(currFormItem.getString());
                       } 
                       else {
                           // this means that it is a form item
@@ -125,18 +132,31 @@ public class UploadFileServlet extends HttpServlet {
                           }
                           // below is just a simple way to print the contents of the stream
                           Student.addStudents(subjectStudents);
+//                          GenerateRouteServlet.date = tempDateTimeValues[0];
+//                          GenerateRouteServlet.time = tempDateTimeValues[1];
+                          //System.out.println("date value is -----> " + tempDateTimeValues[0]);
                           
                       }
                       
                   }
-                  GenerateRouteServlet.detailedRoomMap.clear();
-                  GenerateRouteServlet.roomMap.clear();
-                  request.setAttribute("date", request.getAttribute("Date"));
-                  request.setAttribute("time", request.getAttribute("Time"));
-                  RequestDispatcher rq = request.getRequestDispatcher(request.getContextPath()+"/home");
-                  rq.forward(request,response);
-              } catch (IOException | SQLException | ServletException | FileUploadException | EncryptedDocumentException | InvalidFormatException ex) {
+                  if (GenerateRouteServlet.detailedRoomMap != null) {
+                      GenerateRouteServlet.detailedRoomMap.clear();
+                  }
+                  if (GenerateRouteServlet.roomMap != null) {
+                      GenerateRouteServlet.roomMap.clear();
+                  }
+                  
+//                  if (GenerateRouteServlet.date != null) {
+//                      GenerateRouteServlet.date = "";
+//                  }
+//                  if (GenerateRouteServlet.time != null) {
+//                      GenerateRouteServlet.time = "";
+//                  }
+                  
+                  response.sendRedirect(request.getContextPath()+"/home");
+              } catch (IOException | SQLException | FileUploadException | EncryptedDocumentException | InvalidFormatException ex) {
                   System.out.println(ex.getMessage());
+                  out.print("error");
                   Logger.getLogger(UploadFileServlet.class.getName()).log(Level.SEVERE, null, ex);
               }
             }
