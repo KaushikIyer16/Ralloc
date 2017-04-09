@@ -68,7 +68,7 @@
             <div class="divider"></div>
             <div class="divider"></div>
             <div class="row">
-                <div class="col l4 m4 s12 offset-l4 offset-m4 " style="margin-top: 30px;">
+                <div class="col l4 m4 s12" style="margin-top: 30px;">
                     <form method="POST" action="${pageContext.request.contextPath}/Generate/show/bform" target="_blank">
 
                                 <div class="row">

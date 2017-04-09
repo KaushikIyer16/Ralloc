@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.InfrastructureAdditionServlet"%>
 <%@page import="com.ralloc.view.DepartmentAdditionServlet"%>
 <%@page import="com.ralloc.view.SubjectConfirmationServlet"%>
 <%@page import="com.ralloc.view.UploadFileServlet"%>
@@ -44,6 +45,15 @@
         <p class="center"><% out.print(UploadFileServlet.errorMessage); %></p>
         <p class="center"><% out.print(SubjectConfirmationServlet.errorMessage); %></p>
         <p class="center"><% out.print(DepartmentAdditionServlet.errorMessage); %></p>
+        <p class="center"><% out.print(InfrastructureAdditionServlet.errorMessage); %></p>
+        <%
+        
+        UploadFileServlet.errorMessage = "";
+        SubjectConfirmationServlet.errorMessage = "";
+        DepartmentAdditionServlet.errorMessage = "";
+        InfrastructureAdditionServlet.errorMessage = "";
+        
+        %>
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">

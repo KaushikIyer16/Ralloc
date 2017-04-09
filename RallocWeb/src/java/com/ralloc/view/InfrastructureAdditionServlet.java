@@ -6,7 +6,6 @@
 package com.ralloc.view;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ralloc.model.Room;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "InfrastructureAdditionServlet", urlPatterns = {"/Infrastructure/add"})
 public class InfrastructureAdditionServlet extends HttpServlet {
-
+    public static String errorMessage = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,25 +36,32 @@ public class InfrastructureAdditionServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+//        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet InfrastructureAdditionServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Infrastructure Information</h1>");
-            out.println("<h2>"+request.getParameter("roomName")+"</h2>");
-            out.println("<h2>"+request.getParameter("hasDep")+"</h2>");
-            out.println("</body>");
-            out.println("</html>");
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet InfrastructureAdditionServlet</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Infrastructure Information</h1>");
+//            out.println("<h2>"+request.getParameter("roomName")+"</h2>");
+//            out.println("<h2>"+request.getParameter("hasDep")+"</h2>");
+//            out.println("</body>");
+//            out.println("</html>");
             try {
+//                if(roomList == null){
+//                roomList = new ArrayList<>();
+//                roomList.add(new Room((String)request.getParameter("roomName"), Integer.parseInt(request.getParameter("roomCapacity")), request.getParameter("hasDep").equals("yes") ? 1: -1));
                 Room.addRoom(request.getParameter("roomName"), request.getParameter("roomCapacity"), request.getParameter("hasDep").equals("yes") ? 1: -1);
-            } catch (SQLException ex) {
+                response.sendRedirect(request.getHeader("referer"));
+            }
+            catch (Exception ex) {
+                errorMessage = "Invalid or existing room entered";
+                response.sendRedirect(request.getContextPath() + "/viewError.jsp");
                 Logger.getLogger(InfrastructureAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -52,6 +52,16 @@ public class Room {
         this.dependency = dependency;
     }
     
+    public Room(){
+        
+    }
+    
+    public Room(String name, int capacity, int dependency){
+        this.name = name;
+        this.capacity = capacity;
+        this.dependency = dependency;
+    }
+    
     public static int getTotalRooms() throws SQLException{
         int noRooms;
         try (Connection myConnection = DBConnection.getConnection()) {
