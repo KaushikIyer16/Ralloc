@@ -1,0 +1,28 @@
+/* 
+    Created on : Apr 9, 2017, 8:43:05 PM
+    Author     : Mahesh
+*/
+.usn {
+    display: inline-block;
+    font-size: 4mm;
+    margin-left: 5mm;
+    margin-bottom: 1mm;
+}
+.arrangement {
+    display: block;
+    text-transform: uppercase;
+}
+.usn-list {
+    display: block;
+    width: 9.7in;
+    min-height: 7mm;
+}
+@page {
+    margin: 0;
+    size: 8.5in 10in;
+}
+@media print {
+    .a-form {
+        page-break-after: always;
+    }
+}
