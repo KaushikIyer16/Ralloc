@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ralloc.model.Department;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -49,10 +50,13 @@ public class DepartmentAdditionServlet extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
             try {
-                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"), request.getParameter("MaximumIntake"));
+                String intake =  (String)request.getParameter("MaximumIntake");
+                if(Integer.parseInt(intake) <= 0)
+                    throw new InputMismatchException("Invalid intake value ");
+                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"),request.getParameter("MaximumIntake"));
                 response.sendRedirect(request.getContextPath()+"/home");
-            } catch (SQLException ex) {
-                errorMessage = "An invalid or existing department data was entered";
+            } catch (SQLException | InputMismatchException ex) {
+                errorMessage = "An invalid or existing department data was entered : " + ex.getMessage();
                 response.sendRedirect(request.getContextPath()+"/viewError.jsp");
                 Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

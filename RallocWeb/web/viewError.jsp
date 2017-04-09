@@ -54,6 +54,11 @@
         InfrastructureAdditionServlet.errorMessage = "";
         
         %>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a class="btn custom-btn" style="margin-left: 35%; width: 30%;" href="${pageContext.request.contextPath}/home">Back to Home</a>
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">

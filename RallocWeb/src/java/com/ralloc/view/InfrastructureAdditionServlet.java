@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ralloc.model.Room;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,11 +54,14 @@ public class InfrastructureAdditionServlet extends HttpServlet {
 //                if(roomList == null){
 //                roomList = new ArrayList<>();
 //                roomList.add(new Room((String)request.getParameter("roomName"), Integer.parseInt(request.getParameter("roomCapacity")), request.getParameter("hasDep").equals("yes") ? 1: -1));
+                String capacity = request.getParameter("roomCapacity");
+                if(Integer.parseInt(capacity) <= 0)
+                    throw new InputMismatchException("Invalid capacity entered");
                 Room.addRoom(request.getParameter("roomName"), request.getParameter("roomCapacity"), request.getParameter("hasDep").equals("yes") ? 1: -1);
                 response.sendRedirect(request.getHeader("referer"));
             }
             catch (Exception ex) {
-                errorMessage = "Invalid or existing room entered";
+                errorMessage = "Invalid or existing room entered : " + ex.getMessage();
                 response.sendRedirect(request.getContextPath() + "/viewError.jsp");
                 Logger.getLogger(InfrastructureAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
