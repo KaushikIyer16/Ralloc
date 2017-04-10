@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 /**
  *
  * @author kaushiknsiyer
@@ -53,6 +54,9 @@ public class DepartmentAdditionServlet extends HttpServlet {
                 String intake =  (String)request.getParameter("MaximumIntake");
                 if(Integer.parseInt(intake) <= 0)
                     throw new InputMismatchException("Invalid intake value ");
+                String deptName = (String)request.getParameter("DepartmentName");
+                if(!deptName.matches("[a-zA-Z]*"))
+                    throw new InputMismatchException("Invalid Department Name");
                 Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"),request.getParameter("MaximumIntake"));
                 response.sendRedirect(request.getContextPath()+"/home");
             } catch (SQLException | InputMismatchException ex) {
