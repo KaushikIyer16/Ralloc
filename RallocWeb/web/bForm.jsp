@@ -26,64 +26,31 @@
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
             %>
-        
-            <h6 class="center" style="top: 2mm">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
-            <h6 class="center">(Autonomous Institute, Affiliated to VTU)</h6>
-            <h6 class="center">Semester End Examination - B.E./B.Arch.</h6>
-            <br>
+            
             <div class="divider container"></div>
             <%
             ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
             for(SubjectStudentUsn subject: subjectList)
             {
                 %>
+                <h6 class="center" style="top: 2mm">B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019</h6>
+                <h6 class="center">Attendance and Room Superintendent's Report</h6>
+                <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
                 <div class="b-form container">
-                        <div class="row">
-                            <div class="form-field semester">
-                                <%
-                                       out.print("<h5>Semester : " + subject.getCourseCode().charAt(4) + "</h5>");
-                                %>
-                            </div>
-                            <div class="form-field month">
-                                <%
-                                       out.print("<h5>Month and year: " + request.getAttribute("Date").toString().substring(3, 10) + "</h5>");
-                                %>
-                            </div>
-                        </div>
                         <div class="divider"></div>
-                        <div class="row">
-                            <div class="form-field branch">
-                                <%
-                                    out.print("<h5> Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode())) + "</h5>");
-                                %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-field subject">
-                                <%
-                                    out.print("<h6> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + "</h6>");
-                                %>
-                            </div>
-                            <div class="form-field subject-code">
-                                <%
-                                    out.print("<h6> Course Code: " + subject.getCourseCode() + "</h6>");
-                                %>
-                            </div>
-                            <div class="form-field date">
-                                <%
-                                    out.print("<h6> Date: " + request.getAttribute("Date") + "</h6>");
-                                %>
-                            </div>
-                            <div class="form-field from-time">
-                                <%
-                                    out.print("<h6>Start Time: " + request.getAttribute("Time") + "</h6>");
-                                %>
-                            </div>
-                        </div>
+                        <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + request.getAttribute("Time") + " to ________</span>"); %></h6>
+                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
                         <div class="divider"></div>
-                        <div class="row"></div>
+                        <br>
                         <!-- Render the following line for every student -->
-                        <table style="margin-left: 18mm; width: 6.5in;">
+                        <table style="margin-left: 12mm; width: 6.8in;">
+                            <thead style="border: 1px solid black;">
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">USN</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Booklet/Drg. Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Signature</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Addl. Booklet/Drg./Graph Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Total</th>
+                            </thead>
                             <tbody>
                         <%
                             for(String usn: subject.getUsnList())
@@ -91,8 +58,12 @@
                                 %>
                                 <tr style="border: 1px solid black;">
                                         <%
-                                            out.print("<td style=\"padding: 8px 5px;\">" + usn + "</td>");
+                                            out.print("<td style=\"padding: 5px 4px; border-right: 1px solid black;\">" + usn + "</td>");
                                         %>
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
                                     </tr>
                                 <%
                             }
