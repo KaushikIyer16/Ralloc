@@ -1,70 +1,51 @@
 <%-- 
     Document   : aForm
     Created on : Apr 9, 2017, 8:35:12 PM
-    Author     : Mahesh
+    Author     : KNSI
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/aform.css" />
-        <title>A-Form</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <h6 class="center" style="top: 2mm">B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
-        <h6 class="center">(Autonomous Institute, Affiliated to VTU)</h6>
-        <h6 class="center">Semester End Examination - B.E./B.Arch.</h6>
+  <head>
+    <meta charset="utf-8">
+    <title>A form </title>
+    <link rel="stylesheet" href=""/>
+  </head>
+  <body>
+    <div class="a-form">
+      <h3 class="center short-margin">BMS COLLEGE OF ENGINEERING (AUTONOMOUS INSTITUTION UNDER VTU) BANGALORE-19</h3>
+      <h4 class="center short-margin">Attendance and Room Superintendent's Report</h4>
+      <h3 class="center short-margin">B.E/B.Arch/M.B.A/M.C.A/M.Tech/Ph.D/M.Sc(Res) ____________ Semester Examination _____________ <span style="float:right;margin-right:3rem;font-size:1.5vw;">(MM/YYYY)</span></h3>
+
+      <h4 style="margin-left:10%;" class="short-margin">Branch / title of the course: </h4>
+      <h4 class="inline-header ">Subject:</h4>
+      <h4 class="inline-header inline-center">Subject Code:</h4>
+      <br>
+      <h4 class="inline-header ">Centre:</h4>
+      <h4 class="inline-header inline-center">Date:</h4>
+      <br>
+      <div class="divider"></div>
+
+      <div class="student-present">
+        <h4 class="inline-header short-margin">Seat Number of the candidates present:</h4>
         <br>
-        <div class="divider container"></div>
+        <span class="usn">1BM14IS040</span>
+
+      </div>
+
+      <div class="student-defaulters">
+        <h4 class="inline-header short-margin">Seat Number of the candidates booked under malpractice:</h4>
         <br>
-        <div class="a-form container">
-            
-            <div class="row">
-                <div class="col">
-                    <h5><% out.print("Room Name: " + request.getAttribute("roomName")); %></h5>
-                </div>
-                <div class="col">
-                    <h5 style="margin-left: 50mm;"><% out.print("Course Code : " + request.getAttribute("courseCode")); %></h5>
-                </div>
-            </div>
-                
-            <div class="divider"></div>
-            
-            <h6>Candidates Present</h6>
-            
-            <div style="border: 1px solid black;">
-                <% for(String s : (String[])request.getAttribute("presentUsn"))
-                {
-                    %>
-                
-                        <div class="usn-list">
-                            <div class="usn"><% out.print(s); %></div>
-                        </div>
-                    
-                    <%
-                }
-                %>
-            </div>
-            
-            <h6>Candidates Absent</h6>
-            
-            <div style="border: 1px solid black;">
-                <% for(String s : (String[])request.getAttribute("absentUsn"))
-                {
-                    %>
-                
-                        <div class="usn-list">
-                            <div class="usn"><% out.print(s); %></div>
-                        </div>
-                    
-                    <%
-                }
-                %>
-            </div>
-        </div>
-    </body>
-    <script>window.print();</script>
+      </div>
+
+      <div class="student-absent">
+        <h4 class="inline-header short-margin">Seat Number of the candidates absent:</h4>
+        <br>
+      </div>
+    </div>
+  <script type="text/javascript">
+    window.print();
+  </script>
+  </body>
 </html>
