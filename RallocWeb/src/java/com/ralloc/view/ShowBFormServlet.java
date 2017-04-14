@@ -5,9 +5,12 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.bean.RoomBean;
+import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.routes.GenerateRouteServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,11 +34,37 @@ public class ShowBFormServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private void printDetailedRoomAllocation() {
+        for (RoomBean room : GenerateRouteServlet.detailedRoomMap.keySet()) {
+            ArrayList<SubjectStudentUsn> currRoomUsn = GenerateRouteServlet.detailedRoomMap.get(room);
+            System.out.println("\n+++"+room.getRoomId()+"\n");
+            int i=0;
+            for (SubjectStudentUsn subjectStudentUsn : currRoomUsn) {
+                System.out.println("\n\n -->  "+subjectStudentUsn.getCourseCode());
+                
+                ArrayList<String> usnList = subjectStudentUsn.getUsnList();
+                for (String string : usnList) {
+                    if (i<4) {
+                        System.out.print(string+" ");
+                        i++;
+                    } else {
+                        System.out.println(string+" ");
+                        i=0;
+                    }
+                }
+            }
+            
+        }
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //printDetailedRoomAllocation();
+        System.out.println("the value of date and time is "+request.getAttribute("date"));
         request.setAttribute("roomMap", GenerateRouteServlet.roomMap);
         request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
-        request.setAttribute("Date", request.getAttribute("Date"));
+        request.setAttribute("Date", request.getParameter("Date"));
+        request.setAttribute("Time", request.getParameter("Time"));
+
         RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
         rq.forward(request, response);
     }

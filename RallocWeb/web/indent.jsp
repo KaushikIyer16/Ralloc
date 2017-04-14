@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Room"%>
 <%@page import="com.ralloc.bean.SubjectStudentCount"%>
 <%@page import="com.ralloc.bean.RoomBean"%>
@@ -11,7 +12,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%!
-    HashMap<RoomBean,ArrayList<String>> detailedRoomMap;
+    HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
 %>
 <!DOCTYPE html>
@@ -22,35 +23,40 @@
     </head>
     <body>
         <%
-        detailedRoomMap = (HashMap<RoomBean,ArrayList<String>>)request.getAttribute("detailRoomMap");
+        detailedRoomMap = (HashMap<RoomBean,ArrayList<SubjectStudentUsn>>)request.getAttribute("detailRoomMap");
         roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
-        for(RoomBean roomBean: detailedRoomMap.keySet())
+        for(RoomBean roomBean: roomMap.keySet())
         {
             %>
                 <div class="container">
                     <div class="col m6 l6 xl6">
                         <h5>Room: <%out.print(Room.getRoomNameById(roomBean.getRoomId()));%></h5>
-                        <table class="centered bordered responsive-table">
-                            <thead>
-                                <th>Course Code</th>
-                                <th>Number of Students Writing</th>
-                            </thead>
-                            <tbody>
-                                <%
-                                
-                                    ArrayList<SubjectStudentCount> studentList = roomMap.get(roomBean);
-                                        for(SubjectStudentCount subjects : studentList)
-                                        {
-                                            %>
-                                                <tr><%out.print(subjects.getCourseCode());%></tr>&emsp;
-                                                <tr><%out.print(subjects.getNumberOfStudents());%></tr>  
-                                                <br/>
-                                            <%
-                                        }
-
+                        <div class="row center">
+                            <div class="col s3 m3 s6">
+                                <h6>Course Code</h6>
+                            </div>
+                            <div class="col s3 m3 s6">
+                                <h6>Number of students</h6>
+                            </div>
+                        </div>
+                        <%
+                            for(SubjectStudentCount paperCount: roomMap.get(roomBean))
+                            {
                                 %>
-                            </tbody>
-                        </table>
+                        
+                                    <div class="row center">
+                                        <div class="col s3 m3 s6">
+                                            <h6><% out.print(paperCount.getCourseCode()); %></h6>
+                                        </div>
+                                        <div class="col s3 m3 s6">
+                                            <h6><% out.print(paperCount.getNumberOfStudents()); %></h6>
+                                        </div>
+                                    </div>
+                                
+                                <%
+                            }
+                        %>                        
+                        <div class="divider"></div>
                     </div>
                 </div>
             <%

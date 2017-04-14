@@ -5,6 +5,7 @@ body {
 .arrangement {
     display: block;
     text-transform: uppercase;
+    page-break-inside: avoid !important;
 }
 .usn-list {
     display: block;

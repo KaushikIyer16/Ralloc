@@ -14,15 +14,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.ralloc.model.Department;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 /**
  *
  * @author kaushiknsiyer
  */
 @WebServlet(name = "DepartmentAdditionServlet", urlPatterns = {"/Department/add"})
 public class DepartmentAdditionServlet extends HttpServlet {
-
+    public static String errorMessage = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,9 +51,17 @@ public class DepartmentAdditionServlet extends HttpServlet {
 //            out.println("</body>");
 //            out.println("</html>");
             try {
-                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"), request.getParameter("MaximumIntake"));
+                String intake =  (String)request.getParameter("MaximumIntake");
+                if(Integer.parseInt(intake) <= 0)
+                    throw new InputMismatchException("Invalid intake value ");
+                String deptName = (String)request.getParameter("DepartmentName");
+                if(!deptName.matches("[a-zA-Z]*"))
+                    throw new InputMismatchException("Invalid Department Name");
+                Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"),request.getParameter("MaximumIntake"));
                 response.sendRedirect(request.getContextPath()+"/home");
-            } catch (SQLException ex) {
+            } catch (SQLException | InputMismatchException ex) {
+                errorMessage = "An invalid or existing department data was entered : " + ex.getMessage();
+                response.sendRedirect(request.getContextPath()+"/viewError.jsp");
                 Logger.getLogger(DepartmentAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             

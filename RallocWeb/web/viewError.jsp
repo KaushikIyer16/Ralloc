@@ -1,28 +1,26 @@
 <%-- 
-    Document   : viewDepartment
-    Created on : Apr 4, 2017, 1:00:01 AM
-    Author     : kaushiknsiyer
+    Document   : viewError
+    Created on : Apr 9, 2017, 10:26:31 AM
+    Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.InfrastructureAdditionServlet"%>
+<%@page import="com.ralloc.view.DepartmentAdditionServlet"%>
+<%@page import="com.ralloc.view.SubjectConfirmationServlet"%>
+<%@page import="com.ralloc.view.UploadFileServlet"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ralloc.model.Department"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%! 
-    HashMap<Integer,String> departmentList;
-%>
-<%
-    departmentList = Department.getDepartments();
-%>
+<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Department Details</title>
+        <title>Error | View Error Details</title>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
-        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <style>
             table,tr{
                 boreder: 1px solid black;
@@ -39,20 +37,28 @@
                 </ul>
             </div>
         </nav>
-        <h1>Department Details</h1>
-        <table>
-            <tr>
-                <th> Department Name</th>
-                <th> Department ID to be given in the Excel File</th>
-            </tr>
-            <%for(Integer keys : departmentList.keySet()) {%>
-                <tr>
-                    <td><%= departmentList.get(keys) %></td>
-                    <td><%= keys%></td>
-                </tr>
-            <%}%>
-        </table>
+        <h3 class="center">Unfortunately an error has occurred</h3>
         
+        <div class="divider"></div>
+                
+        <h4 class="center">Error details</h4>
+        <p class="center"><% out.print(UploadFileServlet.errorMessage); %></p>
+        <p class="center"><% out.print(SubjectConfirmationServlet.errorMessage); %></p>
+        <p class="center"><% out.print(DepartmentAdditionServlet.errorMessage); %></p>
+        <p class="center"><% out.print(InfrastructureAdditionServlet.errorMessage); %></p>
+        <%
+        
+        UploadFileServlet.errorMessage = "";
+        SubjectConfirmationServlet.errorMessage = "";
+        DepartmentAdditionServlet.errorMessage = "";
+        InfrastructureAdditionServlet.errorMessage = "";
+        
+        %>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a class="btn custom-btn" style="margin-left: 35%; width: 30%;" href="${pageContext.request.contextPath}/home">Back to Home</a>
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
@@ -63,3 +69,4 @@
         </footer>
     </body>
 </html>
+

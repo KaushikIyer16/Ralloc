@@ -1,3 +1,4 @@
+<%@page import="com.ralloc.view.UploadFileServlet"%>
 <%@page import="com.ralloc.model.DepartmentSubject"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Subject"%>
@@ -13,7 +14,8 @@
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
 %>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/bform.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bform.css" />
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
         <title></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -23,82 +25,51 @@
         roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
+            %>
+            
+            <div class="divider container"></div>
+            <%
             ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
             for(SubjectStudentUsn subject: subjectList)
             {
                 %>
-                    <div class="b-form">
-                        <div class="row">
-                            <div class="form-field semester">
-                                <%
-                                       out.print(subject.getCourseCode().charAt(4));
-                                %>
-                            </div>
-                            <div class="form-field month">
-                                <%
-                                       out.print(request.getAttribute("Date").toString().substring(3, 9));
-                                %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-field branch">
-                                <%
-                                    out.print(Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode())));
-                                %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-field subject">
-                                <%
-                                    out.print(Subject.getNameByCourseCode(subject.getCourseCode()));
-                                %>
-                            </div>
-                            <div class="form-field subject-code">
-                                <%
-                                    out.print(subject.getCourseCode());
-                                %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-field centre"></div>
-                            <div class="form-field from-usn">
-                                <%
-                                    out.print(subject.getUsnList().get(0));
-                                %>
-                            </div>
-                            <div class="form-field to-usn">
-                                <%
-                                    out.print(subject.getUsnList().get(subject.getUsnList().size()-1));
-                                %>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-field date">
-                                <%
-                                    out.print(request.getAttribute("Date"));
-                                %>
-                            </div>
-                            <div class="form-field from-time">
-                                <%
-                                    out.print(request.getAttribute("Time"));
-                                %>
-                            </div>
-                            <div class="form-field to-time"><!-- End time if required --></div>
-                        </div>
-                        <div class="row"></div>
+                <h6 class="center" style="top: 2mm">B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019</h6>
+                <h6 class="center">Attendance and Room Superintendent's Report</h6>
+                <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
+                <div class="b-form container">
+                        <div class="divider"></div>
+                        <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + request.getAttribute("Time") + " to ________</span>"); %></h6>
+                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
+                        <div class="divider"></div>
+                        <br>
                         <!-- Render the following line for every student -->
+                        <table style="margin-left: 12mm; width: 6.8in;">
+                            <thead style="border: 1px solid black;">
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">USN</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Booklet/Drg. Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Signature</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Addl. Booklet/Drg./Graph Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Total</th>
+                            </thead>
+                            <tbody>
                         <%
                             for(String usn: subject.getUsnList())
                             {
-                                %><div class="row-usn">
-                                    <div class="form-field usn">
+                                %>
+                                <tr style="border: 1px solid black;">
                                         <%
-                                            out.print(usn);
+                                            out.print("<td style=\"padding: 5px 4px; border-right: 1px solid black;\">" + usn + "</td>");
                                         %>
-                                    </div>
-                                </div><%
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
+                                        <td style="border-right: 1px solid black;"></td>
+                                    </tr>
+                                <%
                             }
                         %>
+                            </tbody>
+                        </table>
                     </div>
                 <%
             }

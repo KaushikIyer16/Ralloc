@@ -52,6 +52,16 @@ public class Room {
         this.dependency = dependency;
     }
     
+    public Room(){
+        
+    }
+    
+    public Room(String name, int capacity, int dependency){
+        this.name = name;
+        this.capacity = capacity;
+        this.dependency = dependency;
+    }
+    
     public static int getTotalRooms() throws SQLException{
         int noRooms;
         try (Connection myConnection = DBConnection.getConnection()) {
@@ -81,9 +91,10 @@ public class Room {
     public static HashMap<Integer,Integer> getRoomCapacities() throws SQLException{
         HashMap<Integer,Integer> roomCapacities = new HashMap();
         Connection con = DBConnection.getConnection();
-        PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room");
+        PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room ORDER BY Dependency DESC");
         ResultSet rs = ps.executeQuery();
-        while (rs.next()) {            
+        while (rs.next()) { 
+            
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
         con.close();

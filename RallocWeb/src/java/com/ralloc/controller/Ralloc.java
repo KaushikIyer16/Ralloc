@@ -21,9 +21,14 @@ import com.ralloc.model.StudentSubject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeSet;
 /**
  *
@@ -37,7 +42,7 @@ public class Ralloc {
     /*
      * roomMap : is a map between the room id and all the students in that room
      */
-    HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap= new HashMap<>();
+    LinkedHashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap= new LinkedHashMap<>();
     HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     HashMap<SubjectDependency,ArrayList<StudentCount>> subjectStudentGraph;
     HashMap<SubjectDependency,ArrayList<StudentUsnBean>> detailedSubjectStudentGraph;
@@ -53,7 +58,7 @@ public class Ralloc {
 //                                    new SubjectDependency("16ME5DCCMD",null)};
 
     public Ralloc() {
-        roomMap= new HashMap<>();
+        roomMap= new LinkedHashMap<>();
         subjectStudentGraph = new HashMap<>();
         detailedSubjectStudentGraph = new HashMap<>();
         detailedRoomMap = new HashMap<>();
@@ -73,7 +78,11 @@ public class Ralloc {
     private void initRoomMap() throws SQLException{
 
         HashMap<Integer,Integer> roomCapacities = Room.getRoomCapacities();
-        for (Integer room : roomCapacities.keySet()) {
+        List<Integer> revList = new ArrayList();
+        revList.addAll(roomCapacities.keySet());
+        Collections.reverse(revList);
+        for (Integer room : revList) {
+            System.out.println("---> "+roomCapacities.get(room));
             roomMap.put(new RoomBean(room, roomCapacities.get(room)), new ArrayList<>());
         }
 
@@ -206,6 +215,7 @@ public class Ralloc {
             this.initRallocController();
 
             for (RoomBean currRoom : roomMap.keySet()) {
+                System.out.println(currRoom.getCapacity());
                 // now i need to choose
                 int currRoomCapacity = currRoom.getCapacity();
                 int firstSubjCapacity = currRoomCapacity/2;
@@ -298,11 +308,11 @@ public class Ralloc {
                 }
             }
             
-            printRoomMap();
+//            printRoomMap();
             initDetailedSubjectStudentCount();
 //            printDetailedSubjectStudentGraph();
             getDetailedRoomAllocation();
-            printDetailedRoomAllocation();
+//            printDetailedRoomAllocation();
             
         } catch (Exception e) {
             System.out.println("exception in getRoomAllocation");

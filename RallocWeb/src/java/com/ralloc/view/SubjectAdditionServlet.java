@@ -7,9 +7,14 @@ package com.ralloc.view;
 
 import com.ralloc.model.DepartmentSubject;
 import com.ralloc.model.Subject;
+import static com.ralloc.view.DepartmentAdditionServlet.errorMessage;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +43,7 @@ public class SubjectAdditionServlet extends HttpServlet {
      */
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
             response.setContentType("text/html;charset=UTF-8");
         
 //            response.sendRedirect(request.getHeader("referer"));
@@ -58,14 +63,26 @@ public class SubjectAdditionServlet extends HttpServlet {
             if(subjectList == null){
                 subjectList = new ArrayList<>();
             }
-            subjectList.add(new com.ralloc.model.Subject(
+            try{
+            
+            String courseCode = request.getParameter("courseCode");
+            String chooseDept = request.getParameter("department");
+            if(!courseCode.matches("[0-9]{2}[a-zA-Z]{2}[0-9][a-zA-Z]{5}")){
+                throw new InputMismatchException("Invalid Course Code Format");
+            } 
+            else if(chooseDept == null){
+                throw new InputMismatchException("Choose a valid Department");
+            }
+            else{
+                subjectList.add(new com.ralloc.model.Subject(
                 request.getParameter("courseCode"),
                 request.getParameter("name"), 
                 request.getParameter("deptElectGrp").equals("yes"),
                 request.getParameter("clustElectGrp").equals("yes"),
                 request.getParameter("instElectGrp").equals("yes"),
                 request.getParameter("hasDependency").equals("yes") ? 1:-1
-            ));
+                ));
+            }
             departmentSubjectList.add(new com.ralloc.model.DepartmentSubject(Integer.parseInt(request.getParameter("department")), request.getParameter("courseCode")));
             System.out.println(request.getParameter("instElectGrp"));
             request.setAttribute("subjectList", subjectList);
@@ -74,6 +91,12 @@ public class SubjectAdditionServlet extends HttpServlet {
 //            RequestDispatcher rd = request.getRequestDispatcher("/Subject");
 //            rd.forward(request, response);
             response.sendRedirect(request.getHeader("referer"));
+            }
+            catch(InputMismatchException ex){
+                errorMessage = "An invalid or existing department data was entered : " + ex.getMessage();
+                response.sendRedirect(request.getContextPath()+"/viewError.jsp");
+                Logger.getLogger(SubjectAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 //        }
     }
 

@@ -59,7 +59,7 @@ public class DepartmentSubject {
     }
     public static int getDepartmentIdByCourseCode(String courseCode) throws SQLException {
         try (Connection myConnection = DBConnection.getConnection()) {
-            PreparedStatement myStatement = myConnection.prepareStatement("SELECT DepartmentID FROM Department WHERE CourseCode LIKE ?");
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT DepartmentID FROM DepartmentSubject WHERE CourseCode LIKE ?");
             myStatement.setString(1, courseCode);
             ResultSet subResult = myStatement.executeQuery();
             int deptId = 0;

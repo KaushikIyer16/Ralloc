@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 @WebServlet(name = "SubjectConfirmationServlet", urlPatterns = {"/Subject/confirm"})
 public class SubjectConfirmationServlet extends HttpServlet {
-
+    public static String errorMessage = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,14 +60,17 @@ public class SubjectConfirmationServlet extends HttpServlet {
                 for (Subject sub: SubjectAdditionServlet.subjectList) {
                     System.out.println(sub.getCourseCode());
                 }
+                request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
+                System.out.println("the value of contet path is "+request.getContextPath() );
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
+                requestDispatcher.forward(request, response);
             } catch (SQLException ex) {
+                errorMessage = "An invalid or existing subject was entered";
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/viewError.jsp");
+                requestDispatcher.forward(request, response);
                 Logger.getLogger(SubjectConfirmationServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("subjectList", SubjectAdditionServlet.subjectList);
             SubjectAdditionServlet.subjectList.clear();
-            System.out.println("the value of contet path is "+request.getContextPath() );
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/verifySubject.jsp");
-            requestDispatcher.forward(request, response);
 //        }
     }
 

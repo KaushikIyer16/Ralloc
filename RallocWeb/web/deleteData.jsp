@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>HOME | Generate Arrangement</title>
+        <title>Delete | Delete Existing Details</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
@@ -25,10 +25,10 @@
         </script>
         <nav>
             <div class="nav-wrapper custom-nav">
-                <a href="#" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
+                <a href="${pageContext.request.contextPath}/home" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
                 
                 <ul id="nav-mobile" class="left clg-name">
-                    <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                    <li><a href="${pageContext.request.contextPath}/home"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
                 </ul>
             </div>
         </nav>
@@ -139,7 +139,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+            <br>
+            <br>
+            <br>
+            <a class="btn custom-btn" href="${pageContext.request.contextPath}/home">Back to Home</a>
+        </div>        
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
