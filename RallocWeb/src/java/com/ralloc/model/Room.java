@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -88,13 +89,13 @@ public class Room {
         return roomName;
     }
     
-    public static HashMap<Integer,Integer> getRoomCapacities() throws SQLException{
-        HashMap<Integer,Integer> roomCapacities = new HashMap();
+    public static LinkedHashMap<Integer,Integer> getRoomCapacities() throws SQLException{
+        LinkedHashMap<Integer,Integer> roomCapacities = new LinkedHashMap();
         Connection con = DBConnection.getConnection();
         PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room ORDER BY Dependency DESC");
         ResultSet rs = ps.executeQuery();
         while (rs.next()) { 
-            
+            System.out.println(rs.getInt(1));
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
         con.close();
