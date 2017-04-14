@@ -79,12 +79,12 @@ public class Ralloc {
         */
 //        ArrayList<Subject> allSubjects = new ArrayList<>();
 //        allSubjects = Subject.getAllDetails();
-//
+//		  
 //        for (Subject sub : allSubjects) {
 //            String courseCode = sub.getCourseCode();
 //            int dependency = Dependency.getDependencyIDFromCourseCode(courseCode);
 //            SubjectDependency subjectDependency = new SubjectDependency(courseCode, dependency);
-//
+//			  subj.add(subjectDependency);
 //            departmentSubjects.put(subjectDependency, new ArrayList<>());
 //            HashMap<Integer, Integer> studentMap = StudentSubject.getStudentCountFromCourseCode(courseCode);
 //            for (Integer dept : studentMap.keySet()) {
