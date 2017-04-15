@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.DisplayAformServlet"%>
 <%@page import="com.ralloc.view.InfrastructureAdditionServlet"%>
 <%@page import="com.ralloc.view.DepartmentAdditionServlet"%>
 <%@page import="com.ralloc.view.SubjectConfirmationServlet"%>
@@ -46,12 +47,14 @@
         <p class="center"><% out.print(SubjectConfirmationServlet.errorMessage); %></p>
         <p class="center"><% out.print(DepartmentAdditionServlet.errorMessage); %></p>
         <p class="center"><% out.print(InfrastructureAdditionServlet.errorMessage); %></p>
+        <p class="center"><% out.print(DisplayAformServlet.errorMessage); %></p>
         <%
         
         UploadFileServlet.errorMessage = "";
         SubjectConfirmationServlet.errorMessage = "";
         DepartmentAdditionServlet.errorMessage = "";
         InfrastructureAdditionServlet.errorMessage = "";
+        DisplayAformServlet.errorMessage = "";
         
         %>
         <br>
