@@ -32,4 +32,16 @@ public class DBConnection {
             return null;
         }
     }
+    
+    public static void setCONNECTIONSTRING(String connectionString) {
+        CONNECTIONSTRING = connectionString;
+    }
+    
+    public static void setUSERNAME(String username) {
+        USERNAME = username;
+    }
+    
+    public static void setPASSWORD(String password) {
+        PASSWORD = password;
+    }
 }
