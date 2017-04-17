@@ -8,6 +8,7 @@ package com.ralloc.view;
 import com.ralloc.bean.RoomBean;
 import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.routes.GenerateRouteServlet;
+import com.ralloc.controller.BFormDocument;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -64,7 +65,12 @@ public class ShowBFormServlet extends HttpServlet {
         request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
         request.setAttribute("Date", request.getParameter("Date"));
         request.setAttribute("Time", request.getParameter("Time"));
-
+        BFormDocument bForm = new BFormDocument(GenerateRouteServlet.detailedRoomMap, (String)request.getParameter("Date"), (String)request.getParameter("Time"));
+        try {
+            bForm.createDoc();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
         rq.forward(request, response);
     }

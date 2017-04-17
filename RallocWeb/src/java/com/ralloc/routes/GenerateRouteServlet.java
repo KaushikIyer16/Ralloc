@@ -36,14 +36,14 @@ public class GenerateRouteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+
     public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
     public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
+
         Ralloc rallocController = new Ralloc();
         rallocController.getRoomAllocation();
         roomMap = rallocController.getRoomMap();
