@@ -42,7 +42,7 @@
                 <a href="${pageContext.request.contextPath}/home" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
                 
                 <ul id="nav-mobile" class="left clg-name">
-                    <li><a href="${pageContext.request.contextPath}/home"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                    <li><a href="${pageContext.request.contextPath}/home"><h5>B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
                 </ul>
             </div>
         </nav>
@@ -68,7 +68,7 @@
             <div class="divider"></div>
             <div class="divider"></div>
             <div class="row">
-                <div class="col l4 m4 s12 offset-m3 offset-l3" style="margin-top: 30px;">
+                <div class="col l6 m6 s12" style="margin-top: 30px;">
                     <form method="POST" action="${pageContext.request.contextPath}/Generate/show/bform" target="_blank">
 
                                 <div class="row">
@@ -100,8 +100,17 @@
                         <br>
                         <br>
                         <br>
-                        </div>
                     </form>
+                    </div>
+                    <div class="col l6 m6 s12" style="margin-top: 30px;">
+                        <!--a href="{pageContext.request.getAttribute("filePath")}/RoomAllocation.docx" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a-->
+                        <a href="${pageContext.request.getAttribute("filePath").getAbsolutePath()}" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a>
+                        <br>
+                        <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download A-Form Document</a>
+                        <br>
+                        <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download B-Form Document</a>
+                        <br>
+                    </div>
                    <br>
                    <br>
                    <br>

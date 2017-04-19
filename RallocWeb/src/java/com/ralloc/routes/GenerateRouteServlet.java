@@ -8,17 +8,24 @@ package com.ralloc.routes;
 import com.ralloc.bean.RoomBean;
 import com.ralloc.bean.SubjectStudentCount;
 import com.ralloc.bean.SubjectStudentUsn;
+import com.ralloc.controller.AllotmentDocument;
 import com.ralloc.controller.Ralloc;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
 /**
  *
@@ -36,18 +43,40 @@ public class GenerateRouteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
+    
     public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
     public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-
+            throws ServletException, IOException, FileNotFoundException {
+        
+        
         Ralloc rallocController = new Ralloc();
         rallocController.getRoomAllocation();
         roomMap = rallocController.getRoomMap();
         detailedRoomMap = rallocController.getDetailedRoomMap();
+        
+        
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+        // Configure a repository (to ensure a secure temp location is used)
+        ServletContext servletContext = this.getServletConfig().getServletContext();
+        File docRepository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        FileOutputStream filePath=null;
+        File roomAllocationFile = File.createTempFile("RoomAllocation", ".docx", docRepository);
+        //FileOutputStream out = new FileOutputStream(new File(tmpDir,"RoomAllocation.docx"));
+        FileOutputStream out = new FileOutputStream(roomAllocationFile);
+        roomAllocationFile.deleteOnExit();
+        AllotmentDocument populateRoomDocx = new AllotmentDocument();
+        try
+        {
+        filePath = populateRoomDocx.writeAllotment(out,detailedRoomMap, roomMap);
+        }
+        catch(SQLException ex){
+            System.out.println(ex);
+        }
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        request.setAttribute("filePath", roomAllocationFile);
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
         rq.forward(request, response);
     }
