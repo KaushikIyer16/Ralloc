@@ -21,7 +21,7 @@
                 <a href="#" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
                 
                 <ul id="nav-mobile" class="left clg-name">
-                    <li><a href="#"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                    <li><a href="#"><h5>B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
                 </ul>
                 <ul id="nav-mobile" class="right">
                     <li><a href="viewDepartment.jsp">VIEW EXISTING DATA </a></li>

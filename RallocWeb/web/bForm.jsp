@@ -26,7 +26,7 @@
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
             %>
-            
+
             <div class="divider container"></div>
             <%
             ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);

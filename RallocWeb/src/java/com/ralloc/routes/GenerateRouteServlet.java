@@ -8,17 +8,24 @@ package com.ralloc.routes;
 import com.ralloc.bean.RoomBean;
 import com.ralloc.bean.SubjectStudentCount;
 import com.ralloc.bean.SubjectStudentUsn;
+import com.ralloc.controller.AllotmentDocument;
 import com.ralloc.controller.Ralloc;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
 /**
  *
@@ -39,15 +46,20 @@ public class GenerateRouteServlet extends HttpServlet {
     
     public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
     public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, FileNotFoundException {
         
         
         Ralloc rallocController = new Ralloc();
         rallocController.getRoomAllocation();
         roomMap = rallocController.getRoomMap();
         detailedRoomMap = rallocController.getDetailedRoomMap();
+        
+        
+        //response.setHeader("Access-Control-Allow-Origin", "*");
+        //request.setAttribute("filePath", roomAllocationFile.getAbsolutePath());
+        
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
         rq.forward(request, response);
     }
