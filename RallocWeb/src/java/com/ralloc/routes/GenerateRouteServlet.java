@@ -46,7 +46,7 @@ public class GenerateRouteServlet extends HttpServlet {
     
     public static HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
     public static HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, FileNotFoundException {
         
@@ -57,26 +57,9 @@ public class GenerateRouteServlet extends HttpServlet {
         detailedRoomMap = rallocController.getDetailedRoomMap();
         
         
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        // Configure a repository (to ensure a secure temp location is used)
-        ServletContext servletContext = this.getServletConfig().getServletContext();
-        File docRepository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
-        FileOutputStream filePath=null;
-        File roomAllocationFile = File.createTempFile("RoomAllocation", ".docx", docRepository);
-        //FileOutputStream out = new FileOutputStream(new File(tmpDir,"RoomAllocation.docx"));
-        FileOutputStream out = new FileOutputStream(roomAllocationFile);
-        roomAllocationFile.deleteOnExit();
-        AllotmentDocument populateRoomDocx = new AllotmentDocument();
-        try
-        {
-        filePath = populateRoomDocx.writeAllotment(out,detailedRoomMap, roomMap);
-        }
-        catch(SQLException ex){
-            System.out.println(ex);
-        }
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        request.setAttribute("filePath", roomAllocationFile);
+        //response.setHeader("Access-Control-Allow-Origin", "*");
+        //request.setAttribute("filePath", roomAllocationFile.getAbsolutePath());
+        
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
         rq.forward(request, response);
     }

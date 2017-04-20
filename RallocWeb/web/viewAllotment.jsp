@@ -104,7 +104,15 @@
                     </div>
                     <div class="col l6 m6 s12" style="margin-top: 30px;">
                         <!--a href="{pageContext.request.getAttribute("filePath")}/RoomAllocation.docx" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a-->
-                        <a href="${pageContext.request.getAttribute("filePath").getAbsolutePath()}" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a>
+                         <form method="POST" action="${pageContext.request.contextPath}/Download/allotmentDocument" target="_blank">
+                             <input type="hidden" name="pathName"/>
+                            
+                                 
+                            <button type="submit" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">
+                                <span class="flow-text" style="color: white; font-size: 15px;">DOWNLOAD ALLOTMENT DOCUMENT</span>
+                            </button>
+                        </form>
+                        <!--a href="{pageContext.request.getAttribute("filePath").getAbsolutePath()}" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a-->
                         <br>
                         <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download A-Form Document</a>
                         <br>

@@ -31,7 +31,7 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
  */
 public class AllotmentDocument {
     
-    public FileOutputStream writeAllotment(FileOutputStream out,HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap, HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap) throws FileNotFoundException, IOException, SQLException
+    public void writeAllotment(FileOutputStream out,HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap, HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap) throws FileNotFoundException, IOException, SQLException
     {
          //Blank Document
       XWPFDocument document= new XWPFDocument(); 
@@ -112,39 +112,16 @@ public class AllotmentDocument {
       
       
       
-      /*for(int i=0;i<10;i++){
-          paragraph[i] = document.createParagraph();
-          XWPFRun para1 = paragraph[i].createRun();
-          para1.setFontSize(40);
-          para1.setBold(true);
-          XWPFRun para2 = paragraph[i].createRun();
-          para2.setFontSize(20);
-          XWPFRun para3 = paragraph[i].createRun();
-          para3.setFontSize(10);
-        para1.setText("Hello World"+i);
-        para2.setText("Bhargav Mysore"+i);
-        para3.setText("BMSCE"+i);
-        
-        
-      }*/
+     
       
       //paragraphOneRunOne.setFontSize(80);
       //paragraphOneRunOne.setText("Hello World");
       document.write(out);
       out.close();
-      return out;
+      //return out;
       //System.out.println("createparagraph.docx written successfully");
         
     }
-    /*public static void main(String[] args) throws IOException, FileNotFoundException, SQLException {
-        
-        Ralloc rc = new Ralloc();
-        rc.getRoomAllocation();
-        roomMap = rc.getRoomMap();
-        detailedRoomMap = rc.getDetailedRoomMap();
-        AllotmentDocument dw = new AllotmentDocument();
-        dw.writeAllotment(detailedRoomMap, roomMap);
-        System.out.println("Writing done");
-    }*/
+   
     
 }
