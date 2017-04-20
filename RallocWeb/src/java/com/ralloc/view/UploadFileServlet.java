@@ -128,7 +128,7 @@ public class UploadFileServlet extends HttpServlet {
 //                                      studentList.add(cellIterator.next().getStringCellValue());
                                 String currentUsn = currentRow.getCell(0).getStringCellValue();
                                 int currentDeptId = (int)currentRow.getCell(1).getNumericCellValue();
-                                if(currentUsn == null || currentUsn.length() != 10 || currentDeptId == 0)
+                                if(currentUsn == null || currentDeptId == 0)
                                 {
                                     throw new InvalidFormatException("Document format invalid at " + currentUsn);
                                 }

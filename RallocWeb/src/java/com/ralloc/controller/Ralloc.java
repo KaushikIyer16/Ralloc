@@ -77,10 +77,9 @@ public class Ralloc {
 
     private void initRoomMap() throws SQLException{
 
-        HashMap<Integer,Integer> roomCapacities = Room.getRoomCapacities();
+        LinkedHashMap<Integer,Integer> roomCapacities = Room.getRoomCapacities();
         List<Integer> revList = new ArrayList();
         revList.addAll(roomCapacities.keySet());
-        Collections.reverse(revList);
         for (Integer room : revList) {
             System.out.println("---> "+roomCapacities.get(room));
             roomMap.put(new RoomBean(room, roomCapacities.get(room)), new ArrayList<>());
