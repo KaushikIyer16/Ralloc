@@ -28,10 +28,10 @@
                 }
             }
             function verifyTime(){
-                var datePatt = /\d\d:\d\d/;
+                var datePatt = /\d\d:\d\d\s\w.\w./;
                 if(!(datePatt.test(document.getElementById("examTime").value)))
                 {
-                    alert("Please enter a valid time in the format HH:MM");
+                    alert("Please enter a valid time in the format HH:MM A.M.");
                 }
             }
         </script>
@@ -90,7 +90,7 @@
                                             <br>
                                         </div>
                                         <div class="col l4 m4 s12">
-                                            <input type="text" name="Time" id="examTime" required placeholder="hh:mm" onblur="verifyTime()"/>
+                                            <input type="text" name="Time" id="examTime" required placeholder="HH:MM A.M." onblur="verifyTime()"/>
                                         </div>
                                     </div>
                                 <button type="submit" target="_blank" class="btn custom-btn" style="height: 150px;">

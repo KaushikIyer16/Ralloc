@@ -33,6 +33,17 @@
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
         %>
+        <div class="row">
+            <div class="col s3 m3 l3">
+                <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right">
+            </div>
+            <div class="col s8 m8 l8">
+                <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                <h6 class="center">Attendance and Room Superintendent's Report</h6>
+                <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination _________</h6>
+            </div>
+        </div>
+        
             <div class="arrangement">
                 <br/>
                 <h4>Room: <%out.print(Room.getRoomNameById(roomBean.getRoomId()));%></h4>
