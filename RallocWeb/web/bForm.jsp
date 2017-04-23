@@ -40,7 +40,7 @@
                     <div class="col s8 m8 l8">
                         <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
                         <h6 class="center">Attendance and Room Superintendent's Report</h6>
-                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination _________</h6>
+                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
                     </div>
                 </div>
                 <div class="b-form container">
