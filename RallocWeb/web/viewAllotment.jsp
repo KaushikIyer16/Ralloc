@@ -123,7 +123,14 @@
                             </button>
                         </form>
                         <br>
-                        <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download B-Form Document</a>
+                        <form method="POST" action="${pageContext.request.contextPath}/Download/bFormDocument" target="_blank">
+                             <input type="hidden" name="pathName"/>
+                            
+                                 
+                            <button type="submit" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">
+                                <span class="flow-text" style="color: white; font-size: 15px;">DOWNLOAD B-FORM DOCUMENT</span>
+                            </button>
+                        </form>
                         <br>
                     </div>
                    <br>

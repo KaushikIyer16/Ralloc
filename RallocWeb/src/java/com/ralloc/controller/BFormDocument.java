@@ -39,11 +39,12 @@ public class BFormDocument {
    HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailedRoomMap;
    String date, time;
    XWPFDocument document;
-
-   public BFormDocument(HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime) {
-      detailedRoomMap = detailRoomMap;
-      date = formDate;
-      time = formTime;
+   FileOutputStream out;
+   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime) {
+      this.detailedRoomMap = detailRoomMap;
+      this.date = formDate;
+      this.time = formTime;
+      this.out = out;
       document = new XWPFDocument();
    }
 
@@ -180,7 +181,7 @@ public class BFormDocument {
    public void createDoc() throws Exception {
 
       //Write the Document in file system
-      FileOutputStream out = new FileOutputStream( new File("bform-" + date + time + ".docx"));
+      //FileOutputStream out = new FileOutputStream( new File("bform-" + date + time + ".docx"));
 
       for (RoomBean roomBean: detailedRoomMap.keySet()) {
          ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);

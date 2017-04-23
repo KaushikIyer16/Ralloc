@@ -65,12 +65,8 @@ public class ShowBFormServlet extends HttpServlet {
         request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
         request.setAttribute("Date", request.getParameter("Date"));
         request.setAttribute("Time", request.getParameter("Time"));
-        BFormDocument bForm = new BFormDocument(GenerateRouteServlet.detailedRoomMap, (String)request.getParameter("Date"), (String)request.getParameter("Time"));
-        try {
-            bForm.createDoc();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        //BFormDocument bForm = new BFormDocument(GenerateRouteServlet.detailedRoomMap, (String)request.getParameter("Date"), (String)request.getParameter("Time"));
+        
         RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
         rq.forward(request, response);
     }
