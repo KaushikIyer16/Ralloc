@@ -1,3 +1,4 @@
+<%@page import="com.ralloc.routes.AllocateRouteServlet"%>
 <%@page import="com.ralloc.view.UploadFileServlet"%>
 <%@page import="com.ralloc.model.DepartmentSubject"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
@@ -40,12 +41,12 @@
                     <div class="col s8 m8 l8">
                         <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
                         <h6 class="center">Attendance and Room Superintendent's Report</h6>
-                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
+                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + AllocateRouteServlet.examDate); %></h6>
                     </div>
                 </div>
                 <div class="b-form container">
                         <div class="divider"></div>
-                        <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + request.getAttribute("Time") + " to ________</span>"); %></h6>
+                        <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + AllocateRouteServlet.examTime + " to ________</span>"); %></h6>
                         <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
                         <div class="divider"></div>
                         <br>

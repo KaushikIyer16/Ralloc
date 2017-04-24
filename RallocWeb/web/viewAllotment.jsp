@@ -71,7 +71,7 @@
                 <div class="col l6 m6 s12" style="margin-top: 30px;">
                     <form method="POST" action="${pageContext.request.contextPath}/Generate/show/bform" target="_blank">
 
-                                <div class="row">
+<!--                                <div class="row">
                                         <div class="col l4 m4 s12">
                                             <h6>
                                                 Date
@@ -92,7 +92,7 @@
                                         <div class="col l4 m4 s12">
                                             <input type="text" name="Time" id="examTime" required placeholder="HH:MM A.M." onblur="verifyTime()"/>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 <button type="submit" target="_blank" class="btn custom-btn" style="height: 150px;">
                                     <span class="flow-text" style="color: white;">DOWNLOAD B-FORM</span>
                                 </button>

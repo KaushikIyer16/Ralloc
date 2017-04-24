@@ -38,7 +38,7 @@
                     <a href="${pageContext.request.contextPath}/Subject">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">ADD SUBJECT DATA</span>
+                            <span class="flow-text" style="color: white;">ADD COURSE DATA</span>
                         </div>
                     </div>
                     </a>

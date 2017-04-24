@@ -139,12 +139,9 @@ public class BFormDocument {
       heading.setPageBreak(true);
       heading.setAlignment(ParagraphAlignment.CENTER);
       try {
-         String blipID = document.addPictureData(new FileInputStream("/media/drgreat5/My Stuff/Projects/Ralloc/RallocWeb/web/images/BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
+         String blipID = document.addPictureData(new FileInputStream("../../web/images/BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
          createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 75, 75);
-      } catch (FileNotFoundException e) {
-      } catch (InvalidFormatException e) {
-          e.printStackTrace();
-      } catch (IOException e) {
+      } catch (Exception e) {
           e.printStackTrace();
       }
 

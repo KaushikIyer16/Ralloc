@@ -10,6 +10,7 @@ import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.controller.Ralloc;
 import com.ralloc.model.Room;
 import com.ralloc.model.Subject;
+import com.ralloc.routes.AllocateRouteServlet;
 import static com.ralloc.routes.GenerateRouteServlet.detailedRoomMap;
 import static com.ralloc.routes.GenerateRouteServlet.roomMap;
 import java.io.File;
@@ -78,6 +79,8 @@ public class AllotmentDocument {
             roomNameParagraph.setBold(true);
           
             roomNameParagraph.setText("ROOM: "+ Room.getRoomNameById(roomBean.getRoomId()));
+            roomNameParagraph.addBreak();
+            roomNameParagraph.setText("DATE :  "+AllocateRouteServlet.examDate+"   TIME:  "+AllocateRouteServlet.examTime);
             roomNameParagraph.addBreak();
             ArrayList<SubjectStudentUsn> studentList = detailedRoomMap.get(roomBean);
             

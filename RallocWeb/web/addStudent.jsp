@@ -32,6 +32,28 @@
                 <br>
                 <br>
                 <div class="row">
+                    <div class="col l4 m4 s12">
+                        <h6>
+                            Date
+                        </h6>
+                        <br>
+                    </div>
+                    <div class="col l4 m4 s12">
+                        <input type="text" name="Date" id="examDate" required placeholder="dd-mm-yyyy" onblur="verifyDate()"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col l4 m4 s12">
+                        <h6>
+                            Time
+                        </h6>
+                        <br>
+                    </div>
+                    <div class="col l4 m4 s12">
+                        <input type="text" name="Time" id="examTime" required placeholder="HH:MM A.M." onblur="verifyTime()"/>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col l6 m6 s12">
                         <h5>Please upload the Excel file of students:</h5>
                     </div>

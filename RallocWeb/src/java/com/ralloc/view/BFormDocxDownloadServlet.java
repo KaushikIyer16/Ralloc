@@ -7,6 +7,7 @@ package com.ralloc.view;
 
 import com.ralloc.controller.BFormDocument;
 import com.ralloc.controller.IndentDocument;
+import com.ralloc.routes.AllocateRouteServlet;
 import static com.ralloc.routes.GenerateRouteServlet.detailedRoomMap;
 import static com.ralloc.routes.GenerateRouteServlet.roomMap;
 import java.io.File;
@@ -57,7 +58,7 @@ public class BFormDocxDownloadServlet extends HttpServlet {
         //FileOutputStream out = new FileOutputStream(new File(tmpDir,"RoomAllocation.docx"));
         FileOutputStream out = new FileOutputStream(bFormFile);
         bFormFile.deleteOnExit();
-        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap,date,time);
+        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap,AllocateRouteServlet.examDate,AllocateRouteServlet.examTime);
         try
         {
         populateBFormDocx.createDoc();
