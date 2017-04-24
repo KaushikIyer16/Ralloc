@@ -6,6 +6,7 @@
 package com.ralloc.view;
 
 import com.ralloc.model.Student;
+import com.ralloc.routes.AllocateRouteServlet;
 import com.ralloc.routes.GenerateRouteServlet;
 import java.io.File;
 import java.io.FileInputStream;
@@ -96,8 +97,8 @@ public class UploadFileServlet extends HttpServlet {
                 ServletFileUpload upload = new ServletFileUpload(factory);
 
               try {
-//                  int t = 0;
-//                  String[] tempDateTimeValues = new String[2];
+                  int t = 0;
+                  String[] tempDateTimeValues = new String[2];
                   // Parse the request
                   List<FileItem> formItems = upload.parseRequest(request);
                   Iterator<FileItem> formIterator =  formItems.iterator();
@@ -106,7 +107,7 @@ public class UploadFileServlet extends HttpServlet {
                       
                       if (currFormItem.isFormField()) {
 //                          System.out.println(""+currFormItem.getFieldName()+"<---->"+currFormItem.getString()+"");
-//                          tempDateTimeValues[t++] = new String(currFormItem.getString());
+                          tempDateTimeValues[t++] = currFormItem.getString();
                       } 
                       else {
                           // this means that it is a form item
@@ -151,6 +152,14 @@ public class UploadFileServlet extends HttpServlet {
                   if (GenerateRouteServlet.roomMap != null) {
                       GenerateRouteServlet.roomMap.clear();
                   }
+                  if (!AllocateRouteServlet.examDate.equalsIgnoreCase("")) {
+                      AllocateRouteServlet.examDate = "";
+                  }
+                  if (!AllocateRouteServlet.examTime.equalsIgnoreCase("")) {
+                      AllocateRouteServlet.examTime = "";
+                  }
+                  AllocateRouteServlet.examDate = tempDateTimeValues[0];
+                  AllocateRouteServlet.examTime = tempDateTimeValues[1];
                   
 //                  if (GenerateRouteServlet.date != null) {
 //                      GenerateRouteServlet.date = "";
