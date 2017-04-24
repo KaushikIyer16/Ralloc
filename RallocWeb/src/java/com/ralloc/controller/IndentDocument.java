@@ -44,13 +44,17 @@ public class IndentDocument {
    HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailedRoomMap;
    HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
    XWPFDocument document;
-   public IndentDocument(HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap,HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap) 
+   FileOutputStream out;
+   public IndentDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap,HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap) 
    {
-        detailedRoomMap = detailRoomMap;
+        this.detailedRoomMap = detailRoomMap;
+        this.roomMap=roomMap;
+        this.out=out;
         document = new XWPFDocument();
    }
    
     private static void addRun(XWPFParagraph para, String text, boolean breakLine, int fontSize) {
+        System.out.println("I was in addRun");
       XWPFRun run = para.createRun();
       run.setText(text);
       run.setFontFamily("Calibri");
@@ -59,6 +63,7 @@ public class IndentDocument {
     }
    
     private void writeHeading() {
+        System.out.println("I was in writeHeading");
       XWPFParagraph college = document.createParagraph();
       college.setPageBreak(true);
       college.setAlignment(ParagraphAlignment.CENTER);
@@ -67,6 +72,7 @@ public class IndentDocument {
       addRun(college, "Indent Sheet", true, 18);
    }
     private void writeRoom(String room){
+        System.out.println("I was in addRoom");
         XWPFParagraph classRoom = document.createParagraph();
         classRoom.setBorderTop(Borders.SINGLE);
         
@@ -86,7 +92,7 @@ public class IndentDocument {
         roomID.setText("Room: " + room);
    }
    private void writeStudCnt(String room, List<String> course, List<Integer> studCount, int n) {
-        
+        System.out.println("I was in studCnt");
         writeRoom(room);
         XWPFTable table = document.createTable();
         table.getCTTbl().getTblPr().unsetTblBorders();
@@ -128,9 +134,9 @@ public class IndentDocument {
     public void createIndent() throws Exception{
        
         //Blank Document
-        XWPFDocument document= new XWPFDocument(); 
+        //XWPFDocument document= new XWPFDocument(); 
         //Write the Document in file system
-        FileOutputStream out = new FileOutputStream(new File("Indent.docx"));
+        //FileOutputStream out = new FileOutputStream(new File("Indent.docx"));
         
         //To align the page
         CTSectPr sectPr;
@@ -144,6 +150,7 @@ public class IndentDocument {
         writeHeading();
         int n;
         String RoomID;
+        try{
         for(RoomBean roomBean: roomMap.keySet())
         {
             n = 0;
@@ -158,6 +165,10 @@ public class IndentDocument {
             }
             RoomID = Room.getRoomNameById(roomBean.getRoomId());
             writeStudCnt(RoomID,Code,NumStud,n);
+        }
+        }
+        catch(Exception ex){
+            System.out.println(ex);
         }
         document.write(out);
         out.close();

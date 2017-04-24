@@ -33,9 +33,16 @@
             for(SubjectStudentUsn subject: subjectList)
             {
                 %>
-                <h6 class="center" style="top: 2mm">B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019</h6>
-                <h6 class="center">Attendance and Room Superintendent's Report</h6>
-                <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
+                <div class="row">
+                    <div class="col s3 m3 l3">
+                        <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right">
+                    </div>
+                    <div class="col s8 m8 l8">
+                        <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                        <h6 class="center">Attendance and Room Superintendent's Report</h6>
+                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + request.getAttribute("Date").toString().substring(3, 10)); %></h6>
+                    </div>
+                </div>
                 <div class="b-form container">
                         <div class="divider"></div>
                         <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + request.getAttribute("Time") + " to ________</span>"); %></h6>

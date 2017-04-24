@@ -19,7 +19,22 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css" />
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/font-awesome.min.css" />
-        
+        <script type="text/javascript">
+            function verifyDate(){
+                var datePatt = /\d\d-\d\d-\d\d\d\d/;
+                if(!(datePatt.test(document.getElementById("examDate").value)))
+                {
+                    alert("Please enter a valid date in the format DD-MM-YYYY");
+                }
+            }
+            function verifyTime(){
+                var datePatt = /\d\d:\d\d\s\w.\w./;
+                if(!(datePatt.test(document.getElementById("examTime").value)))
+                {
+                    alert("Please enter a valid time in the format HH:MM A.M.");
+                }
+            }
+        </script>
     </head>
     <body>
         <nav>
@@ -75,7 +90,7 @@
                                             <br>
                                         </div>
                                         <div class="col l4 m4 s12">
-                                            <input type="text" name="Time" id="examTime" required placeholder="hh:mm" onblur="verifyTime()"/>
+                                            <input type="text" name="Time" id="examTime" required placeholder="HH:MM A.M." onblur="verifyTime()"/>
                                         </div>
                                     </div>-->
                                 <button type="submit" target="_blank" class="btn custom-btn" style="height: 150px;">
@@ -99,9 +114,23 @@
                         </form>
                         <!--a href="{pageContext.request.getAttribute("filePath").getAbsolutePath()}" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download Allotment Document</a-->
                         <br>
-                        <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download A-Form Document</a>
+                         <form method="POST" action="${pageContext.request.contextPath}/Download/indentDocument" target="_blank">
+                             <input type="hidden" name="pathName"/>
+                            
+                                 
+                            <button type="submit" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">
+                                <span class="flow-text" style="color: white; font-size: 15px;">DOWNLOAD INDENT DOCUMENT</span>
+                            </button>
+                        </form>
                         <br>
-                        <a href="#" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">Download B-Form Document</a>
+                        <form method="POST" action="${pageContext.request.contextPath}/Download/bFormDocument" target="_blank">
+                             <input type="hidden" name="pathName"/>
+                            
+                                 
+                            <button type="submit" target="_blank" class="btn custom-btn" style="margin-bottom: 10%;">
+                                <span class="flow-text" style="color: white; font-size: 15px;">DOWNLOAD B-FORM DOCUMENT</span>
+                            </button>
+                        </form>
                         <br>
                     </div>
                    <br>

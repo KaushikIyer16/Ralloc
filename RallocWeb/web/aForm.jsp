@@ -30,9 +30,10 @@
           %>
       
             <div class="a-form">
+                <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" style="margin-left: 95mm;">
                 <h3 class="center short-margin">B.M.S. COLLEGE OF ENGINEERING (AUTONOMOUS INSTITUTION UNDER VTU) BANGALORE-19</h3>
                 <h4 class="center short-margin">Attendance and Room Superintendent's Report</h4>
-                <h3 class="center short-margin">B.E/B.Arch/M.B.A/M.C.A/M.Tech/Ph.D/M.Sc(Res) ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.5vw;">(MM/YYYY)</span></h3>
+                <h3 class="center short-margin">B.E/B.Arch/M.B.A/M.C.A/M.Tech. ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.5vw;">(MM/YYYY)</span></h3>
 
                 <h4 style="margin-left:10%;" class="short-margin">Branch / title of the course:<% out.print(Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject))); %> </h4>
                 <br>
