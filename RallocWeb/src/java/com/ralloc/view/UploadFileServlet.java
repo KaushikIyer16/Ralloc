@@ -167,8 +167,8 @@ public class UploadFileServlet extends HttpServlet {
 //                  if (GenerateRouteServlet.time != null) {
 //                      GenerateRouteServlet.time = "";
 //                  }
-                  
-                  response.sendRedirect(request.getContextPath()+"/home");
+//                  out.println(AllocateRouteServlet.examDate);
+//                  response.sendRedirect(request.getContextPath()+"/home");
               } catch (IOException | SQLException | FileUploadException | EncryptedDocumentException | InvalidFormatException | NullPointerException ex) {
                   System.out.println(ex.getMessage());
                   errorMessage = ex.getMessage();

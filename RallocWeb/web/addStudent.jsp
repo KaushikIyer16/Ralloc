@@ -14,6 +14,22 @@
         <link rel="stylesheet" type="text/css" href="./css/materialize.min.css" />
         <link rel="stylesheet" type="text/css" href="./css/common.css" />
         <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css" />
+        <script type="text/javascript">
+            function verifyDate(){
+                var datePatt = /\d\d-\d\d-\d\d\d\d/;
+                if(!(datePatt.test(document.getElementById("examDate").value)))
+                {
+                    alert("Please enter a valid date in the format DD-MM-YYYY");
+                }
+            }
+            function verifyTime(){
+                var datePatt = /\d\d:\d\d/;
+                if(!(datePatt.test(document.getElementById("examTime").value)))
+                {
+                    alert("Please enter a valid time in the format HH:MM");
+                }
+            }
+        </script>
     </head>
     <body>
         <nav>
