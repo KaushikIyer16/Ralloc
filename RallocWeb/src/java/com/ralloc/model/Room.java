@@ -75,6 +75,23 @@ public class Room {
         }
         return noRooms;
     }
+    public static ArrayList<Room> getAllRoomDetails() throws SQLException {
+        
+        ArrayList<Room> roomDetails = new ArrayList<>();
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement dependencyStatement = myConnection.prepareStatement("SELECT * FROM Room");
+            ResultSet subResult = dependencyStatement.executeQuery();
+            for(int i=0; subResult.next(); i++){
+                Room roomObject = new Room();
+                roomObject.roomId = subResult.getInt(1);
+                roomObject.name = subResult.getString(2);
+                roomObject.capacity = subResult.getInt(3);
+                roomObject.dependency = subResult.getInt(4);
+                roomDetails.add(roomObject);
+            }
+        }
+        return roomDetails;
+    }
     
     public static String getRoomNameById(int roomId) throws SQLException{
         String roomName = "";
