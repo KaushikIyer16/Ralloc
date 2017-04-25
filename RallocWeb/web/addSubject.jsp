@@ -168,27 +168,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="dependency-matrix container">
+<!--                    <div class="dependency-matrix container">
                         <h5>Please select the rooms on which it is dependent</h5>
                         <div class="row">
-                        <%
-//                            String roomArray[] = {"ISE-4001", "ISE-4002", "ISE-4003", "ISE-4001", "ISE-4002", "ISE-4003"};
-//                            HashMap roomList = new HashMap();
-//                            //Get the available rooms from the database here and put it to this array              
-//                            for(int i=0; i<roomArray.length; i++){
-//                                roomList.put(i, roomArray[i]);
-//                            }
-//                            for(int i=0; i<roomList.keySet().toArray().length; i++)
-//                            {
-//                                out.println("<div class=\"col l3 s3 m3\"><p><input type=\"checkbox\" name=\"" + roomArray[i] + "\"/><label for=\"room" + i + "\">"+ "Room" +"</label></p></div>");
-//                                if((i+1) % 4 == 0)
-//                                {
-//                                    out.println("</div><div class=\"row\">");
-//                                }
-//                            }
-//                          %>
+                        
                         </div>
-                    </div>
+                    </div>-->
                     <br>
                     <br>
                     <div class="row">
@@ -222,7 +207,7 @@
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE
-            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            <!--<a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>-->
             </div>
           </div>
         </footer>
