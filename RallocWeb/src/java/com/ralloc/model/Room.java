@@ -95,7 +95,7 @@ public class Room {
         PreparedStatement ps = con.prepareStatement("SELECT RoomID, Capacity FROM Room ORDER BY Dependency DESC");
         ResultSet rs = ps.executeQuery();
         while (rs.next()) { 
-            System.out.println(rs.getInt(1));
+//            System.out.println(rs.getInt(1));
             roomCapacities.put(rs.getInt(1), rs.getInt(2));
         }
         con.close();

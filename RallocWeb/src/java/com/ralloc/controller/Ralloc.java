@@ -81,7 +81,7 @@ public class Ralloc {
         List<Integer> revList = new ArrayList();
         revList.addAll(roomCapacities.keySet());
         for (Integer room : revList) {
-            System.out.println("---> "+roomCapacities.get(room));
+//            System.out.println("---> "+roomCapacities.get(room));
             roomMap.put(new RoomBean(room, roomCapacities.get(room)), new ArrayList<>());
         }
 
@@ -214,7 +214,7 @@ public class Ralloc {
             this.initRallocController();
 
             for (RoomBean currRoom : roomMap.keySet()) {
-                System.out.println(currRoom.getCapacity());
+//                System.out.println(currRoom.getCapacity());
                 // now i need to choose
                 int currRoomCapacity = currRoom.getCapacity();
                 int firstSubjCapacity = currRoomCapacity/2;
@@ -244,7 +244,10 @@ public class Ralloc {
                     else if (firstSubjCapacity >= subject1Students.getNumberOfStudents()) {
                        ArrayList<SubjectStudentCount> tmpRoomList = roomMap.get(currRoom);
                        tmpRoomList.add(new SubjectStudentCount(subject1.getSubjectCode(), subject1Students.getDepartmentID(), subject1Students.getClusterID(), subject1Students.getNumberOfStudents()));
-                       roomMap.put(currRoom, tmpRoomList);
+                        if (tmpRoomList.size() > 0) {
+                            roomMap.put(currRoom, tmpRoomList);
+                        }
+                       
 //                       System.out.println("--> "+ subject1Students.getDepartmentID()+" = "+subject1Students.getNumberOfStudents());
                        currRoom.setCapacity(currRoom.getCapacity()- subject1Students.getNumberOfStudents());
                        firstSubjCapacity -= subject1Students.getNumberOfStudents();
@@ -278,7 +281,10 @@ public class Ralloc {
                     else if (secondSubjCapacity >= subject2Students.getNumberOfStudents() ) {
                         ArrayList<SubjectStudentCount> tmpRoomList = roomMap.get(currRoom);
                         tmpRoomList.add(new SubjectStudentCount(subject2.getSubjectCode(), subject2Students.getDepartmentID(), subject2Students.getClusterID(), subject2Students.getNumberOfStudents()));
-                        roomMap.put(currRoom, tmpRoomList);
+                        if (tmpRoomList.size() > 0) {
+                            roomMap.put(currRoom, tmpRoomList);
+                        }
+                        
 //                         System.out.println("--> "+ subject2Students.getDepartmentID()+" = "+subject2Students.getNumberOfStudents());
                         currRoom.setCapacity(currRoom.getCapacity()- subject2Students.getNumberOfStudents());
                         secondSubjCapacity -= subject2Students.getNumberOfStudents();
@@ -411,7 +417,7 @@ public class Ralloc {
     private void printRoomMap() {
         for(RoomBean room : roomMap.keySet()){
             ArrayList<SubjectStudentCount> tmpList = roomMap.get(room);
-            System.out.println(room.getRoomId()+"\n\n");
+            System.out.println(room.getRoomId()+tmpList.size()+"\n\n");
             for (SubjectStudentCount subjectStudentCount : tmpList) {
                 System.out.println(subjectStudentCount.getCourseCode()+" "+subjectStudentCount.getDepartmentId()+" "+subjectStudentCount.getNumberOfStudents());
             }
@@ -441,7 +447,7 @@ public class Ralloc {
     }
 
     private void getDetailedRoomAllocation() throws SQLException {
-        System.out.println("\n\n\n\n\nDetailed Room Allocation");
+//        System.out.println("\n\n\n\n\nDetailed Room Allocation");
         
         for (RoomBean room : roomMap.keySet()) {
             detailedRoomMap.put(room, new ArrayList<>());
@@ -470,7 +476,7 @@ public class Ralloc {
                     tmpUsnList.add(usnList.get(0));
                     usnList.remove(0);
                 }
-                System.out.println("usn list size is "+tmpUsnList.size());
+//                System.out.println("usn list size is "+tmpUsnList.size());
                 detailedRoomMap.get(room).add(new SubjectStudentUsn(subjectStudentCount.getCourseCode(), tmpUsnList));
                 tmpUsnList.clear();
 //                System.out.println("");
