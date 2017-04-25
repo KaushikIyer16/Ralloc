@@ -30,30 +30,6 @@
         <div class="container">
             <h5>Generate new A-Forms</h5>
             <form method="POST"	action="${pageContext.request.contextPath}/Aform/display" enctype="multipart/form-data">
-                <!--<h6>Please enter the room name</h6>-->
-<!--                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="roomName" required placeholder="Room Name" />
-                    </div>
-                </div>
-                <h6>Please enter the Course Code</h6>
-                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="courseCode" required placeholder="Room Name" />
-                    </div>
-                </div>
-                <h6>Please enter the USN's of the candidates present, separated by ','</h6>
-                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="presentUsn" required placeholder="Room Name" />
-                    </div>
-                </div>
-                <h6>Please enter the USN's of the candidates absent, separated by ','</h6>
-                <div class="row">
-                    <div class="col l6 m6 s12">
-                        <input type="text" name="absentUsn" required placeholder="Room Capacity" />
-                    </div>
-                </div>   -->
                 <div class="row">
                     <div class="col l6 m6 s12">
                         <h5>Please upload the Excel file of students:</h5>
@@ -79,7 +55,7 @@
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE
-            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            <!--<a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>-->
             </div>
           </div>
         </footer>

@@ -80,7 +80,7 @@
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE
-            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            <!--<a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>-->
             </div>
           </div>
         </footer>
