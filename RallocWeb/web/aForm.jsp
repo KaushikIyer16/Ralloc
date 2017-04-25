@@ -52,14 +52,18 @@
           HashMap<String,String> studentList = subjectStudents.get(subject);
           ArrayList<String> presentList = new ArrayList();
           ArrayList<String> absentList = new ArrayList();
+          ArrayList<String> mpList = new ArrayList();
           for(String student: studentList.keySet())
           {
               
               if(studentList.get(student).equalsIgnoreCase("P"))
                 presentList.add(student);
               
-              else
+              else if(studentList.get(student).equalsIgnoreCase("NP"))
                 absentList.add(student);
+              
+              else
+                  mpList.add(student);
               
           }
               
@@ -101,7 +105,20 @@
                       
               <div class="student-defaulters">
                 <h4 class="inline-header short-margin">Seat Number of the candidates booked under malpractice:</h4>
+                    <%
+                    
+                        for(int i=0; i<mpList.size(); i++)
+                        {
+                            
+                            %>
+                    
+                                <span class="usn"><% out.print(mpList.get(i)); %></span>
                 
+                            <%
+                            
+                        }
+                    
+                    %>
                 <br>
               </div>          
                     
