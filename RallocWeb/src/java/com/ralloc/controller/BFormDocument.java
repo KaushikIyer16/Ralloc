@@ -140,7 +140,7 @@ public class BFormDocument {
       heading.setPageBreak(true);
       heading.setAlignment(ParagraphAlignment.CENTER);
       try {
-         String blipID = document.addPictureData(new FileInputStream(contextPath+"/images/BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
+         String blipID = document.addPictureData(new FileInputStream("BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
          createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 75, 75);
       } catch (Exception e) {
           e.printStackTrace();
@@ -148,7 +148,10 @@ public class BFormDocument {
 
       writeRun(heading, "B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
       writeRun(heading, "Attendance and Room Superintendent's Report", true);
-      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + date.substring(3, date.length()), true);
+      String dateTime = "        ";
+      if(!(date.length() < 10))
+          dateTime = date.substring(3, date.length());
+      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + dateTime, true);
    }
 
    private void writeCourseDetails(SubjectStudentUsn subject) {

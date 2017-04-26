@@ -68,7 +68,7 @@
                             </form>
                         </div>
                         <div class="col l6 m6 s6">
-                            <form method="POST"	action="{pageContext.request.contextPath}/Download/indentDocument" enctype="multipart/form-data" target="_blank">
+                            <form method="POST"	action="${pageContext.request.contextPath}/Download/indentDocument" enctype="multipart/form-data" target="_blank">
                                 <button type="submit" class="btn transparent" style="height: 80px;  width: 100%;">
                                     <span style="color: black;"><i class="fa fa-download" aria-hidden="true"></i><br>DOCX</span>
                                 </button>
