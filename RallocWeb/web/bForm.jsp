@@ -78,19 +78,70 @@
                         %>
                             </tbody>
                         </table>
-                    <br>
+                            <br>
                     <h6 style="margin-left: 5mm;">USNs (absentees): ________________________________________________________</h6>
                     <br>
                     <h6 style="margin-left: 5mm;">USNs (candidates b/u malpractice): _____________________________________________</h6>
                     <br>
-                    <h6 style="font-size: 6px;"><span style="text-decoration: underline; margin-left: 16mm;">Room Superintendent / Examiner -1</span><span style="text-decoration: underline; margin-left: 20mm;">Room Superintendent / Examiner -1</span><span style="text-decoration: underline; margin-left: 20mm;">Chief / Deputy Superintendent</span></h6>
-                    <br>
-                    <h6><span style="margin-left: 5mm; font-size: 8px;">Signature : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
-                    <br>
-                    <h6><span style="margin-left: 5mm; font-size: 12px;"> Name : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
-                    <br>
-                    <h6><span style="margin-left: 5mm; font-size: 8px;">Affiliation : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
-                
+                    
+                            <table style="border: 0px solid black;" class="center">
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Room Superintendent / Examiner -1</span></h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Examiner - II</span></h6>
+                                    </td>
+                                    <td>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Chief/Deputy Superintendent</span></h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="left">Signature</h6>
+                                    </td>
+                                    <td>
+                                        <h6>:_______________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="left">Name</h6>
+                                    </td>
+                                    <td>
+                                        <h6>:_______________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="left">Affiliation</h6>
+                                    </td>
+                                    <td>
+                                        <h6>:_______________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                    <td>
+                                        <h6>____________________</h6>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                    
                 </div>
                     
                 <%
