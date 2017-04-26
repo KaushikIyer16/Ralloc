@@ -35,10 +35,10 @@
             <hr width="100%" style="border-top:1px solid #989896">
             <div class="row">
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="${pageContext.request.contextPath}/Subject">
+                    <a href="${pageContext.request.contextPath}/Department">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">ADD COURSE DATA</span>
+                            <span class="flow-text" style="color: white;">ADD DEPARTMENT DATA</span>
                         </div>
                     </div>
                     </a>
@@ -53,14 +53,16 @@
                     </a>
                 </div>
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
-                    <a href="${pageContext.request.contextPath}/Department">
+                    <a href="${pageContext.request.contextPath}/Subject">
                         <div class = "card-panel custom-btn center" style="height: 150px;">
                             <div class="card-content admin-card-content">
-                            <span class="flow-text" style="color: white;">ADD DEPARTMENT DATA</span>
+                            <span class="flow-text" style="color: white;">ADD COURSE DATA</span>
                         </div>
                     </div>
                     </a>
                 </div>
+                
+                
             </div>
             <div class="row">
                 <div class="col l4 m4 s12" style="margin-top: 30px;">
