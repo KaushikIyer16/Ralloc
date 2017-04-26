@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.routes.AllocateRouteServlet"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Room"%>
 <%@page import="com.ralloc.bean.SubjectStudentCount"%>
@@ -22,6 +23,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div class="row">
+            <div class="col s3 m3 l3">
+                <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right">
+            </div>
+            <div class="col s8 m8 l8">
+                <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                <h6 class="center">Attendance and Room Superintendent's Report</h6>
+                <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + AllocateRouteServlet.examDate); %></h6>
+            </div>
+        </div>
         <%
         detailedRoomMap = (HashMap<RoomBean,ArrayList<SubjectStudentUsn>>)request.getAttribute("detailRoomMap");
         roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
