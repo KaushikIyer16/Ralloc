@@ -54,7 +54,7 @@ public class IndentDocument {
    }
    
     private static void addRun(XWPFParagraph para, String text, boolean breakLine, int fontSize) {
-        System.out.println("I was in addRun");
+   
       XWPFRun run = para.createRun();
       run.setText(text);
       run.setFontFamily("Calibri");
@@ -63,7 +63,7 @@ public class IndentDocument {
     }
    
     private void writeHeading() {
-        System.out.println("I was in writeHeading");
+   
       XWPFParagraph college = document.createParagraph();
       college.setPageBreak(true);
       college.setAlignment(ParagraphAlignment.CENTER);
@@ -72,7 +72,7 @@ public class IndentDocument {
       addRun(college, "Indent Sheet", true, 18);
    }
     private void writeRoom(String room){
-        System.out.println("I was in addRoom");
+      
         XWPFParagraph classRoom = document.createParagraph();
         classRoom.setBorderTop(Borders.SINGLE);
         
@@ -92,7 +92,7 @@ public class IndentDocument {
         roomID.setText("Room: " + room);
    }
    private void writeStudCnt(String room, List<String> course, List<Integer> studCount, int n) {
-        System.out.println("I was in studCnt");
+
         writeRoom(room);
         XWPFTable table = document.createTable();
         table.getCTTbl().getTblPr().unsetTblBorders();

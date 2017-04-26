@@ -27,6 +27,7 @@ import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.xwpf.usermodel.XWPFTableRow;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTbl;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblWidth;
@@ -37,6 +38,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.STHeightRule;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTNonVisualDrawingProps;
 import org.openxmlformats.schemas.drawingml.x2006.main.CTPositiveSize2D;
 import org.openxmlformats.schemas.drawingml.x2006.wordprocessingDrawing.CTInline;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 
 /**
  *
@@ -259,6 +262,88 @@ public class BFormDocument {
       ctable.setTblPr(pr);
    }
 
+   public void writeAttendance(){
+       XWPFRun attendance = document.createParagraph().createRun();
+       attendance.addBreak();
+       attendance.setText("USNs(absentees):");
+       for(int i=0;i<56;i++)
+           attendance.setText("_");
+       attendance.setText("USNs (candidates b/u malpractice):");
+       for(int i=0;i<56;i++)
+           attendance.setText("_");
+
+       XWPFTable table = document.createTable(4, 4);
+
+      XWPFParagraph roomSuperintendent = table.getRow(0).getCell(1).getParagraphArray(0);
+      roomSuperintendent.setPageBreak(false);
+      roomSuperintendent.setAlignment(ParagraphAlignment.CENTER);
+      writeRun(roomSuperintendent, "Room Superintendent / Examiner - I", true);
+
+      XWPFParagraph examinerII = table.getRow(0).getCell(2).getParagraphArray(0);
+      examinerII.setPageBreak(false);
+      examinerII.setAlignment(ParagraphAlignment.CENTER);
+      writeRun(examinerII, "Examiner - II", true);
+
+      XWPFParagraph chief = table.getRow(0).getCell(3).getParagraphArray(0);
+      chief.setPageBreak(false);
+      chief.setAlignment(ParagraphAlignment.CENTER);
+      writeRun(chief, "Chief/Deputy Superintendent", true);
+
+      XWPFParagraph signature = table.getRow(1).getCell(0).getParagraphArray(0);
+      signature.setPageBreak(false);
+      signature.setAlignment(ParagraphAlignment.LEFT);
+      writeRun(signature, "Signature", true);
+
+      XWPFParagraph name = table.getRow(2).getCell(0).getParagraphArray(0);
+      name.setPageBreak(false);
+      name.setAlignment(ParagraphAlignment.LEFT);
+      writeRun(name, "Name", true);
+
+      XWPFParagraph affiliation = table.getRow(3).getCell(0).getParagraphArray(0);
+      affiliation.setPageBreak(false);
+      affiliation.setAlignment(ParagraphAlignment.LEFT);
+      writeRun(affiliation, "Affiliation", true);
+
+      for (int i = 1; i <= 3; ++i) {
+        XWPFParagraph line = table.getRow(i).getCell(1).getParagraphArray(0);
+        line.setPageBreak(false);
+        line.setAlignment(ParagraphAlignment.CENTER);
+        writeRun(line, ":_______________________", true);
+        for (int j = 2; j <= 3; ++j) {
+          XWPFParagraph otherLine = table.getRow(i).getCell(j).getParagraphArray(0);
+          otherLine.setPageBreak(false);
+          otherLine.setAlignment(ParagraphAlignment.CENTER);
+          writeRun(otherLine, "____________________", true);
+        }
+      }
+
+      table.setInsideHBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
+      table.setInsideVBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
+      for (int i = 0; i < 4; ++i) {
+        table.getRow(i).setHeight(300);
+        table.getRow(i).getCtRow().getTrPr().getTrHeightArray(0).setHRule(STHeightRule.EXACT);
+      }
+
+
+      CTTbl ctable = table.getCTTbl();
+      CTTblPr pr = ctable.getTblPr();
+
+      CTTblWidth tblW = pr.getTblW();
+      tblW.setW(BigInteger.valueOf(5000));
+      tblW.setType(STTblWidth.PCT);
+      pr.setTblW(tblW);
+
+      CTTblBorders tblB = pr.getTblBorders();
+      CTBorder border = tblB.addNewBottom();
+      border.setColor("FFFFFF");
+      tblB.setBottom(border);
+      tblB.setTop(border);
+      tblB.setRight(border);
+      tblB.setLeft(border);
+
+      ctable.setTblPr(pr);
+   }
+
    public void createDoc() throws Exception {
 
       //Write the Document in file system
@@ -271,8 +356,11 @@ public class BFormDocument {
             writeCourseDetails(subject);
             document.createParagraph().createRun().addBreak();
             writeUSN(subject);
+            writeAttendance();
          }
+         
       }
+
 
       document.write(out);
       out.close();
