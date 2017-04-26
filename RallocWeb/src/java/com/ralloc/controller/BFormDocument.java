@@ -45,15 +45,16 @@ import org.openxmlformats.schemas.drawingml.x2006.wordprocessingDrawing.CTInline
 public class BFormDocument {
 
    HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailedRoomMap;
-   String date, time;
+   String date, time, contextPath;
    XWPFDocument document;
    FileOutputStream out;
-   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime) {
+   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime,String contextPath) {
       this.detailedRoomMap = detailRoomMap;
       this.date = formDate;
       this.time = formTime;
       this.out = out;
       document = new XWPFDocument();
+      this.contextPath = contextPath;
    }
 
    public void createPicture(XWPFParagraph para, String blipId,int id, int width, int height) {
@@ -139,7 +140,7 @@ public class BFormDocument {
       heading.setPageBreak(true);
       heading.setAlignment(ParagraphAlignment.CENTER);
       try {
-         String blipID = document.addPictureData(new FileInputStream("../../web/images/BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
+         String blipID = document.addPictureData(new FileInputStream(contextPath+"/images/BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
          createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 75, 75);
       } catch (Exception e) {
           e.printStackTrace();
@@ -147,7 +148,7 @@ public class BFormDocument {
 
       writeRun(heading, "B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
       writeRun(heading, "Attendance and Room Superintendent's Report", true);
-      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + date.substring(3, 10), true);
+      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + date.substring(3, date.length()), true);
    }
 
    private void writeCourseDetails(SubjectStudentUsn subject) {

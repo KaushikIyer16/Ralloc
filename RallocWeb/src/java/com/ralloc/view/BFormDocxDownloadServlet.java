@@ -8,6 +8,7 @@ package com.ralloc.view;
 import com.ralloc.controller.BFormDocument;
 import com.ralloc.controller.IndentDocument;
 import com.ralloc.routes.AllocateRouteServlet;
+import com.ralloc.routes.GenerateRouteServlet;
 import static com.ralloc.routes.GenerateRouteServlet.detailedRoomMap;
 import static com.ralloc.routes.GenerateRouteServlet.roomMap;
 import java.io.File;
@@ -48,8 +49,8 @@ public class BFormDocxDownloadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
        DiskFileItemFactory factory = new DiskFileItemFactory();
-       date="            ";
-       time="            ";
+       date=AllocateRouteServlet.examDate;
+       time=AllocateRouteServlet.examTime;
         // Configure a repository (to ensure a secure temp location is used)
         ServletContext servletContext = this.getServletConfig().getServletContext();
         File docRepository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
@@ -58,7 +59,7 @@ public class BFormDocxDownloadServlet extends HttpServlet {
         //FileOutputStream out = new FileOutputStream(new File(tmpDir,"RoomAllocation.docx"));
         FileOutputStream out = new FileOutputStream(bFormFile);
         bFormFile.deleteOnExit();
-        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap,AllocateRouteServlet.examDate,AllocateRouteServlet.examTime);
+        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap,AllocateRouteServlet.examDate,AllocateRouteServlet.examTime,request.getContextPath());
         try
         {
         populateBFormDocx.createDoc();
