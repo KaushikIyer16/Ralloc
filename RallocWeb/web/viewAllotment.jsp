@@ -48,6 +48,7 @@
                         </div>
                         <div class="col l6 m6 s6">
                             <form method="POST"	action="${pageContext.request.contextPath}/Download/allotmentDocument" enctype="multipart/form-data" target="_blank">
+                                <input type="hidden" name="pathName"/>
                                 <button type="submit" class="btn transparent" style="height: 80px; width: 100%;">
                                     <span style="color: black;"><i class="fa fa-download" aria-hidden="true"></i><br>DOCX</span>
                                 </button>
@@ -90,6 +91,7 @@
                         </div>
                         <div class="col l6 m6 s6">
                             <form method="POST"	action="${pageContext.request.contextPath}/Download/bFormDocument" enctype="multipart/form-data" target="_blank">
+                                <input type="hidden" name="pathName"/>
                                 <button type="submit" class="btn transparent" style="height: 80px; width: 100%;">
                                     <span style="color: black;"><i class="fa fa-download" aria-hidden="true"></i><br>DOCX</span>
                                 </button>
