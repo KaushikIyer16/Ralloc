@@ -78,7 +78,21 @@
                         %>
                             </tbody>
                         </table>
-                    </div>
+                    <br>
+                    <h6 style="margin-left: 5mm;">USNs (absentees): ________________________________________________________</h6>
+                    <br>
+                    <h6 style="margin-left: 5mm;">USNs (candidates b/u malpractice): _____________________________________________</h6>
+                    <br>
+                    <h6 style="font-size: 6px;"><span style="text-decoration: underline; margin-left: 16mm;">Room Superintendent / Examiner -1</span><span style="text-decoration: underline; margin-left: 20mm;">Room Superintendent / Examiner -1</span><span style="text-decoration: underline; margin-left: 20mm;">Chief / Deputy Superintendent</span></h6>
+                    <br>
+                    <h6><span style="margin-left: 5mm; font-size: 8px;">Signature : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
+                    <br>
+                    <h6><span style="margin-left: 5mm; font-size: 12px;"> Name : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
+                    <br>
+                    <h6><span style="margin-left: 5mm; font-size: 8px;">Affiliation : _________________________</span><span style="margin-left: 20mm;"> ___________________</span><span style="margin-left: 10mm;"> _____________________</span></h6>
+                
+                </div>
+                    
                 <%
             }
         }

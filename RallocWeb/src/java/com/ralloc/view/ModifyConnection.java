@@ -34,11 +34,10 @@ public class ModifyConnection extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        DBConnection.setCONNECTIONSTRING((String)request.getAttribute("connectionString"));
-        DBConnection.setUSERNAME((String)request.getAttribute("userName"));
-        DBConnection.setPASSWORD((String)request.getAttribute("password"));
-        
-        response.sendRedirect("referer");
+        DBConnection.setCONNECTIONSTRING((String)request.getParameter("connectionString"));
+        DBConnection.setUSERNAME((String)request.getParameter("userName"));
+        DBConnection.setPASSWORD((String)request.getParameter("password"));
+        response.sendRedirect(request.getContextPath());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
