@@ -47,7 +47,7 @@
                 <a href="${pageContext.request.contextPath}/home" class="brand-logo"><img src="${pageContext.request.contextPath}/images/BMSCE_Logo.svg" class="clg-logo"></a>
                 
                 <ul id="nav-mobile" class="left clg-name">
-                    <li><a href="${pageContext.request.contextPath}/home"><h5>B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
+                    <li><a href="${pageContext.request.contextPath}/home"><h5>B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h5><h6>(Autonomous Institute, Affiliated to VTU)</h6></a></li>
                 </ul>
             </div>
         </nav>
@@ -66,7 +66,9 @@
                   <ul class="tabs delete-tabs">
                     <li class="tab col s6"><a href="#viewStudent" class="active">View Student Data</a></li>
                     <li class="tab col s6"><a href="#viewDep">View Department Data</a></li>
+                    <li class="tab col s6"><a href="#viewSubject">View Course Data</a></li>
                     <li class="tab col s6"><a href="#viewRoom">View Room Data</a></li>
+                    
                   </ul>
                 </div>
             </div>
@@ -74,7 +76,7 @@
                 <div id="viewStudent">
                     <div class="row" style="margin-top: 5%;">
                         <div class="col l12 m6 s12" style=" min-height: 150px;">
-                            <h5>Course wise Student USNs</h5>
+                            <h5>Course-wise Student USNs</h5>
                             <br>
                             <br>
                             
@@ -98,6 +100,36 @@
                     </div>
                 </div>
             </div>
+                            
+            <div class="container">
+                <div id="viewSubject">
+                    <div class="row" style="margin-top: 5%;">
+                        <h5>Course Details</h5>
+        <table>
+            <tr>
+                <th class="center"> Course Name</th>
+                <th class ="center"> Course Code</th>
+            </tr>
+            
+            <%
+                subjectList = Subject.getAllDetails();
+                
+                for(Subject subList : subjectList){
+                    %>
+            
+                    <tr>
+                        <td class="center"><% out.print(subList.getName()); %></td>
+                        <td class="center"><% out.print(subList.getCourseCode()); %></td>
+                    </tr>
+                    
+                    <%
+                }
+            %>
+            
+        </table>
+                    </div>
+                </div>
+            </div>
             
             <div class="container">
                 <div id="viewDep">
@@ -105,13 +137,13 @@
                         <h5>Department Details</h5>
         <table>
             <tr>
-                <th> Department Name</th>
-                <th> Department ID to be given in the Excel File</th>
+                <th class="center"> Department Name</th>
+                <th class="center"> Department ID to be given in the Excel File</th>
             </tr>
             <%for(Integer keys : departmentList.keySet()) {%>
                 <tr>
-                    <td><%= departmentList.get(keys) %></td>
-                    <td><%= keys%></td>
+                    <td class="center"><%= departmentList.get(keys) %></td>
+                    <td class="center"><%= keys%></td>
                 </tr>
             <%}%>
         </table>
@@ -120,26 +152,7 @@
             </div>
             <div class="container">
                 <div id="viewRoom">
-                    <!--div class="row" style="margin-top: 5%;">
-                        <div class="col l6 m6 s12" style=" min-height: 150px;">
-                            <h5>Clear all department data ?</h5>
-                            <br>
-                            <br>
-                            <form method="POST" action="${pageContext.request.contextPath}/Delete/department/all">
-                                <br>
-                                <br>
-                                <button class="btn waves-effect waves-light custom-btn" type="submit">Clear All Departments</button>
-                            </form>
-                        </div>
-                        <div class="col l6 m6 s12" style="border-left: 1px solid black;">
-                            <h5>Please enter the department name to be deleted</h5>
-                            <form method="POST" action="${pageContext.request.contextPath}/Delete/department">
-                                <input type="text" name="deleteDept" id="deleteDept" required placeholder="TTT"/>
-                                <br>
-                                <button class="btn waves-effect waves-light custom-btn" type="submit">Delete Department</button>
-                            </form>
-                        </div>
-                    </div-->
+                    <h5>Room Details</h5>
                     
                     <table>
             <tr>
