@@ -34,7 +34,7 @@
             for(SubjectStudentUsn subject: subjectList)
             {
                 %>
-                <div class="row">
+                <div class="row" style="margin-top: 10px;">
                     <div class="col s3 m3 l3">
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
@@ -64,7 +64,7 @@
                             for(String usn: subject.getUsnList())
                             {
                                 %>
-                                <tr style="border: 1px solid black;">
+                                <tr style="border: 1px solid black; line-height: 1">
                                         <%
                                             out.print("<td style=\"padding: 1px 1px 1px; border-right: 1px solid black; font-size: 8px;\">" + usn + "</td>");
                                         %>
@@ -87,63 +87,60 @@
                             <table style="border: 0px solid black;" class="center">
                                 <tr>
                                     <td></td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Room Superintendent / Examiner -1</span></h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Examiner - II</span></h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Chief/Deputy Superintendent</span></h6>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="left" style="font-size: 11.5px;">Signature</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>:_______________________</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>____________________</h6>
-                                    </td>
-                                    <td>
+                                    </td >
+                                    <td style="padding-top: 0px;">
                                         <h6>____________________</h6>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="left" style="font-size: 11.5px;">Name</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>:_______________________</h6>
                                     </td>
                                     <td>
                                         <h6>____________________</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>____________________</h6>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6 class="left" style="font-size: 11.5px;">Affiliation</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>:_______________________</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>____________________</h6>
                                     </td>
-                                    <td>
+                                    <td style="padding-top: 0px;">
                                         <h6>____________________</h6>
                                     </td>
                                 </tr>
                             </table>
-                            
-                    
-                </div>
-                    
+                        </div>                   
                 <%
             }
         }
