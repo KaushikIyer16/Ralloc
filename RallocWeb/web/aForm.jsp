@@ -4,6 +4,7 @@
     Author     : KNSI
 --%>
 
+<%@page import="java.util.Collections"%>
 <%@page import="com.ralloc.model.Subject"%>
 <%@page import="com.ralloc.model.Department"%>
 <%@page import="com.ralloc.model.DepartmentSubject"%>
@@ -66,6 +67,8 @@
                   mpList.add(student);
               
           }
+          Collections.sort(presentList);
+          Collections.sort(absentList);
               
               %>
           

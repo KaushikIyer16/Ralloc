@@ -5,6 +5,7 @@
  */
 package com.ralloc.view;
 
+import com.ralloc.model.StudentSubject;
 import com.ralloc.model.Subject;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "SubjectDeletionServlet", urlPatterns = {"/Delete/subject"})
 public class SubjectDeletionServlet extends HttpServlet {
-
+    public static String errorMessage = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,11 +36,20 @@ public class SubjectDeletionServlet extends HttpServlet {
         
         // write query to delete a subject by course code
         try {
+            int hasStudents = 0;
+            hasStudents = StudentSubject.getStudentCountForCourseCode(request.getParameter("courseCode"));
+            System.out.println(hasStudents);
+            if(hasStudents > 0)
+            {
+                throw new Exception("Integrity constraint violation");
+            }
             Subject.deleteSubjectByCourseCode(request.getParameter("courseCode"));
+            response.sendRedirect(request.getHeader("referer"));
         } catch (Exception e) {
+            errorMessage = "Unable to delete course with existing students";
             System.out.println(e.getMessage());
-        }
-        response.sendRedirect(request.getHeader("referer"));
+            response.sendRedirect(request.getContextPath()+"/viewError.jsp");
+        }      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -69,4 +69,16 @@ public class StudentSubject {
         return studentList;
     }
    
+    public static int getStudentCountForCourseCode(String courseCode) throws SQLException{
+        int count = 0;
+        try(Connection myConnection = DBConnection.getConnection()){
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT COUNT(USN) FROM StudentSubject WHERE CourseCode LIKE ?");
+            myStatement.setString(1, courseCode);
+            ResultSet countResult = myStatement.executeQuery();
+            while (countResult.next()) {                
+                count = countResult.getInt(1);
+            }
+        }
+        return count;
+    }
 }

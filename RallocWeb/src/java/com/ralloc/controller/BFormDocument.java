@@ -144,7 +144,7 @@ public class BFormDocument {
       heading.setAlignment(ParagraphAlignment.CENTER);
       try {
          String blipID = document.addPictureData(new FileInputStream("BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
-         createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 75, 75);
+         createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 55, 55);
       } catch (Exception e) {
           e.printStackTrace();
       }
@@ -360,8 +360,6 @@ public class BFormDocument {
          }
          
       }
-
-
       document.write(out);
       out.close();
 

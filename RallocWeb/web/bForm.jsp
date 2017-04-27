@@ -1,3 +1,4 @@
+<%@page import="com.ralloc.model.Room"%>
 <%@page import="com.ralloc.routes.AllocateRouteServlet"%>
 <%@page import="com.ralloc.view.UploadFileServlet"%>
 <%@page import="com.ralloc.model.DepartmentSubject"%>
@@ -47,7 +48,7 @@
                 <div class="b-form container">
                         <div class="divider"></div>
                         <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + AllocateRouteServlet.examTime + " to ________</span>"); %></h6>
-                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
+                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span> &nbsp &nbsp Center: " + Room.getRoomNameById(roomBean.getRoomId()) + "</span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
                         <div class="divider"></div>
                         <br>
                         <!-- Render the following line for every student -->

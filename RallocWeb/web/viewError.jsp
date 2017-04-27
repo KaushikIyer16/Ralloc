@@ -4,6 +4,8 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.SubjectDeletionServlet"%>
+<%@page import="com.ralloc.view.AllSubjectDeletionServlet"%>
 <%@page import="com.ralloc.view.DisplayAformServlet"%>
 <%@page import="com.ralloc.view.InfrastructureAdditionServlet"%>
 <%@page import="com.ralloc.view.DepartmentAdditionServlet"%>
@@ -48,6 +50,8 @@
         <p class="center"><% out.print(DepartmentAdditionServlet.errorMessage); %></p>
         <p class="center"><% out.print(InfrastructureAdditionServlet.errorMessage); %></p>
         <p class="center"><% out.print(DisplayAformServlet.errorMessage); %></p>
+        <p class="center"><% out.print(AllSubjectDeletionServlet.errorMessage); %></p>
+        <p class="center"><% out.print(SubjectDeletionServlet.errorMessage); %></p>
         <%
         
         UploadFileServlet.errorMessage = "";
@@ -55,7 +59,9 @@
         DepartmentAdditionServlet.errorMessage = "";
         InfrastructureAdditionServlet.errorMessage = "";
         DisplayAformServlet.errorMessage = "";
-        
+        AllSubjectDeletionServlet.errorMessage = "";
+        SubjectDeletionServlet.errorMessage = "";
+
         %>
         <br>
         <br>
@@ -66,7 +72,7 @@
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">
             © 2017 BMSCE
-            <a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>
+            <!--<a class="text-lighten-4 right" href="#!" style="color: white;">Developed by Department of ISE</a>-->
             </div>
           </div>
         </footer>

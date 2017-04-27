@@ -132,4 +132,16 @@ public class Student {
         }
         return studentList;
     }
+    
+    public static int getStudentCount() throws SQLException{
+        int count = 0;
+        try(Connection myConnection = DBConnection.getConnection()){
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT COUNT(USN) FROM Student");
+            ResultSet countResult = myStatement.executeQuery();
+            while (countResult.next()) {                
+                count = countResult.getInt(1);
+            }
+        }
+        return count;
+    }
 }
