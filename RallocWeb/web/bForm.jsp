@@ -29,7 +29,6 @@
         {
             %>
 
-            <div class="divider container"></div>
             <%
             ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
             for(SubjectStudentUsn subject: subjectList)
@@ -37,28 +36,28 @@
                 %>
                 <div class="row">
                     <div class="col s3 m3 l3">
-                        <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right">
+                        <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s8 m8 l8">
-                        <h6 class="center" style="top: 2mm">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
-                        <h6 class="center">Attendance and Room Superintendent's Report</h6>
-                        <h6 class="center">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + AllocateRouteServlet.examDate); %></h6>
+                        <h6 class="center" style="top: 1mm; font-size: 12px;">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
+                        <h6 class="center" style="font-size: 12px;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + AllocateRouteServlet.examDate); %></h6>
                     </div>
                 </div>
                 <div class="b-form container">
                         <div class="divider"></div>
                         <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + AllocateRouteServlet.examTime + " to ________</span>"); %></h6>
-                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span> &nbsp &nbsp Center: " + Room.getRoomNameById(roomBean.getRoomId()) + "</span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
+                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span> &nbsp &nbsp &nbsp Center/Room : " + Room.getRoomNameById(roomBean.getRoomId()) + "</span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
                         <div class="divider"></div>
                         <br>
                         <!-- Render the following line for every student -->
                         <table style="margin-left: 12mm; width: 6.8in;">
                             <thead style="border: 1px solid black;">
-                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">USN</th>
-                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Booklet/Drg. Sheet No.</th>
-                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Signature</th>
-                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Addl. Booklet/Drg./Graph Sheet No.</th>
-                            <th style="border-right: 1px solid black; font-size: 10px; font-weight: lighter;" class="center">Total</th>
+                            <th style="border-right: 1px solid black; font-size: 8px; font-weight: lighter; padding: 1px 1px 1px;" class="center">USN</th>
+                            <th style="border-right: 1px solid black; font-size: 8px; font-weight: lighter; padding: 1px 1px 1px;" class="center">Booklet/Drg. Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 8px; font-weight: lighter; padding: 1px 1px 1px;" class="center">Signature</th>
+                            <th style="border-right: 1px solid black; font-size: 8px; font-weight: lighter; padding: 1px 1px 1px;" class="center">Addl. Booklet/Drg./Graph Sheet No.</th>
+                            <th style="border-right: 1px solid black; font-size: 8px; font-weight: lighter; padding: 1px 1px 1px;" class="center">Total</th>
                             </thead>
                             <tbody>
                         <%
@@ -67,7 +66,7 @@
                                 %>
                                 <tr style="border: 1px solid black;">
                                         <%
-                                            out.print("<td style=\"padding: 5px 4px; border-right: 1px solid black;\">" + usn + "</td>");
+                                            out.print("<td style=\"padding: 1px 1px 1px; border-right: 1px solid black; font-size: 8px;\">" + usn + "</td>");
                                         %>
                                         <td style="border-right: 1px solid black;"></td>
                                         <td style="border-right: 1px solid black;"></td>
@@ -80,27 +79,27 @@
                             </tbody>
                         </table>
                             <br>
-                    <h6 style="margin-left: 5mm;">USNs (absentees): ________________________________________________________</h6>
+                    <h6 style="margin-left: 5mm; font-size: 0.5rem;">USNs (absentees): _________________________________________________________________</h6>
                     <br>
-                    <h6 style="margin-left: 5mm;">USNs (candidates b/u malpractice): _____________________________________________</h6>
+                    <h6 style="margin-left: 5mm; font-size: 0.5rem;">USNs (candidates b/u malpractice): __________________________________________________________</h6>
                     <br>
                     
                             <table style="border: 0px solid black;" class="center">
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Room Superintendent / Examiner -1</span></h6>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Room Superintendent / Examiner -1</span></h6>
                                     </td>
                                     <td>
-                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Examiner - II</span></h6>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Examiner - II</span></h6>
                                     </td>
                                     <td>
-                                        <h6 class="center"><span style="text-decoration: underline; font-size: 12.5px">Chief/Deputy Superintendent</span></h6>
+                                        <h6 class="center"><span style="text-decoration: underline; font-size: 10.5px">Chief/Deputy Superintendent</span></h6>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h6 class="left">Signature</h6>
+                                        <h6 class="left" style="font-size: 11.5px;">Signature</h6>
                                     </td>
                                     <td>
                                         <h6>:_______________________</h6>
@@ -114,7 +113,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h6 class="left">Name</h6>
+                                        <h6 class="left" style="font-size: 11.5px;">Name</h6>
                                     </td>
                                     <td>
                                         <h6>:_______________________</h6>
@@ -128,7 +127,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <h6 class="left">Affiliation</h6>
+                                        <h6 class="left" style="font-size: 11.5px;">Affiliation</h6>
                                     </td>
                                     <td>
                                         <h6>:_______________________</h6>
