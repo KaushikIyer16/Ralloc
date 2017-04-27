@@ -6,3 +6,5 @@
 /RallocWeb/nbproject/private/
 /RallocWeb/dist/
 /RallocWeb/build/
+/RallocWeb/nbproject/
+/RallocWeb/src/java/com/ralloc/model/DBConnection.java

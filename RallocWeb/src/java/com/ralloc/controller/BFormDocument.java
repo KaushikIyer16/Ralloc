@@ -11,6 +11,7 @@ import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.model.DepartmentSubject;
 import com.ralloc.model.Department;
 import com.ralloc.model.Subject;
+import com.ralloc.model.Room;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.sql.SQLException;
@@ -126,7 +127,7 @@ public class BFormDocument {
       XWPFRun run = para.createRun();
       run.setText(text);
       run.setFontFamily("Calibri");
-      run.setFontSize(10);
+      run.setFontSize(8);
       if (breakLine) run.addBreak();
    }
 
@@ -157,7 +158,7 @@ public class BFormDocument {
       writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + dateTime, true);
    }
 
-   private void writeCourseDetails(SubjectStudentUsn subject) {
+   private void writeCourseDetails(SubjectStudentUsn subject, int id) {
       String courseCode = subject.getCourseCode();
       //create table
       XWPFTable table = document.createTable(2, 2);
@@ -181,7 +182,7 @@ public class BFormDocument {
       courseName.setPageBreak(false);
       courseName.setAlignment(ParagraphAlignment.LEFT);
       try {
-         writeRun(courseName, "Subject: " + Subject.getNameByCourseCode(courseCode), false);
+         writeRun(courseName, "Subject: " + Subject.getNameByCourseCode(courseCode) + "          Room: " + Room.getRoomNameById(id), false);
       } catch (SQLException e) {
          System.out.println(e);
       }
@@ -263,16 +264,15 @@ public class BFormDocument {
    }
 
    public void writeAttendance(){
-       XWPFRun attendance = document.createParagraph().createRun();
-       attendance.addBreak();
-       attendance.setText("USNs(absentees):");
-       for(int i=0;i<56;i++)
-           attendance.setText("_");
-       attendance.setText("USNs (candidates b/u malpractice):");
-       for(int i=0;i<56;i++)
-           attendance.setText("_");
+      XWPFParagraph attendance = document.createParagraph();
+      attendance.setPageBreak(false);
+      attendance.setAlignment(ParagraphAlignment.LEFT);
+      writeRun(attendance, "", true);
+      writeRun(attendance, "USNs(absentees):________________________________________________________", true);
+      writeRun(attendance, "", true);
+      writeRun(attendance, "USNs (candidates b/u malpractice):________________________________________________________", true);
 
-       XWPFTable table = document.createTable(4, 4);
+      XWPFTable table = document.createTable(4, 4);
 
       XWPFParagraph roomSuperintendent = table.getRow(0).getCell(1).getParagraphArray(0);
       roomSuperintendent.setPageBreak(false);
@@ -353,12 +353,12 @@ public class BFormDocument {
          ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
          for (SubjectStudentUsn subject: subjectList) {
             writeHeading();
-            writeCourseDetails(subject);
+            writeCourseDetails(subject, roomBean.getRoomId());
             document.createParagraph().createRun().addBreak();
             writeUSN(subject);
             writeAttendance();
          }
-         
+
       }
       document.write(out);
       out.close();

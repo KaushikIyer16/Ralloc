@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 public class DBConnection {
 
     static String CONNECTIONSTRING = "jdbc:mysql://localhost:3306/ralloc", USERNAME = "root", PASSWORD = "";
-
+    
     public static Connection getConnection() {
 
         Connection myConnection = null;
