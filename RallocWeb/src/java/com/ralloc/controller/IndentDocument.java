@@ -67,9 +67,9 @@ public class IndentDocument {
       XWPFParagraph college = document.createParagraph();
       college.setPageBreak(true);
       college.setAlignment(ParagraphAlignment.CENTER);
-      addRun(college, "B.M.S COLLEGE OF ENGINEERING, BANGALORE - 560 019", true, 18);
-      addRun(college,"(Autonomous Institution under VTU)",true, 12);
-      addRun(college, "Indent Sheet", true, 18);
+      addRun(college, "B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019", true, 18);
+      addRun(college, "Attendance and Room Superintendant's Report", true, 18);
+      addRun(college, "B.E./B.Arch/M.B.A./M.C.A/M.Tech. ____ Semester Examination", true, 12);
    }
     private void writeRoom(String room){
       

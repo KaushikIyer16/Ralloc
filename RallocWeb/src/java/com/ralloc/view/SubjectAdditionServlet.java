@@ -67,7 +67,7 @@ public class SubjectAdditionServlet extends HttpServlet {
             
             String courseCode = request.getParameter("courseCode");
             String chooseDept = request.getParameter("department");
-            if(!courseCode.matches("[0-9]{2}[a-zA-Z]{2}[0-9][a-zA-Z]{5}")){
+            if(courseCode.length() > 15){
                 throw new InputMismatchException("Invalid Course Code Format");
             } 
             else if(chooseDept == null){

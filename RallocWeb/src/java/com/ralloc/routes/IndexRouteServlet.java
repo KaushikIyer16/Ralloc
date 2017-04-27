@@ -5,6 +5,7 @@
  */
 package com.ralloc.routes;
 
+import com.ralloc.view.SubjectAdditionServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -34,7 +35,6 @@ public class IndexRouteServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
                 }

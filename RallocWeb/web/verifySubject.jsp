@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.SubjectAdditionServlet"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.ralloc.model.Subject"%>
 <%@page import="java.util.Iterator"%>
@@ -47,6 +48,7 @@
                             out.println("<p>Has Dependency (1 - Yes, -1 - No): " + s.getHasDependency() + "</p>");
                         }
                     out.println("</div>");
+                    SubjectAdditionServlet.subjectList.clear();
                 
             %>
             <a class="btn waves-effect waves-light right" style="background-color: #444;" href="${pageContext.request.contextPath}/home">Continue </a>
