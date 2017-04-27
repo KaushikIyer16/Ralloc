@@ -62,13 +62,8 @@ body {
     left: 10mm;
     min-height: 6.4mm;
 }
-@page {
-    margin: 0.2in !important;
-    size: 8.5in 10in;
-}
 @media print {
     .b-form {
         page-break-after: always;
-        page-break-inside: avoid;
-    }
+    }    
 }

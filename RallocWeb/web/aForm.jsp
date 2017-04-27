@@ -72,7 +72,7 @@
               %>
           
                  <div class="student-present">
-                    <h6 class="inline-header short-margin">Seat Number of the candidates present:</h6>
+                    <h6 class="short-margin">Seat Number of the candidates present:</h6>
                     
                 
                 <%
@@ -108,7 +108,7 @@
               %>
                       
               <div class="student-defaulters">
-                <h6 class="inline-header short-margin">Seat Number of the candidates booked under malpractice:</h6>
+                <h6 class="short-margin">Seat Number of the candidates booked under malpractice:</h6>
                     <%
                     
                         for(int i=0; i<mpList.size(); i++)
@@ -129,7 +129,7 @@
               </div>          
                     
               <div class="student-absent">
-                    <h6 class="inline-header short-margin">Seat Number of the candidates absent:</h6>
+                    <h6 class="short-margin">Seat Number of the candidates absent:</h6>
                     
                     
               
@@ -147,7 +147,7 @@
                 <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
                 <br>
                 </div>    
-                <h6><span> &nbsp Total number of answer books enclosed : _________________</span> <span class="right">Total number of packets : _________________ &nbsp &nbsp &nbsp &nbsp &nbsp</span></h6>    
+                <h6><span>Total number of answer books enclosed : _________________</span> <span class="right">Total number of packets : _________________ &nbsp &nbsp &nbsp &nbsp</span></h6>    
                                     
                             <table style="border: 0px solid black;" class="center">
                                 <tr>
