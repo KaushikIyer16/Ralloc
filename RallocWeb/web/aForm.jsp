@@ -17,6 +17,7 @@
     <meta charset="utf-8">
     <title>A form </title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aform.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/materialize.min.css"/>
     <%
     
     HashMap<String, HashMap<String, String>> subjectStudents = (HashMap<String, HashMap<String, String>>) request.getAttribute("subjectStudents");
@@ -31,22 +32,20 @@
           %>
       
             <div class="a-form">
-                <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" style="margin-left: 95mm;">
-                <h3 class="center short-margin">B.M.S. COLLEGE OF ENGINEERING (AUTONOMOUS INSTITUTION UNDER VTU) BANGALORE-19</h3>
-                <h4 class="center short-margin">Attendance and Room Superintendent's Report</h4>
-                <h3 class="center short-margin">B.E/B.Arch/M.B.A/M.C.A/M.Tech. ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.5vw;">(MM/YYYY)</span></h3>
-
-                <h4 style="margin-left:10%;" class="short-margin">Branch / title of the course:<% out.print(Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject))); %> </h4>
-                <br>
-                <h4 class="inline-header ">Subject:<% out.print(Subject.getNameByCourseCode(subject));%> </h4>
-                <h4 class="inline-header inline-center">Subject Code: <% out.print(subject); %></h4>
-                <br>
-                <h4 class="inline-header ">Centre:_______________________________________________</h4>
-                <h4 class="inline-header inline-center">Date:</h4>
-                <br>
-                <div class="divider"></div>
-
-      
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col s3 m3 l3">
+                        <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
+                    </div>
+                    <div class="col s8 m8 l8">
+                        <h6 class="center" style="font-size: 12px;">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
+                        <h6 class="center short-margin" style="font-size: 12px;">B.E/B.Arch/M.B.A/M.C.A/M.Tech. ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.2vw;">(MM/YYYY)</span></h6>
+                    </div>
+                </div>
+                <h6 style="margin-left:10%;" class="short-margin">Branch / Title of the course:<% out.print(Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject))); %> </h6>
+                <h6 class="inline-header ">Subject:<% out.print(Subject.getNameByCourseCode(subject));%> </h6>
+                <h6 class="inline-header inline-center">Subject Code: <% out.print(subject); %></h6>
+                <h6 class="inline-header "><span>Centre:___________________________</span><span class="right">Date: _____________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span></h6>      
       
           <%
           
@@ -73,7 +72,7 @@
               %>
           
                  <div class="student-present">
-                    <h4 class="inline-header short-margin">Seat Number of the candidates present:</h4>
+                    <h6 class="inline-header short-margin">Seat Number of the candidates present:</h6>
                     
                 
                 <%
@@ -90,7 +89,9 @@
                       }
                   %>
                   <br>
-                  </div>  
+                  <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                  <br>
+              </div>  
                     
                   <%
                       
@@ -107,7 +108,7 @@
               %>
                       
               <div class="student-defaulters">
-                <h4 class="inline-header short-margin">Seat Number of the candidates booked under malpractice:</h4>
+                <h6 class="inline-header short-margin">Seat Number of the candidates booked under malpractice:</h6>
                     <%
                     
                         for(int i=0; i<mpList.size(); i++)
@@ -123,10 +124,12 @@
                     
                     %>
                 <br>
+                <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <br>
               </div>          
                     
               <div class="student-absent">
-                    <h4 class="inline-header short-margin">Seat Number of the candidates absent:</h4>
+                    <h6 class="inline-header short-margin">Seat Number of the candidates absent:</h6>
                     
                     
               
@@ -141,12 +144,46 @@
                     }
                 %>
                 <br>
+                <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <br>
                 </div>    
-                    
-                <%    
-              
-              
-          
+                <h6><span> &nbsp Total number of answer books enclosed : _________________</span> <span class="right">Total number of packets : _________________ &nbsp &nbsp &nbsp &nbsp &nbsp</span></h6>    
+                                    
+                            <table style="border: 0px solid black;" class="center">
+                                <tr>
+                                    <td></td>
+                                    <td style="padding-top: 0px;">
+                                        <h6 class="left"><span style="text-decoration: underline; font-size: 10.5px; margin-left: -5px;"> Deputy Chief Superintendent </span></h6>
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <h6 class="left"><span style="text-decoration: underline; font-size: 10.5px; margin-left: -5px;"> Chief Superintendent </span></h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 0px;">
+                                        <h6 class="left" style="font-size: 11.5px; margin-left: 0.8in;">Signature with date</h6>
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <h6>: _______________________</h6>
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <h6>____________________</h6>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 0px;">
+                                        <h6 class="left" style="font-size: 11.5px; margin-left: 0.8in;">Name</h6>
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <h6>: _______________________</h6>
+                                    </td>
+                                    <td style="padding-top: 0px;">
+                                        <h6>____________________</h6>
+                                    </td>
+                                </tr>
+                            </table>
+                
+                <%              
       }
       
       %>      

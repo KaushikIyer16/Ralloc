@@ -23,7 +23,7 @@
       }
       .student-present,.student-defaulters,.student-absent{
         border: 2px solid black;
-        margin: 1rem 0px;
+        margin: 1rem 5px;
       }
       .usn{
         padding: 3px 1rem;
@@ -59,14 +59,15 @@
         }
         .student-present,.student-defaulters,.student-absent{
           border: 2px solid black;
-          margin: 1rem 0px;
+          margin: 0.8rem 5px;
         }
         .usn{
           padding: 3px 1rem;
+          font-size: 10px !important;
           text-transform: uppercase;
         }
       }
       @page{
         size: 8.5in 10in;
-        margin: 0in;
+        margin: 0.2in !important;
       }
