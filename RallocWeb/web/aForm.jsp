@@ -37,7 +37,7 @@
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s8 m8 l8">
-                        <h6 class="center" style="font-size: 12px;">B.M.S. COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
+                        <h6 class="center" style="font-size: 12px;">BMS COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
                         <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
                         <h6 class="center short-margin" style="font-size: 12px;">B.E/B.Arch/M.B.A/M.C.A/M.Tech. ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.2vw;">(MM/YYYY)</span></h6>
                     </div>

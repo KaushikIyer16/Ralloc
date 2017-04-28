@@ -55,12 +55,12 @@
                         <h6><b>Course Code: <%out.print(subjects.getCourseCode());%> </b><span class="right"><b>Subject: <%out.print(Subject.getNameByCourseCode(subjects.getCourseCode()));%></b></span></h6>
                         <%            
                             ArrayList<String> usnList = subjects.getUsnList();
-                        %><div class="usn-list"><%
+                        %></div><b><span> Total: <%out.println(usnList.size()); %></span></b><div class="usn-list"><%
                             for(int i=0; i<usnList.size(); i++)
                             {
                                 %><div class="usn"><% out.print(usnList.get(i).toString()); %></div><%
                             }
-                            %></div><%
+                            %><%
                     }
                 %>
                 <div class="divider"></div>

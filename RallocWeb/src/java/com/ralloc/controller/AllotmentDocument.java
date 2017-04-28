@@ -68,6 +68,8 @@ public class AllotmentDocument {
                          courseNameParagraph.setText("SUBJECT: "+Subject.getNameByCourseCode(subjects.getCourseCode()));
                          courseNameParagraph.addBreak();
                          ArrayList<String> usnList = subjects.getUsnList();
+                         courseNameParagraph.setText("TOTAL: "+usnList.size());
+                         courseNameParagraph.addBreak();
                          //paragraphOneRunOne.setBold(false);
                          for(int i=0; i<usnList.size(); i++)
                          {

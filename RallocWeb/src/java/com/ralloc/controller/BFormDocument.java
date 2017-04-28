@@ -150,7 +150,7 @@ public class BFormDocument {
           e.printStackTrace();
       }
 
-      writeRun(heading, "B.M.S COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
+      writeRun(heading, "BMS COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
       writeRun(heading, "Attendance and Room Superintendent's Report", true);
       String dateTime = "        ";
       if(!(date.length() < 10))
