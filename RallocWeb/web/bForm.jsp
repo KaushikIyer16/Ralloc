@@ -39,15 +39,15 @@
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s8 m8 l8">
-                        <h6 class="center" style="top: 1mm; font-size: 12px;">BMS COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
-                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
-                        <h6 class="center" style="font-size: 12px;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% out.print(" " + AllocateRouteServlet.examDate); %></h6>
+                        <h6 class="center" style="top: 1mm; font-size: 10px;">BMS COLLEGE OF ENGINEERING<span style="font-size: 8px;">(AUTONOMOUS COLLEGE UNDER VTU)</span>, BANGALORE - 560 019</h6>
+                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report<span class="right">Form-B</span></h6>
+                        <h6 class="center" style="font-size: 12px;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% String tempDate = AllocateRouteServlet.examDate; if(tempDate.equalsIgnoreCase("")) out.print("_________"); else out.print(" " + AllocateRouteServlet.examDate.substring(2)); %></h6>
                     </div>
                 </div>
                 <div class="b-form container">
                         <div class="divider"></div>
-                        <h6><% out.print("Department: "+Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode()))); out.print(" &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); out.print("<span class=\"right\">Time: " + AllocateRouteServlet.examTime + " to ________</span>"); %></h6>
-                        <% out.print("<h6><span> Subject: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span> <span> &nbsp &nbsp &nbsp Center/Room : " + Room.getRoomNameById(roomBean.getRoomId()) + "</span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
+                        <h6 style="font-size: 12px;"><% String tempDept = Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject.getCourseCode())); if(tempDept.equalsIgnoreCase("")) out.print("Department: __________________"); else out.print("Department: " + tempDept); if(!(request.getAttribute("Date") == null))out.print(" &nbsp&nbsp&nbsp Date: " + request.getAttribute("Date")); else out.print(" &nbsp&nbsp&nbsp Date: ____________"); String tempTime = AllocateRouteServlet.examTime ; if(!(tempTime.equalsIgnoreCase(""))) out.print("<span> &nbsp Time: " + AllocateRouteServlet.examTime + " to _____ </span>"); else out.print("<span> &nbsp &nbsp Time: _____ to _____</span> <span> USNs from ________ to ________ </span>"); %></h6>
+                        <% out.print("<h6 style= \"font-size: 12px;\"><span> Course: " + Subject.getNameByCourseCode(subject.getCourseCode()) + " </span><span> &nbsp &nbsp Centre: BMSCE, Bangalore</span> <span> &nbsp &nbsp &nbsp Room : " + Room.getRoomNameById(roomBean.getRoomId()) + "</span> <span class=\"right\">Course Code: " + subject.getCourseCode() +" </span></h6>"); %>
                         <div class="divider"></div>
                         <br>
                         <!-- Render the following line for every student -->

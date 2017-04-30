@@ -65,5 +65,6 @@ body {
 @media print {
     .b-form {
         page-break-after: always;
-    }    
+    }
+    
 }

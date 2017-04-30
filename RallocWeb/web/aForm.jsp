@@ -37,15 +37,15 @@
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s8 m8 l8">
-                        <h6 class="center" style="font-size: 12px;">BMS COLLEGE OF ENGINEERING, BANGALORE - 560 019</h6>
-                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
+                        <h6 class="center" style="font-size: 12px;">BMS COLLEGE OF ENGINEERING <span style="font-size: 8px;">(AUTONOMOUS COLLEGE UNDER VTU)</span>, BANGALORE - 560 019</h6>
+                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report <span class="right" style="font-size: 6px;">Form-A</span></h6>
                         <h6 class="center short-margin" style="font-size: 12px;">B.E/B.Arch/M.B.A/M.C.A/M.Tech. ______ Semester Examination ________ <span style="float:right;margin-right:3rem;font-size:1.2vw;">(MM/YYYY)</span></h6>
                     </div>
                 </div>
-                <h6 style="margin-left:10%;" class="short-margin">Branch / Title of the course:<% out.print(Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject))); %> </h6>
-                <h6 class="inline-header ">Subject:<% out.print(Subject.getNameByCourseCode(subject));%> </h6>
-                <h6 class="inline-header inline-center">Subject Code: <% out.print(subject); %></h6>
-                <h6 class="inline-header "><span>Centre:___________________________</span><span class="right">Date: _____________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span></h6>      
+                        <h6 style="margin-left:5%;" class="short-margin">Branch / Title of the course:<% String tempBranch = Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(subject)); if(tempBranch.equalsIgnoreCase("")) out.print("__________________________________________________"); else out.print(tempBranch); %> </h6>
+                        <h6 style="margin-left:5%;" class="short-margin">Course:<% String tempSub = Subject.getNameByCourseCode(subject); if(tempSub.equalsIgnoreCase("")) out.print("________________________"); else out.print(tempSub);%> <span> &nbsp; Course Code: <% out.print(subject); %> &nbsp; USNs from __________ to __________ &nbsp; &nbsp; &nbsp;</span></h6>
+                <!--<h6 class="inline-header inline-center"></h6>-->
+                <h6 style="margin-left:5%;" class="short-margin"><span>Centre:BMSCE, Bangalore </span><span> &nbsp; &nbsp;Date: ________________ &nbsp &nbsp Time: _____ to _____</span></h6>      
       
           <%
           
@@ -71,7 +71,7 @@
               
               %>
           
-                 <div class="student-present">
+                 <div class="student-present short-margin">
                     <h6 class="short-margin">Seat Number of the candidates present:</h6>
                     
                 
@@ -89,7 +89,7 @@
                       }
                   %>
                   <br>
-                  <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                  <span class="right">Total: <% out.print(presentList.size()); %>&nbsp &nbsp</span>
                   <br>
               </div>  
                     
@@ -124,7 +124,7 @@
                     
                     %>
                 <br>
-                <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <span class="right">Total: <% out.print(mpList.size()); %>&nbsp &nbsp</span>
                 <br>
               </div>          
                     
@@ -144,10 +144,10 @@
                     }
                 %>
                 <br>
-                <span class="right">Total: &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <span class="right">Total: <% out.print(absentList.size()); %>&nbsp &nbsp</span>
                 <br>
                 </div>    
-                <h6><span>Total number of answer books enclosed : _________________</span> <span class="right">Total number of packets : _________________ &nbsp &nbsp &nbsp &nbsp</span></h6>    
+                <h6 style="font-size: 8px; margin-left: 0.8in;"><span>Total number of answer books enclosed : _________________</span> <span class="right">Total number of packets : _________________ &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span></h6>    
                                     
                             <table style="border: 0px solid black;" class="center">
                                 <tr>
