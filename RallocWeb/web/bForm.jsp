@@ -34,13 +34,14 @@
             for(SubjectStudentUsn subject: subjectList)
             {
                 %>
+                <h6 class="right" style="font-size: 6px;">Form-B &nbsp; &nbsp;</h6>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col s3 m3 l3">
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s8 m8 l8">
                         <h6 class="center" style="top: 1mm; font-size: 10px;">BMS COLLEGE OF ENGINEERING<span style="font-size: 8px;">(AUTONOMOUS COLLEGE UNDER VTU)</span>, BANGALORE - 560 019</h6>
-                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report<span class="right">Form-B</span></h6>
+                        <h6 class="center" style="font-size: 12px;">Attendance and Room Superintendent's Report</h6>
                         <h6 class="center" style="font-size: 12px;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ___ Semester Examination <% String tempDate = AllocateRouteServlet.examDate; if(tempDate.equalsIgnoreCase("")) out.print("_________"); else out.print(" " + AllocateRouteServlet.examDate.substring(2)); %></h6>
                     </div>
                 </div>
