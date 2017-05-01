@@ -49,18 +49,30 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 public class BFormDocument {
 
    HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailedRoomMap;
-   String date, time, contextPath;
+   String date, time, contextPath, blipID;
    XWPFDocument document;
    FileOutputStream out;
-   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime,String contextPath) {
+   InputStream imgReader;
+//   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime,String contextPath) {
+//      this.detailedRoomMap = detailRoomMap;
+//      this.date = formDate;
+//      this.time = formTime;
+//      this.out = out;
+//      document = new XWPFDocument();
+//      this.contextPath = contextPath;
+//   }
+   
+   
+   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime,InputStream imgReader) {
       this.detailedRoomMap = detailRoomMap;
       this.date = formDate;
       this.time = formTime;
       this.out = out;
       document = new XWPFDocument();
-      this.contextPath = contextPath;
+      this.imgReader = imgReader;
+      
    }
-
+   
    public void createPicture(XWPFParagraph para, String blipId,int id, int width, int height) {
       final int EMU = 9525;
       width *= EMU;
@@ -139,18 +151,26 @@ public class BFormDocument {
       if (breakLine) run.addBreak();
    }
 
-   private void writeHeading() {
+   private void writeHeading() {  
+       
+      XWPFParagraph formBHeading = document.createParagraph();
+      formBHeading.setAlignment(ParagraphAlignment.RIGHT);
+//      formBHeading.setPageBreak(true);
+      
       XWPFParagraph heading = document.createParagraph();
-      heading.setPageBreak(true);
+//      heading.setPageBreak(true);
       heading.setAlignment(ParagraphAlignment.CENTER);
+      
+      
       try {
-         String blipID = document.addPictureData(new FileInputStream("BMS_LOGO_Print.png"), Document.PICTURE_TYPE_PNG);
+         
          createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 55, 55);
       } catch (Exception e) {
           e.printStackTrace();
       }
-
-      writeRun(heading, "BMS COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
+       
+      writeRun(heading, "BMS COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", false);
+      writeRun(formBHeading, "FORM B", true, 6);
       writeRun(heading, "Attendance and Room Superintendent's Report", true);
       String dateTime = "        ";
       if(!(date.length() < 10))
@@ -168,7 +188,7 @@ public class BFormDocument {
       departmentDate.setAlignment(ParagraphAlignment.LEFT);
       try {
          String dept = "Department: " + Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(courseCode));
-         writeRun(departmentDate, dept + "          Date: " + date, false);
+         writeRun(departmentDate, dept + "          Date: " + "________"+"    USNs From ________ to ________", false);
       } catch (SQLException e) {
          System.out.println(e);
       }
@@ -176,13 +196,13 @@ public class BFormDocument {
       XWPFParagraph timePara = table.getRow(0).getCell(1).getParagraphArray(0);
       timePara.setPageBreak(false);
       timePara.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(timePara, "Time: " + time + " to ________", true);
+      writeRun(timePara, "Time: " + "________" + " to ________", true);
 
       XWPFParagraph courseName = table.getRow(1).getCell(0).getParagraphArray(0);
       courseName.setPageBreak(false);
       courseName.setAlignment(ParagraphAlignment.LEFT);
       try {
-         writeRun(courseName, "Subject: " + Subject.getNameByCourseCode(courseCode) + "          Room: " + Room.getRoomNameById(id), false);
+         writeRun(courseName, "Course: " + Subject.getNameByCourseCode(courseCode)+"        Centre: BMSCE, Bangalore" + "          Room: " + Room.getRoomNameById(id), false);
       } catch (SQLException e) {
          System.out.println(e);
       }
@@ -303,7 +323,9 @@ public class BFormDocument {
       affiliation.setPageBreak(false);
       affiliation.setAlignment(ParagraphAlignment.LEFT);
       writeRun(affiliation, "Affiliation", true);
-
+      
+      XWPFParagraph emptyParah = document.createParagraph();
+      emptyParah.setPageBreak(true); 
       for (int i = 1; i <= 3; ++i) {
         XWPFParagraph line = table.getRow(i).getCell(1).getParagraphArray(0);
         line.setPageBreak(false);
@@ -315,8 +337,9 @@ public class BFormDocument {
           otherLine.setAlignment(ParagraphAlignment.CENTER);
           writeRun(otherLine, "____________________", true);
         }
+        writeRun(line, "", true);
       }
-
+       writeRun(emptyParah, "", true);
       table.setInsideHBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
       table.setInsideVBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
       for (int i = 0; i < 4; ++i) {
@@ -348,7 +371,8 @@ public class BFormDocument {
 
       //Write the Document in file system
       //FileOutputStream out = new FileOutputStream( new File("bform-" + date + time + ".docx"));
-
+      blipID = document.addPictureData(imgReader, Document.PICTURE_TYPE_PNG);
+      
       for (RoomBean roomBean: detailedRoomMap.keySet()) {
          ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
          for (SubjectStudentUsn subject: subjectList) {
