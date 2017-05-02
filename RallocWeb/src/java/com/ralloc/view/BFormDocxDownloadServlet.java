@@ -60,7 +60,7 @@ public class BFormDocxDownloadServlet extends HttpServlet {
         FileOutputStream out = new FileOutputStream(bFormFile);
         bFormFile.deleteOnExit();
         
-        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap,AllocateRouteServlet.examDate,AllocateRouteServlet.examTime,getServletContext().getResourceAsStream("/images/BMS_LOGO_Print.png"));
+        BFormDocument populateBFormDocx = new BFormDocument(out,detailedRoomMap/*,AllocateRouteServlet.examDate,AllocateRouteServlet.examTime*/,getServletContext().getResourceAsStream("/images/BMS_LOGO_Print.png"));
         System.out.println(getServletContext().getResourceAsStream("/images/BMS_LOGO_Print.png"));
         try
         {
