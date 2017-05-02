@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AllDepartmentDeletionServlet", urlPatterns = {"/Delete/department/all"})
 public class AllDepartmentDeletionServlet extends HttpServlet {
 
+    public static String errorMessage = "";
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +43,9 @@ public class AllDepartmentDeletionServlet extends HttpServlet {
             Department.deleteAllDepartments();
             response.sendRedirect(request.getHeader("referer"));
         } catch (SQLException ex) {
+            errorMessage = ex.toString();
             Logger.getLogger(AllDepartmentDeletionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect(request.getContextPath()+"/viewError.jsp");
         }
     }
 
