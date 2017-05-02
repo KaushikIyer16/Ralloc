@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.view.AllDepartmentDeletionServlet"%>
 <%@page import="com.ralloc.view.SubjectDeletionServlet"%>
 <%@page import="com.ralloc.view.AllSubjectDeletionServlet"%>
 <%@page import="com.ralloc.view.DisplayAformServlet"%>
@@ -52,6 +53,7 @@
         <p class="center"><% out.print(DisplayAformServlet.errorMessage); %></p>
         <p class="center"><% out.print(AllSubjectDeletionServlet.errorMessage); %></p>
         <p class="center"><% out.print(SubjectDeletionServlet.errorMessage); %></p>
+        <p class="center"><% out.print(AllDepartmentDeletionServlet.errorMessage); %></p>
         <%
         
         UploadFileServlet.errorMessage = "";
@@ -61,6 +63,7 @@
         DisplayAformServlet.errorMessage = "";
         AllSubjectDeletionServlet.errorMessage = "";
         SubjectDeletionServlet.errorMessage = "";
+        AllDepartmentDeletionServlet.errorMessage = "";
 
         %>
         <br>
