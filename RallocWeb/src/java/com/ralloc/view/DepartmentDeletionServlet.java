@@ -37,10 +37,12 @@ public class DepartmentDeletionServlet extends HttpServlet {
         // write queries to delete a department
         try {
             Department.deleteDepartmentByName(request.getParameter("deleteDept"));
+            response.sendRedirect(request.getHeader("referer"));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            response.sendRedirect(request.getContextPath()+"/viewError.jsp");
         }
-        response.sendRedirect(request.getHeader("referer"));
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
