@@ -49,7 +49,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
 public class BFormDocument {
 
    HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailedRoomMap;
-   String date, time, contextPath, blipID;
+   //String date, time, contextPath, blipID;
+   String contextPath, blipID;
    XWPFDocument document;
    FileOutputStream out;
    InputStream imgReader;
@@ -61,18 +62,18 @@ public class BFormDocument {
 //      document = new XWPFDocument();
 //      this.contextPath = contextPath;
 //   }
-   
-   
-   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, String formDate, String formTime,InputStream imgReader) {
+
+
+   public BFormDocument(FileOutputStream out,HashMap<RoomBean, ArrayList<SubjectStudentUsn>> detailRoomMap, /*String formDate, String formTime,*/InputStream imgReader) {
       this.detailedRoomMap = detailRoomMap;
-      this.date = formDate;
-      this.time = formTime;
+      //this.date = formDate;
+      //this.time = formTime;
       this.out = out;
       document = new XWPFDocument();
       this.imgReader = imgReader;
-      
+
    }
-   
+
    public void createPicture(XWPFParagraph para, String blipId,int id, int width, int height) {
       final int EMU = 9525;
       width *= EMU;
@@ -151,58 +152,62 @@ public class BFormDocument {
       if (breakLine) run.addBreak();
    }
 
-   private void writeHeading() {  
-       
+   private void writeHeading() {
+
       XWPFParagraph formBHeading = document.createParagraph();
       formBHeading.setAlignment(ParagraphAlignment.RIGHT);
+      writeRun(formBHeading, "FORM B", false, 6);
 //      formBHeading.setPageBreak(true);
-      
+
       XWPFParagraph heading = document.createParagraph();
 //      heading.setPageBreak(true);
       heading.setAlignment(ParagraphAlignment.CENTER);
-      
-      
+
+
       try {
-         
+
          createPicture(heading, blipID,document.getNextPicNameNumber(Document.PICTURE_TYPE_JPEG), 55, 55);
       } catch (Exception e) {
           e.printStackTrace();
       }
-       
-      writeRun(heading, "BMS COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", false);
-      writeRun(formBHeading, "FORM B", true, 6);
+
+      writeRun(heading, "BMS COLLEGE OF ENGINEERING(Autonomous Institution under VTU), BANGALORE - 560 019", true);
       writeRun(heading, "Attendance and Room Superintendent's Report", true);
       String dateTime = "        ";
-      if(!(date.length() < 10))
-          dateTime = date.substring(3, date.length());
-      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + dateTime, true);
+      /*if(!(date.length() < 10))
+          dateTime = date.substring(3, date.length());*/
+      writeRun(heading, "B.E./B.Arch./M.B.A/M.C.A/M.Tech./Ph.D./M.Sc.(Res) _______ Semester Examination " + dateTime, false);
    }
 
    private void writeCourseDetails(SubjectStudentUsn subject, int id) {
       String courseCode = subject.getCourseCode();
       //create table
-      XWPFTable table = document.createTable(2, 2);
+      XWPFTable table = document.createTable(3, 2);
 
-      XWPFParagraph departmentDate = table.getRow(0).getCell(0).getParagraphArray(0);
-      departmentDate.setPageBreak(false);
-      departmentDate.setAlignment(ParagraphAlignment.LEFT);
+      XWPFParagraph department = table.getRow(0).getCell(0).getParagraphArray(0);
+      department.setPageBreak(false);
+      department.setAlignment(ParagraphAlignment.LEFT);
       try {
          String dept = "Department: " + Department.getDepartmentNameById(DepartmentSubject.getDepartmentIdByCourseCode(courseCode));
-         writeRun(departmentDate, dept + "          Date: " + "________"+"    USNs From ________ to ________", false);
+         writeRun(department, dept, false);
       } catch (SQLException e) {
          System.out.println(e);
       }
 
-      XWPFParagraph timePara = table.getRow(0).getCell(1).getParagraphArray(0);
-      timePara.setPageBreak(false);
-      timePara.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(timePara, "Time: " + "________" + " to ________", true);
+      XWPFParagraph room = table.getRow(0).getCell(1).getParagraphArray(0);
+      room.setPageBreak(false);
+      room.setAlignment(ParagraphAlignment.RIGHT);
+      try {
+         writeRun(room, "Room: " + Room.getRoomNameById(id), true);
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
 
       XWPFParagraph courseName = table.getRow(1).getCell(0).getParagraphArray(0);
       courseName.setPageBreak(false);
       courseName.setAlignment(ParagraphAlignment.LEFT);
       try {
-         writeRun(courseName, "Course: " + Subject.getNameByCourseCode(courseCode)+"        Centre: BMSCE, Bangalore" + "          Room: " + Room.getRoomNameById(id), false);
+         writeRun(courseName, "Course: " + Subject.getNameByCourseCode(courseCode), false);
       } catch (SQLException e) {
          System.out.println(e);
       }
@@ -211,6 +216,16 @@ public class BFormDocument {
       code.setPageBreak(false);
       code.setAlignment(ParagraphAlignment.RIGHT);
       writeRun(code, "Course Code: " + courseCode, true);
+
+      XWPFParagraph date = table.getRow(2).getCell(0).getParagraphArray(0);
+      date.setPageBreak(false);
+      date.setAlignment(ParagraphAlignment.LEFT);
+      writeRun(date, "Date:_______________", false);
+
+      XWPFParagraph time = table.getRow(2).getCell(1).getParagraphArray(0);
+      time.setPageBreak(false);
+      time.setAlignment(ParagraphAlignment.RIGHT);
+      writeRun(time, "Time: _____________ to _____________", false);
 
       table.setInsideHBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
       table.setInsideVBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
@@ -290,7 +305,7 @@ public class BFormDocument {
       writeRun(attendance, "", true);
       writeRun(attendance, "USNs(absentees):________________________________________________________", true);
       writeRun(attendance, "", true);
-      writeRun(attendance, "USNs (candidates b/u malpractice):________________________________________________________", true);
+      writeRun(attendance, "USNs (candidates b/u malpractice):________________________________________________________", false);
 
       XWPFTable table = document.createTable(4, 4);
 
@@ -323,9 +338,9 @@ public class BFormDocument {
       affiliation.setPageBreak(false);
       affiliation.setAlignment(ParagraphAlignment.LEFT);
       writeRun(affiliation, "Affiliation", true);
-      
+
       XWPFParagraph emptyParah = document.createParagraph();
-      emptyParah.setPageBreak(true); 
+      emptyParah.setPageBreak(true);
       for (int i = 1; i <= 3; ++i) {
         XWPFParagraph line = table.getRow(i).getCell(1).getParagraphArray(0);
         line.setPageBreak(false);
@@ -372,7 +387,7 @@ public class BFormDocument {
       //Write the Document in file system
       //FileOutputStream out = new FileOutputStream( new File("bform-" + date + time + ".docx"));
       blipID = document.addPictureData(imgReader, Document.PICTURE_TYPE_PNG);
-      
+
       for (RoomBean roomBean: detailedRoomMap.keySet()) {
          ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
          for (SubjectStudentUsn subject: subjectList) {
