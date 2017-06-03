@@ -156,7 +156,7 @@ public class BFormDocument {
 
       XWPFParagraph formBHeading = document.createParagraph();
       formBHeading.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(formBHeading, "FORM B", false, 6);
+      writeRun(formBHeading, "FORM B", false, 8);
 //      formBHeading.setPageBreak(true);
 
       XWPFParagraph heading = document.createParagraph();
@@ -225,7 +225,7 @@ public class BFormDocument {
       XWPFParagraph time = table.getRow(2).getCell(1).getParagraphArray(0);
       time.setPageBreak(false);
       time.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(time, "Time: _____________ to _____________", false);
+      writeRun(time, "Time: _____________ to _____________", true);
 
       table.setInsideHBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
       table.setInsideVBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");

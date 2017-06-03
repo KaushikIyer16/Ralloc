@@ -83,7 +83,11 @@ public class SubjectAdditionServlet extends HttpServlet {
                 request.getParameter("hasDependency").equals("yes") ? 1:-1
                 ));
             }
-            departmentSubjectList.add(new com.ralloc.model.DepartmentSubject(Integer.parseInt(request.getParameter("department")), request.getParameter("courseCode")));
+            DepartmentSubject tmpDeptSubject = new com.ralloc.model.DepartmentSubject(Integer.parseInt(request.getParameter("department")), request.getParameter("courseCode"));
+            if (!departmentSubjectList.contains(tmpDeptSubject)) {
+                departmentSubjectList.add(tmpDeptSubject);
+            }
+            
             System.out.println(request.getParameter("instElectGrp"));
             request.setAttribute("subjectList", subjectList);
             request.setAttribute("departmentSubjectList", departmentSubjectList);
@@ -93,7 +97,7 @@ public class SubjectAdditionServlet extends HttpServlet {
             response.sendRedirect(request.getHeader("referer"));
             }
             catch(InputMismatchException ex){
-                errorMessage = "An invalid or existing department data was entered : " + ex.getMessage();
+                errorMessage = "An invalid or existing course data was entered : " + ex.getMessage();
                 response.sendRedirect(request.getContextPath()+"/viewError.jsp");
                 Logger.getLogger(SubjectAdditionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

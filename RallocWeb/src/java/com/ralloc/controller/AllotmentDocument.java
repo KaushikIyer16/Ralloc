@@ -50,7 +50,19 @@ public class AllotmentDocument {
           
             roomNameParagraph.setText("ROOM: "+ Room.getRoomNameById(roomBean.getRoomId()));
             roomNameParagraph.addBreak();
-            roomNameParagraph.setText("DATE :  "+AllocateRouteServlet.examDate+"   TIME:  "+AllocateRouteServlet.examTime);
+            if(AllocateRouteServlet.examDate!=null){
+                roomNameParagraph.setText("DATE :  "+AllocateRouteServlet.examDate);
+                roomNameParagraph.addTab();
+                roomNameParagraph.addTab();
+                roomNameParagraph.setText("TIME:  "+AllocateRouteServlet.examTime);
+            }
+            else{
+                roomNameParagraph.setText("DATE : ________________");
+                roomNameParagraph.addTab();
+                roomNameParagraph.addTab();
+                roomNameParagraph.setText("TIME: _________ to ________");
+            }
+            
             roomNameParagraph.addBreak();
             ArrayList<SubjectStudentUsn> studentList = detailedRoomMap.get(roomBean);
             
@@ -80,7 +92,11 @@ public class AllotmentDocument {
                          usnParagraph.addBreak();
                         
                     }
-                    
+                    XWPFParagraph footerParagraph = document.createParagraph();
+                    XWPFRun footerMessage = footerParagraph.createRun();
+                    footerMessage.setFontSize(8);
+                    footerMessage.setBold(true);
+                    footerMessage.setText("If any UNSs are missing, please report to the Control Room - PG Block, 3rd Floor (3001)");
         }
       
       document.write(out);
