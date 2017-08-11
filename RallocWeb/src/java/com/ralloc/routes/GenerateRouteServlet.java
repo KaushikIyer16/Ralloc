@@ -10,6 +10,7 @@ import com.ralloc.bean.SubjectStudentCount;
 import com.ralloc.bean.SubjectStudentUsn;
 import com.ralloc.controller.AllotmentDocument;
 import com.ralloc.controller.Ralloc;
+import com.ralloc.model.Room;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -52,15 +53,17 @@ public class GenerateRouteServlet extends HttpServlet {
         
         
         Ralloc rallocController = new Ralloc();
-        rallocController.getRoomAllocation();
+        rallocController.getRoomAllocation((ArrayList<Room>)request.getAttribute("roomList"));
         roomMap = rallocController.getRoomMap();
         detailedRoomMap = rallocController.getDetailedRoomMap();
         
+        boolean areAllAlloted = rallocController.areAllAlloted();
         
         //response.setHeader("Access-Control-Allow-Origin", "*");
         //request.setAttribute("filePath", roomAllocationFile.getAbsolutePath());
         
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
+        request.setAttribute("numStudents", areAllAlloted);
         rq.forward(request, response);
     }
 

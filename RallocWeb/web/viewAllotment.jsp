@@ -101,7 +101,9 @@
                     </div>
                 </div>
             </div>
+                            <p class="red"><% if(!(boolean)request.getAttribute("isCompleteAllocation")) out.print("All students have not been alloted rooms due to lack of rooms"); %></p>
         </div>
+        
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">
                 <div class="container" style="color: white; margin-top: 15px;">

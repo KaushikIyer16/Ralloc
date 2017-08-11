@@ -71,7 +71,7 @@ public class Ralloc {
         // TODO code application logic here
 
         Ralloc ralloc = new Ralloc();
-        ralloc.getRoomAllocation();
+        ralloc.getRoomAllocation(null);
 
     }
 
@@ -87,6 +87,13 @@ public class Ralloc {
 
 
     }
+    
+    private void initRoomMap(ArrayList<Room> roomList){
+        for (Room room : roomList) {
+            roomMap.put(new RoomBean(room.getRoomId(), room.getCapacity()), new ArrayList<>());
+        }
+    }
+    
     private void initSubjectStudentCount() throws SQLException{
         
         queriedList = Student.getAllStudents();
@@ -188,8 +195,8 @@ public class Ralloc {
             
         }
     }
-    private void initRallocController() throws SQLException{
-        this.initRoomMap();
+    private void initRallocController(ArrayList<Room> roomList) throws SQLException{
+        this.initRoomMap(roomList);
         this.initSubjectStudentCount();
 //        this.initDetailedSubjectStudentCount();
     }
@@ -205,13 +212,13 @@ public class Ralloc {
     public HashMap<SubjectDependency, ArrayList<StudentUsnBean>> getDetailedSubjectStudentGraph() {
         return detailedSubjectStudentGraph;
     }
-    public void getRoomAllocation(){
+    public void getRoomAllocation(ArrayList<Room> roomList){
 
 
         try {
             this.noRooms = Room.getTotalRooms();
             HashMap<Integer,Integer> roomDependencies = Room.getRoomIdAndDependency();
-            this.initRallocController();
+            this.initRallocController(roomList);
 
             for (RoomBean currRoom : roomMap.keySet()) {
 //                System.out.println(currRoom.getCapacity());
@@ -413,7 +420,28 @@ public class Ralloc {
     private boolean isEmptyGraph() {
         return subjectStudentGraph.isEmpty();
     }
-
+    
+    public boolean areAllAlloted(){
+        int count = 0;
+        int allotCount = 0;
+        try {
+            count = Student.getStudentCount();
+            
+            for (RoomBean room: detailedRoomMap.keySet()) {
+                
+                for ( SubjectStudentUsn subjectStudentUsn :detailedRoomMap.get(room) ) {
+                    allotCount += subjectStudentUsn.getUsnList().size();
+                }
+                
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        if(count == allotCount)
+            return true;
+        return false;
+    }
+    
     private void printRoomMap() {
         for(RoomBean room : roomMap.keySet()){
             ArrayList<SubjectStudentCount> tmpList = roomMap.get(room);
