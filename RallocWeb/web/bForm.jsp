@@ -36,17 +36,16 @@
             {
                 %>
                 <h6 class="right" style="font-size: 20px;"><b>Form-B</b> &nbsp; &nbsp;</h6>
-                <div class="row" style="margin-top: 10px;">
+                <div class="row" style="margin-top: 8px;">
                     <div class="col s3 m3 l3">
                         <img src="${pageContext.request.contextPath}/images/BMS_LOGO_Print.png" class="right" style="height: 60px;">
                     </div>
                     <div class="col s6 m6 l6">
                         <h6 class="center" style="top: 1mm; font-size: 14px;"><b>BMS COLLEGE OF ENGINEERING</b></h6>
                         <h6 class="center" style="font-size: 11px;"><span style="font-size: 11px;">(AUTONOMOUS COLLEGE UNDER VTU)</span>, BANGALORE - 560 019</h6>
-                        <h6 class="center" style="font-size: 16px; font-weight: bold">Attendance and Room Superintendent's Report</h6>
-                        
+                        <h6 class="center" style="font-size: 16px; font-weight: bold">Attendance and Room Superintendent's Report</h6>  
                     </div>
-                    <h6 class="center" style="font-size: 13px;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. __________ Semester Examination <% String tempDate = AllocateRouteServlet.examDate; if(tempDate.equalsIgnoreCase("")) out.print("__________ (MM/YYYY)"); else out.print(" " + AllocateRouteServlet.examDate.substring(3)); %></h6>
+                    <h6 class="left" style="font-size: 13px; margin-left: 50mm;">B.E./B.Arch./M.B.A/M.C.A/M.Tech. ____ Semester Examination <% String tempDate = AllocateRouteServlet.examDate; if(tempDate.equalsIgnoreCase("")) out.print("_________ (MM/YYYY)"); else out.print(" " + AllocateRouteServlet.examDate.substring(3)); %></h6>
                 </div>
                 <div class="b-form container">
                         <div class="divider"></div>
@@ -90,7 +89,7 @@
                     <h6 style="margin-left: 5mm; font-size: 0.7rem;">USNs (absentees): ____________________________________________________________________________</h6>
                     <br>
                     <h6 style="margin-left: 5mm; font-size: 0.7rem;">USNs (candidates b/u malpractice): _______________________________________________________________</h6>
-                    <br><br><br>
+                    <br>
                     
                             <table style="border: 0px solid black;" class="center">
                                 <tr>

@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-                            <p class="red"><% if(!(boolean)request.getAttribute("isCompleteAllocation")) out.print("All students have not been alloted rooms due to lack of rooms"); %></p>
+                            <p class="red"><% if(!(Boolean)request.getAttribute("isCompleteAllocation")) out.print("All students have not been alloted rooms due to lack of rooms"); %></p>
         </div>
         
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">

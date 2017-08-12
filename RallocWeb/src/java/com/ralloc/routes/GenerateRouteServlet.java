@@ -63,7 +63,7 @@ public class GenerateRouteServlet extends HttpServlet {
         //request.setAttribute("filePath", roomAllocationFile.getAbsolutePath());
         
         RequestDispatcher rq = request.getRequestDispatcher("viewAllotment.jsp");
-        request.setAttribute("numStudents", areAllAlloted);
+        request.setAttribute("isCompleteAllocation", areAllAlloted);
         rq.forward(request, response);
     }
 
