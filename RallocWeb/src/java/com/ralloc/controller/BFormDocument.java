@@ -156,7 +156,7 @@ public class BFormDocument {
 
       XWPFParagraph formBHeading = document.createParagraph();
       formBHeading.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(formBHeading, "FORM B", false, 6);
+      writeRun(formBHeading, "FORM B", false, 8);
 //      formBHeading.setPageBreak(true);
 
       XWPFParagraph heading = document.createParagraph();
@@ -225,7 +225,7 @@ public class BFormDocument {
       XWPFParagraph time = table.getRow(2).getCell(1).getParagraphArray(0);
       time.setPageBreak(false);
       time.setAlignment(ParagraphAlignment.RIGHT);
-      writeRun(time, "Time: _____________ to _____________", false);
+      writeRun(time, "Time: _____________ to _____________", true);
 
       table.setInsideHBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
       table.setInsideVBorder(XWPFTable.XWPFBorderType.SINGLE, 1, 1, "FFFFFF");
@@ -253,39 +253,47 @@ public class BFormDocument {
       ctable.setTblPr(pr);
    }
 
-   private void writeUSN(SubjectStudentUsn subject) {
-      XWPFTable table = document.createTable(1, 5);
+   private int writeUSN(SubjectStudentUsn subject, int startPosition) {
+      XWPFTable table = document.createTable(1, 4);
 
       XWPFParagraph usnColumn = table.getRow(0).getCell(0).getParagraphArray(0);
       usnColumn.setAlignment(ParagraphAlignment.CENTER);
-      writeRun(usnColumn, "USN", false, 7);
+      writeRun(usnColumn, "Sl. No", false, 7);
       XWPFParagraph bookletNo = table.getRow(0).getCell(1).getParagraphArray(0);
       bookletNo.setAlignment(ParagraphAlignment.CENTER);
-      writeRun(bookletNo, "Booklet/Drg. Sheet No.", false, 7);
+      writeRun(bookletNo, "USN", false, 7);
       XWPFParagraph signature = table.getRow(0).getCell(2).getParagraphArray(0);
       signature.setAlignment(ParagraphAlignment.CENTER);
-      writeRun(signature, "Signature", false, 7);
+      writeRun(signature, "Booklet/Drg. Sheet No. / Addl. Booklet/Drg./Graph Sheet No.", false, 7);
       XWPFParagraph additionalBooklet = table.getRow(0).getCell(3).getParagraphArray(0);
       additionalBooklet.setAlignment(ParagraphAlignment.CENTER);
-      writeRun(additionalBooklet, "Addl. Booklet/Drg./Graph Sheet No.", false, 7);
-      XWPFParagraph total = table.getRow(0).getCell(4).getParagraphArray(0);
-      total.setAlignment(ParagraphAlignment.CENTER);
-      writeRun(total, "Total", false, 7);
+      writeRun(additionalBooklet, "Signature", false, 7);
+      
 
       table.getRow(0).setRepeatHeader(true);
       table.getRow(0).setHeight(350);
       table.getRow(0).getCtRow().getTrPr().getTrHeightArray(0).setHRule(STHeightRule.EXACT);
-      for (int i = 0; i < 5; ++i)
+      for (int i = 0; i < 4; ++i)
          table.getRow(0).getCell(i).setVerticalAlignment(XWPFTableCell.XWPFVertAlign.CENTER);
 
       int counter = 1;
-      for (String usn: subject.getUsnList()) {
-         usnColumn = table.createRow().getCell(0).getParagraphArray(0);
+      int slCounter = 1;
+      ArrayList<String> usnList = subject.getUsnList();
+      for (int i=startPosition;(i< startPosition+20) && i<usnList.size();i++) {
+         XWPFParagraph slColumn = table.createRow().getCell(0).getParagraphArray(0);
+         slColumn.setAlignment(ParagraphAlignment.LEFT);
+          writeRun(slColumn, (slCounter++)+"", true);
+         usnColumn = table.getRow(counter).getCell(1).getParagraphArray(0);
          usnColumn.setAlignment(ParagraphAlignment.LEFT);
-         writeRun(usnColumn, usn, false);
+         writeRun(usnColumn, usnList.get(i), false);
+         
          table.getRow(counter).setHeight(350);
          table.getRow(counter).getCtRow().getTrPr().getTrHeightArray(0).setHRule(STHeightRule.EXACT);
          table.getRow(counter).getCell(0).setVerticalAlignment(XWPFTableCell.XWPFVertAlign.CENTER);
+         
+         table.getRow(counter).setHeight(350);
+         table.getRow(counter).getCtRow().getTrPr().getTrHeightArray(0).setHRule(STHeightRule.EXACT);
+         table.getRow(counter).getCell(1).setVerticalAlignment(XWPFTableCell.XWPFVertAlign.CENTER);
          ++counter;
       }
 
@@ -296,6 +304,8 @@ public class BFormDocument {
       tblW.setType(STTblWidth.PCT);
       pr.setTblW(tblW);
       ctable.setTblPr(pr);
+      
+      return startPosition+20;
    }
 
    public void writeAttendance(){
@@ -391,11 +401,16 @@ public class BFormDocument {
       for (RoomBean roomBean: detailedRoomMap.keySet()) {
          ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
          for (SubjectStudentUsn subject: subjectList) {
-            writeHeading();
-            writeCourseDetails(subject, roomBean.getRoomId());
-            document.createParagraph().createRun().addBreak();
-            writeUSN(subject);
-            writeAttendance();
+             
+             int currUsn = 0;
+             while(currUsn < subject.getUsnList().size()){
+                writeHeading();
+                writeCourseDetails(subject, roomBean.getRoomId());
+                document.createParagraph().createRun().addBreak();
+                currUsn = writeUSN(subject, currUsn);
+                writeAttendance();
+             }
+             
          }
 
       }

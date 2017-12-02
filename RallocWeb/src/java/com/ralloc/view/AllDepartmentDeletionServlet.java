@@ -23,9 +23,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "AllDepartmentDeletionServlet", urlPatterns = {"/Delete/department/all"})
 public class AllDepartmentDeletionServlet extends HttpServlet {
-
-    public static String errorMessage = "";
     
+    public static String errorMessage = "";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

@@ -133,6 +133,20 @@ public class Student {
         return studentList;
     }
     
+    public static HashMap<String, Integer> getAllStudentDepartment() throws SQLException{
+        HashMap<String, Integer> studentList;
+        try (Connection myConnection = DBConnection.getConnection()) {
+            PreparedStatement myStatement = myConnection.prepareStatement("SELECT USN, DepartmentID FROM Student");
+            ResultSet subResult = myStatement.executeQuery();
+            studentList = new HashMap<>();
+            while(subResult.next())
+            {
+                studentList.put(subResult.getString(1), subResult.getInt(2));
+            }
+        }
+        return studentList;
+    }
+    
     public static int getStudentCount() throws SQLException{
         int count = 0;
         try(Connection myConnection = DBConnection.getConnection()){

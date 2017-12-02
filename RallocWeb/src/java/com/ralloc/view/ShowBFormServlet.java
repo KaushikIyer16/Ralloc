@@ -59,13 +59,11 @@ public class ShowBFormServlet extends HttpServlet {
     }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //printDetailedRoomAllocation();
         System.out.println("the value of date and time is "+request.getAttribute("date"));
         request.setAttribute("roomMap", GenerateRouteServlet.roomMap);
         request.setAttribute("detailRoomMap", GenerateRouteServlet.detailedRoomMap);
         request.setAttribute("Date", request.getParameter("Date"));
         request.setAttribute("Time", request.getParameter("Time"));
-        //BFormDocument bForm = new BFormDocument(GenerateRouteServlet.detailedRoomMap, (String)request.getParameter("Date"), (String)request.getParameter("Time"));
         
         RequestDispatcher rq = request.getRequestDispatcher("/bForm.jsp");
         rq.forward(request, response);

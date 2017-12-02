@@ -5,9 +5,15 @@
  */
 package com.ralloc.view;
 
-import com.ralloc.model.DBConnection;
+import com.ralloc.model.Room;
+import com.ralloc.routes.GenerateRouteServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Mahesh
+ * @author Bhargav
  */
-@WebServlet(name = "ModifyConnection", urlPatterns = {"/Modify/connection"})
-public class ModifyConnection extends HttpServlet {
+@WebServlet(name = "SelectRoomList", urlPatterns = {"/SelectRoomList"})
+public class SelectRoomList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,13 +37,27 @@ public class ModifyConnection extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        DBConnection.setCONNECTIONSTRING((String)request.getParameter("connectionString"));
-        DBConnection.setUSERNAME((String)request.getParameter("userName"));
-        DBConnection.setPASSWORD((String)request.getParameter("password"));
-        response.sendRedirect(request.getContextPath());
+        ArrayList<Room> roomList = new ArrayList<>();
+        ArrayList<Room> finalRoomList = new ArrayList<>();
+        roomList = Room.getAllRoomDetails();
+        boolean agree = request.getParameter("all") != null;
+        if(agree){
+            finalRoomList = roomList;
+        }
+        else{
+            for(Room roomDetails: roomList){
+                boolean check = request.getParameter(roomDetails.getName()) != null;
+                if(check){
+                    finalRoomList.add(roomDetails);
+                }
+                    
+            }
+        }
+        RequestDispatcher rq = request.getRequestDispatcher("/Generate");
+        request.setAttribute("roomList", finalRoomList);
+        rq.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +72,11 @@ public class ModifyConnection extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SelectRoomList.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -66,7 +90,11 @@ public class ModifyConnection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SelectRoomList.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -101,6 +101,8 @@
                     </div>
                 </div>
             </div>
+            <p class="red"><% if(!(Boolean)request.getAttribute("isCompleteAllocation")) out.print("All students have not been alloted rooms due to lack of rooms"); %></p>
+            <a class="waves-effect waves-light btn custom-btn center" href="${pageContext.request.contextPath}/Stats" target="_blank">VIEW STATISTICS</a>
         </div>
         <footer class="custom-footer" style="bottom: 0px; position: fixed;">
             <div class="footer-copyright">

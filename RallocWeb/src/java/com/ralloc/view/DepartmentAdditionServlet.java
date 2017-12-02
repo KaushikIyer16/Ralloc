@@ -55,7 +55,7 @@ public class DepartmentAdditionServlet extends HttpServlet {
                 if(Integer.parseInt(intake) <= 0)
                     throw new InputMismatchException("Invalid intake value ");
                 String deptName = (String)request.getParameter("DepartmentName");
-                if(!deptName.matches("[a-zA-Z]*"))
+                if((deptName.equalsIgnoreCase("")))
                     throw new InputMismatchException("Invalid Department Name");
                 Department.addDepartment(request.getParameter("DepartmentName"), request.getParameter("ClusterName"),request.getParameter("MaximumIntake"));
                 response.sendRedirect(request.getContextPath()+"/home");

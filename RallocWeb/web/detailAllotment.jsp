@@ -4,6 +4,7 @@
     Author     : Mahesh
 --%>
 
+<%@page import="com.ralloc.routes.AllocateRouteServlet"%>
 <%@page import="com.ralloc.model.Subject"%>
 <%@page import="com.ralloc.bean.SubjectStudentUsn"%>
 <%@page import="com.ralloc.model.Room"%>
@@ -47,12 +48,13 @@
             <div class="arrangement">
                 <br/>
                 <h4>Room: <%out.print(Room.getRoomNameById(roomBean.getRoomId()));%></h4>
+                <h6 style= "font-size: 14px;"><span><%if(!(AllocateRouteServlet.examDate == null))out.print(" &nbsp&nbsp&nbsp Date:" + AllocateRouteServlet.examDate); else out.print(" &nbsp&nbsp&nbsp Date: ____________");String tempTime = AllocateRouteServlet.examTime ;%></span><% if(!(tempTime.equalsIgnoreCase(""))) out.print("<span class=\"right\"> &nbsp Time: " + AllocateRouteServlet.examTime + " to _________ </span>"); else out.print("<span class=\"right\"> &nbsp &nbsp Time: _________ to _________</span>");%></h6>
                 <%
                     ArrayList<SubjectStudentUsn> studentList = detailedRoomMap.get(roomBean);
                     for(SubjectStudentUsn subjects : studentList)
                     {
                         %>
-                        <h6><b>Course Code: <%out.print(subjects.getCourseCode());%> </b><span class="right"><b>Subject: <%out.print(Subject.getNameByCourseCode(subjects.getCourseCode()));%></b></span></h6>
+                        <h6><b>Course Code: <%out.print(subjects.getCourseCode());%> </b><span class="right"><b style="text-transform: uppercase !important;">Subject: <%out.print(Subject.getNameByCourseCode(subjects.getCourseCode()));%></b></span></h6>
                         <%            
                             ArrayList<String> usnList = subjects.getUsnList();
                         %></div><b><span> Total: <%out.println(usnList.size()); %></span></b><div class="usn-list"><%
@@ -63,6 +65,7 @@
                             %><%
                     }
                 %>
+                <p style="font-size: 18px;"><b>If any USN's are missing, please report to the control room - PG Block 3rd Floor (3001)</b></p>
                 <div class="divider"></div>
             </div>
         <%

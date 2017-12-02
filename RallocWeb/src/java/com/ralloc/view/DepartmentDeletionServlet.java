@@ -42,7 +42,6 @@ public class DepartmentDeletionServlet extends HttpServlet {
             System.out.println(e.getMessage());
             response.sendRedirect(request.getContextPath()+"/viewError.jsp");
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
