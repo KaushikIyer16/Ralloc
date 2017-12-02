@@ -15,6 +15,7 @@
 <%!
     HashMap<RoomBean,ArrayList<SubjectStudentUsn>> detailedRoomMap;
     HashMap<RoomBean,ArrayList<SubjectStudentCount>> roomMap;
+    int counter=0, currSubjectStudent=0;
 %>
     <head>
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bform.css" />
@@ -28,12 +29,18 @@
         roomMap = (HashMap<RoomBean,ArrayList<SubjectStudentCount>>)request.getAttribute("roomMap");
         for(RoomBean roomBean: detailedRoomMap.keySet())
         {
+            currSubjectStudent = 0;
             %>
 
             <%
             ArrayList<SubjectStudentUsn> subjectList = detailedRoomMap.get(roomBean);
-            for(SubjectStudentUsn subject: subjectList)
-            {
+            while(currSubjectStudent < subjectList.size()){
+                
+            SubjectStudentUsn subject = subjectList.get(currSubjectStudent);
+            ArrayList<String> usnList = subject.getUsnList();
+            int currUsn = 0;
+            
+            while(currUsn < usnList.size()){
                 %>
                 <h6 class="right" style="font-size: 20px;"><b>Form-B</b> &nbsp; &nbsp;</h6>
                 <div class="row" style="margin-top: 8px;">
@@ -67,7 +74,7 @@
                             <tbody>
                         <%
                             int slNo=1;
-                            for(String usn: subject.getUsnList())
+                            for(int i=currUsn;(i<currUsn+20) && i<usnList.size();i++)
                             {
                                 
                                 %>
@@ -75,13 +82,15 @@
                                         
                                         <%
                                             out.print("<td style=\"padding: 1px 1px 1px; border-right: 1px solid black; font-size: 12px;\" class=\"center\">" + (slNo++) + "</td>");
-                                            out.print("<td style=\"padding: 1px 1px 1px; border-right: 1px solid black; font-size: 12px;\">" + usn + "</td>");
+                                            out.print("<td style=\"padding: 1px 1px 1px; border-right: 1px solid black; font-size: 12px;\">" + usnList.get(i) + "</td>");
+                                            
                                         %>
                                         <td style="border-right: 1px solid black;"></td>
                                         <td style="border-right: 1px solid black;"></td>
                                     </tr>
                                 <%
                             }
+                            currUsn += 20;
                         %>
                             </tbody>
                         </table>
@@ -136,6 +145,8 @@
                             </table>
                         </div>                   
                 <%
+                    }
+                currSubjectStudent = currSubjectStudent+1;
             }
         }
         %>
